@@ -22,8 +22,16 @@
       	<a href="pasajeros" class="btn btn-success">Reservar</a>
       </p>
     </div>
+    <div class="row">
+    <div class="col-sm-4">
+      
+      <p>
+      	<a href="vehiculos" class="btn btn-primary">Ver vehiculos</a>
+      </p>
+    </div>
    
   </div>
+</div>
 </div>
 </body>
 </html>

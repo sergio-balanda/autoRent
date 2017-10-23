@@ -12,12 +12,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.servicios.ServicioBuscar;
+import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 
 @Controller
 public class ControladorPrueba {
-	/*@Inject
-	private ServicioBuscar servicioBuscar;*/
+	@Inject
+	private ServicioVehiculo servicioVehiculo;
+	
+	public ServicioVehiculo getServicioVehiculo() {
+		return servicioVehiculo;
+	}
+
+	public void setServicioVehiculo(ServicioVehiculo servicioVehiculo) {
+		this.servicioVehiculo = servicioVehiculo;
+	}
+	
+	@RequestMapping ("/vehiculos")
+	public ModelAndView verVehiculos (){
+
+		ModelMap modelo = new ModelMap();
+		Vehiculo vehiculos = new Vehiculo();
+		String patente=vehiculos.getPatente();
+		
+		modelo.put("vehiculos", vehiculos);
+		modelo.put("patentes", patente);
+		modelo.put("v", servicioVehiculo.listarVehiculos());
+		return new ModelAndView ("vehiculos", modelo);
+	}
 	
 	@RequestMapping(path="/")
 	public ModelAndView irAPrueba()
