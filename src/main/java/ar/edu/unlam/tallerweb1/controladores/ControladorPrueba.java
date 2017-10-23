@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerwe1.servicios.ServicioBuscar;
+import ar.edu.unlam.tallerweb1.servicios.ServicioBuscar;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 
 @Controller
 public class ControladorPrueba {
-	@Inject
-	private ServicioBuscar servicioBuscar;
+	/*@Inject
+	private ServicioBuscar servicioBuscar;*/
 	
 	@RequestMapping(path="/")
 	public ModelAndView irAPrueba()
@@ -33,12 +33,8 @@ public class ControladorPrueba {
 	public ModelAndView buscaCantidad (@RequestParam ("cantidad") Integer cantidad)
 	{
 		ModelMap modelo = new ModelMap();
-		List<Vehiculo> vehiculosBuscados = servicioBuscar.buscarVehiculos;
-		//Me trabe aca lo de arriba no se si esta bien.
-		
-		
-		
-		return new ModelAndView("login", modelo);
+		modelo.put("valor",cantidad);
+		return new ModelAndView("pruebaok",modelo);
 		
 	}
 
