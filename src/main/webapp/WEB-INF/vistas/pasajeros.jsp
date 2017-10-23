@@ -1,5 +1,3 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,20 +14,22 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<form:form action="reservar" method="post" modelAttribute="vehiculos">
+				<form action="reservar" method="GET">
 					
 					<div class="form-group">
                             <span class="">Cantidad de personas</span>
-                            <form:select path="cantidadDePersonas">
-                                <c:forEach varStatus="i" begin="1" end="5">
-                                    <form:option value="${i.index}">${i.index}</form:option>
-                                </c:forEach>
-                            </form:select>
+                            <select id="cantidad" name="cantidad">
+                                <option value="1" > 1 </option> 
+                                <option value="2" > 2 </option>
+                                <option value="3" > 3 </option>
+                                <option value="4" > 4 </option>
+                                <option value="5" > 5 </option>
+                            </select>
                      </div>
 					
 					
 					<button type="submit" class="btn btn-primary">Enviar</button>
-				</form:form>
+				</form>
 			</div>
 		</div>
 	</div>

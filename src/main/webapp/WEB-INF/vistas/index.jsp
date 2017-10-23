@@ -14,30 +14,15 @@
 </head>
 <body>
 
-<div class="jumbotron text-center">
-  <h1>${valor1}</h1>
-  <p>Resize this responsive page to see the effect!</p> 
-</div>
-  
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
-      <h3>Empezar con la reserva</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      
       <p>
       	<a href="pasajeros" class="btn btn-success">Reservar</a>
       </p>
     </div>
-    <div class="col-sm-4">
-      <h3>Column 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 3</h3>        
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
+   
   </div>
 </div>
 </body>
