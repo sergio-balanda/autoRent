@@ -16,9 +16,9 @@ public class ServicioVehiculoImpl implements ServicioVehiculo{
 	@Inject
 	private VehiculoDao vehiculoDao;
 	@Override
-	public List<Vehiculo> listarVehiculos() {
+	public List<Vehiculo> listarVehiculos(Integer cant) {
 		// TODO Auto-generated method stub
-		return vehiculoDao.listarVehiculos();
+		return vehiculoDao.listarVehiculos(cant);
 	}
 
 }

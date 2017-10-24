@@ -5,5 +5,5 @@ import java.util.List;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 
 public interface  ServicioVehiculo {
-	public List<Vehiculo> listarVehiculos();
+	public List<Vehiculo> listarVehiculos(Integer cant);
 }

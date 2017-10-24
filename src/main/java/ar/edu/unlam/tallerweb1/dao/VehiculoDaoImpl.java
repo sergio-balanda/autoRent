@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +20,13 @@ public class VehiculoDaoImpl implements VehiculoDao{
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<Vehiculo> listarVehiculos() {
+	public List<Vehiculo> listarVehiculos(Integer cant) {
 		final Session session = sessionFactory.getCurrentSession();
 
 		
-		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class).list();
+		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class)
+								   .add(Restrictions.ge("cantidadDePersonas", cant))
+								   .addOrder(Order.asc("cantidadDePersonas")).list();
 
 		return vehiculos;
 	}

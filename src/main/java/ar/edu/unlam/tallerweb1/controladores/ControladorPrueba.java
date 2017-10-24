@@ -29,7 +29,7 @@ public class ControladorPrueba {
 	}
 	
 	@RequestMapping ("/vehiculos")
-	public ModelAndView verVehiculos (){
+	public ModelAndView verVehiculos (@RequestParam ("cantidad") Integer cant){
 
 		ModelMap modelo = new ModelMap();
 		Vehiculo vehiculos = new Vehiculo();
@@ -37,7 +37,7 @@ public class ControladorPrueba {
 		
 		modelo.put("vehiculos", vehiculos);
 		modelo.put("patentes", patente);
-		modelo.put("v", servicioVehiculo.listarVehiculos());
+		modelo.put("v", servicioVehiculo.listarVehiculos(cant));
 		return new ModelAndView ("vehiculos", modelo);
 	}
 	
@@ -51,13 +51,13 @@ public class ControladorPrueba {
 	{
 		return new ModelAndView("pasajeros");
 	}
-	@RequestMapping("/reservar")
+	/*@RequestMapping("/reservar")
 	public ModelAndView buscaCantidad (@RequestParam ("cantidad") Integer cantidad)
 	{
 		ModelMap modelo = new ModelMap();
 		modelo.put("valor",cantidad);
 		return new ModelAndView("pruebaok",modelo);
 		
-	}
+	}*/
 
 }

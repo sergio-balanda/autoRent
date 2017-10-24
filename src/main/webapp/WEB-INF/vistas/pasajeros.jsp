@@ -14,7 +14,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<form action="reservar" method="GET">
+				<form action="vehiculos" method="GET">
 					
 					<div class="form-group">
                             <span class="">Cantidad de personas</span>

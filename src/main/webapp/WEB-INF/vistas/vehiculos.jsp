@@ -17,14 +17,13 @@
 <body>
 
 	<div class="container">
-  <h2>Totos los vehiculos</h2>
-  <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
+  <h2>Vehiculos con >= cantidad</h2>            
   <table class="table table-bordered">
     <thead>
       <tr>
         <th>Patente</th>
-        <th>Cantidad personas</th>
         <th>cantidad equipaje</th>
+        <th>Cantidad personas</th>
       </tr>
     </thead>
     <tbody>
