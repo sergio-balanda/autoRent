@@ -20,7 +20,7 @@
 		
 		<div class="panel-group">
 	    	<div class="panel panel-default">
-	      		<div class="panel-heading">Bienvenido</div>
+	      		<div class="panel-heading">Seleccione Cantidad de Pasajeros:</div>
 	      			<div class="panel-body">
 	    				<form action="vehiculos" method="GET">
 							<div class="form-group">
