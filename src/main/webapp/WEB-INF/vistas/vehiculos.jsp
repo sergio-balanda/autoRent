@@ -15,32 +15,45 @@
 <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
 <body>
-
 	<div class="container">
-  <h2>Vehiculos con >= cantidad</h2>            
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Patente</th>
-        <th>Marca</th>
-        <th>Modelo</th>
-        <th>Capacidad Pasajeros</th>
-        <th>Capacidad Valijas</th>
-      </tr>
-    </thead>
-    <tbody>
-     <c:forEach items="${v}" var="vh">
-      <tr>
-        <td><c:out value="${vh.patente}"/></td>
-        <td><c:out value="${vh.marca}"/></td>
-        <td><c:out value="${vh.modelo}"/></td>
-        <td><c:out value="${vh.capacidadPasajeros}"/></td>
-        <td><c:out value="${vh.capacidadValijas}"/></td>
-      </tr>
-      </c:forEach>
-    </tbody>
-  </table>
+  		<header class='page-header'>
+				<div class="container-fluid bg-1">
+					<img src="img/logo.jpg" class="img-responsive" style="display:inline" alt="" width="100" height="100">
+					<h1 class="margin" style="display:inline;margin-left:100px" >Auto Rent</h1>
+				</div>
+		</header>
+  
+  
+  <div class="panel-group">
+	    	<div class="panel panel-default">
+	      		<div class="panel-heading">Los vehiculos disponibles para su seleccion son:</div>
+	      			<div class="panel-body">
+              			<table class="table table-bordered">
+    						<thead>
+      							<tr>
+        							<th>Patente</th>
+       								<th>Marca</th>
+							        <th>Modelo</th>
+							        <th>Capacidad Pasajeros</th>
+							        <th>Capacidad Valijas</th>
+      							</tr>
+    						</thead>
+    						<tbody>
+     							<c:forEach items="${v}" var="vh">
+      							<tr>
+						         <td><c:out value="${vh.patente}"/></td>
+						         <td><c:out value="${vh.marca}"/></td>
+						         <td><c:out value="${vh.modelo}"/></td>
+						  	     <td><c:out value="${vh.capacidadPasajeros}"/></td>
+							     <td><c:out value="${vh.capacidadValijas}"/></td>
+      							</tr>
+      							</c:forEach>
+    						</tbody>
+  						</table>
+					</div>
+				</div>
+	</div>
 </div>
-
+	
 </body>
 </html>

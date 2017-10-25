@@ -33,9 +33,9 @@ public class ControladorPrueba {
 	public ModelAndView verVehiculos(@RequestParam("cantidad") Integer cant) {
 		ModelMap modelo = new ModelMap();
 		Vehiculo vehiculos = new Vehiculo();
-		String patente = vehiculos.getPatente();
+		//String patente = vehiculos.getPatente();
 		modelo.put("vehiculos", vehiculos);
-		modelo.put("patentes", patente);
+		//modelo.put("patentes", patente);
 		modelo.put("v", servicioVehiculo.listarVehiculosXPasajeros(cant));
 		return new ModelAndView("vehiculos", modelo);
 	}

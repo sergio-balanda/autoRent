@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +33,9 @@ public class VehiculoDaoImpl implements VehiculoDao {
 	@Override
 	public Integer maxPasajeros() {
 		final Session session = sessionFactory.getCurrentSession();
-		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class).addOrder(Order.desc("capacidadPasajeros")).list();
-		Integer max = vehiculos.get(0).getCapacidadPasajeros();
+		Integer max  = (Integer) session.createCriteria(Vehiculo.class)
+					.setProjection(Projections.max("capacidadPasajeros"))
+					   .uniqueResult();
 		return max;
 	}
 
