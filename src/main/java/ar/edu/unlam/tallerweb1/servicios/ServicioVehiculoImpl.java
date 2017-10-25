@@ -13,12 +13,18 @@ import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 @Service("servicioVehiculo")
 @Transactional
 public class ServicioVehiculoImpl implements ServicioVehiculo{
+	
 	@Inject
 	private VehiculoDao vehiculoDao;
+	
 	@Override
-	public List<Vehiculo> listarVehiculos(Integer cant) {
-		// TODO Auto-generated method stub
-		return vehiculoDao.listarVehiculos(cant);
+	public List<Vehiculo> listarVehiculosXPasajeros(Integer cant) {
+		return vehiculoDao.listarVehiculosXPasajeros(cant);
+	}
+
+	@Override
+	public Integer maxPasajeros() {
+		return vehiculoDao.maxPasajeros();
 	}
 
 }

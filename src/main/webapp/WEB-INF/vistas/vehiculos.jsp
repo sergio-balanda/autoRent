@@ -22,16 +22,20 @@
     <thead>
       <tr>
         <th>Patente</th>
-        <th>cantidad equipaje</th>
-        <th>Cantidad personas</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Capacidad Pasajeros</th>
+        <th>Capacidad Valijas</th>
       </tr>
     </thead>
     <tbody>
      <c:forEach items="${v}" var="vh">
       <tr>
         <td><c:out value="${vh.patente}"/></td>
-        <td><c:out value="${vh.cantidadEquipaje}"/></td>
-        <td><c:out value="${vh.cantidadDePersonas}"/></td>
+        <td><c:out value="${vh.marca}"/></td>
+        <td><c:out value="${vh.modelo}"/></td>
+        <td><c:out value="${vh.capacidadPasajeros}"/></td>
+        <td><c:out value="${vh.capacidadValijas}"/></td>
       </tr>
       </c:forEach>
     </tbody>

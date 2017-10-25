@@ -17,9 +17,10 @@ import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 
 @Controller
 public class ControladorPrueba {
+	
 	@Inject
 	private ServicioVehiculo servicioVehiculo;
-	
+
 	public ServicioVehiculo getServicioVehiculo() {
 		return servicioVehiculo;
 	}
@@ -27,37 +28,28 @@ public class ControladorPrueba {
 	public void setServicioVehiculo(ServicioVehiculo servicioVehiculo) {
 		this.servicioVehiculo = servicioVehiculo;
 	}
-	
-	@RequestMapping ("/vehiculos")
-	public ModelAndView verVehiculos (@RequestParam ("cantidad") Integer cant){
 
+	@RequestMapping("/vehiculos")
+	public ModelAndView verVehiculos(@RequestParam("cantidad") Integer cant) {
 		ModelMap modelo = new ModelMap();
 		Vehiculo vehiculos = new Vehiculo();
-		String patente=vehiculos.getPatente();
-		
+		String patente = vehiculos.getPatente();
 		modelo.put("vehiculos", vehiculos);
 		modelo.put("patentes", patente);
-		modelo.put("v", servicioVehiculo.listarVehiculos(cant));
-		return new ModelAndView ("vehiculos", modelo);
+		modelo.put("v", servicioVehiculo.listarVehiculosXPasajeros(cant));
+		return new ModelAndView("vehiculos", modelo);
 	}
-	
-	@RequestMapping(path="/")
-	public ModelAndView irAPrueba()
-	{
+
+	@RequestMapping(path = "/")
+	public ModelAndView irAPrueba() {
 		return new ModelAndView("index");
 	}
+
 	@RequestMapping("/pasajeros")
-	public ModelAndView irAPasajero ()
-	{
-		return new ModelAndView("pasajeros");
-	}
-	/*@RequestMapping("/reservar")
-	public ModelAndView buscaCantidad (@RequestParam ("cantidad") Integer cantidad)
-	{
+	public ModelAndView irAPasajero() {
 		ModelMap modelo = new ModelMap();
-		modelo.put("valor",cantidad);
-		return new ModelAndView("pruebaok",modelo);
-		
-	}*/
+		modelo.put("max", servicioVehiculo.maxPasajeros());
+		return new ModelAndView("pasajeros", modelo);
+	}
 
 }

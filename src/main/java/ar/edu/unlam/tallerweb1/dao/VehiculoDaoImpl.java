@@ -14,21 +14,27 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 
 @Service("VehiculoDao")
-public class VehiculoDaoImpl implements VehiculoDao{
+public class VehiculoDaoImpl implements VehiculoDao {
 
 	@Inject
 	private SessionFactory sessionFactory;
-	
+
 	@Override
-	public List<Vehiculo> listarVehiculos(Integer cant) {
+	public List<Vehiculo> listarVehiculosXPasajeros(Integer cant) {
 		final Session session = sessionFactory.getCurrentSession();
-
-		
 		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class)
-								   .add(Restrictions.ge("cantidadDePersonas", cant))
-								   .addOrder(Order.asc("cantidadDePersonas")).list();
-
+				.add(Restrictions.ge("capacidadPasajeros", cant))
+				.addOrder(Order.asc("capacidadPasajeros"))
+				.list();
 		return vehiculos;
+	}
+
+	@Override
+	public Integer maxPasajeros() {
+		final Session session = sessionFactory.getCurrentSession();
+		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class).addOrder(Order.desc("capacidadPasajeros")).list();
+		Integer max = vehiculos.get(0).getCapacidadPasajeros();
+		return max;
 	}
 
 }
