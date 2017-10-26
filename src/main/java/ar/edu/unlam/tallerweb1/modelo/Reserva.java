@@ -7,38 +7,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import java.util.Date;
 
 @Entity
 public class Reserva {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idReserva;
+	private Integer idReserva;
 	private Date fechaInicio;
 	private Date fechaFin;
 	private Double costoOrigen;
-	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "fkVehiculoR")
-    private Vehiculo vehiculo;
-	
+	private Vehiculo vehiculo;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "fkSucursalR")
-    private Sucursal sucursal;
+	private Sucursal sucursal;
 	
-	public Reserva(){
-		
+	public Reserva() {
+		super();
 	}
-
-	public Long getIdReserva() {
-		return idReserva;
-	}
-
-	public void setIdReserva(Long idReserva) {
-		this.idReserva = idReserva;
-	}
-
+	
 	public Date getFechaInicio() {
 		return fechaInicio;
 	}
@@ -78,7 +68,5 @@ public class Reserva {
 	public void setSucursal(Sucursal sucursal) {
 		this.sucursal = sucursal;
 	}
-	
-	
-	
-}//fin
+
+}

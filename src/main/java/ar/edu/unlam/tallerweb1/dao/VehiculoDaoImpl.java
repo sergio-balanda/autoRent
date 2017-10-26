@@ -1,9 +1,7 @@
 package ar.edu.unlam.tallerweb1.dao;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
@@ -11,7 +9,6 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
-
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 
 @Service("VehiculoDao")
@@ -20,6 +17,7 @@ public class VehiculoDaoImpl implements VehiculoDao {
 	@Inject
 	private SessionFactory sessionFactory;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Vehiculo> listarVehiculosXPasajeros(Integer cant) {
 		final Session session = sessionFactory.getCurrentSession();
@@ -33,9 +31,9 @@ public class VehiculoDaoImpl implements VehiculoDao {
 	@Override
 	public Integer maxPasajeros() {
 		final Session session = sessionFactory.getCurrentSession();
-		Integer max  = (Integer) session.createCriteria(Vehiculo.class)
+		Integer max  = (Integer)session.createCriteria(Vehiculo.class)
 					.setProjection(Projections.max("capacidadPasajeros"))
-					   .uniqueResult();
+					.uniqueResult();
 		return max;
 	}
 

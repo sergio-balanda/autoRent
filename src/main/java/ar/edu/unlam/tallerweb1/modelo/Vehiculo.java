@@ -10,11 +10,11 @@ public class Vehiculo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idVehiculo;
+	private Integer idVehiculo;
 	private String patente;
 	private String marca;
-	private String modelo;
 	private String nombre;
+	private String imagen;
 	private Integer capacidadPasajeros;
 	private Integer capacidadValijas;
 	private Integer kilometraje;
@@ -39,12 +39,20 @@ public class Vehiculo {
 		this.marca = marca;
 	}
 
-	public String getModelo() {
-		return modelo;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getFoto() {
+		return imagen;
+	}
+
+	public void setFoto(String imagen) {
+		this.imagen = imagen;
 	}
 
 	public Integer getCapacidadPasajeros() {
