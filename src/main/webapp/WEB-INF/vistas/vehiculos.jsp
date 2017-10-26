@@ -31,21 +31,25 @@
               			<table class="table table-bordered">
     						<thead>
       							<tr>
+      								<th>Imagen</th>
         							<th>Patente</th>
        								<th>Marca</th>
 							        <th>Modelo</th>
 							        <th>Capacidad Pasajeros</th>
 							        <th>Capacidad Valijas</th>
+							        <th>Seleccionar</th>
       							</tr>
     						</thead>
     						<tbody>
-     							<c:forEach items="${v}" var="vh">
+     							<c:forEach items="${vehiculos}" var="vehiculo">
       							<tr>
-						         <td><c:out value="${vh.patente}"/></td>
-						         <td><c:out value="${vh.marca}"/></td>
-						         <td><c:out value="${vh.modelo}"/></td>
-						  	     <td><c:out value="${vh.capacidadPasajeros}"/></td>
-							     <td><c:out value="${vh.capacidadValijas}"/></td>
+      							 <td><img src=""/></td>									
+						         <td><c:out value="${vehiculo.patente}"/></td>
+						         <td><c:out value="${vehiculo.marca}"/></td>
+						         <td><c:out value="${vehiculo.modelo}"/></td>
+						  	     <td><c:out value="${vehiculo.capacidadPasajeros}"/></td>
+							     <td><c:out value="${vehiculo.capacidadValijas}"/></td>
+							     <td><a href="" class="btn btn-info">Ver</a></td>
       							</tr>
       							</c:forEach>
     						</tbody>
@@ -53,6 +57,8 @@
 					</div>
 				</div>
 	</div>
+	
+
 </div>
 	
 </body>

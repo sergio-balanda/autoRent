@@ -14,17 +14,17 @@ INSERT INTO Categoria (nombre, costoHora) VALUES
 ('Grande', 77.75),
 ('Compacto', 45.50);
 
-INSERT INTO Vehiculo (patente, marca, modelo, capacidadPasajeros, capacidadValijas, kilometraje, fkSucursalV, fkCategoriaV) VALUES
-('AB111CD', 'Toyota', 'Hilux', 5, 6, 0, 4, 1),
-('BC222DE', 'Ford', 'Ranger', 5, 5, 0, 2, 1),
-('CD333EF', 'Chevrolet', 'Spin', 7, 3, 0, 3, 2),
-('DE444FG', 'Mercedes Benz', 'Vito', 8, 2, 0, 1, 2),
-('EF555GH', 'Toyota', 'Corolla', 5, 3, 0, 1, 3),
-('FG666HI', 'Volkswagen', 'Vento', 5, 2, 0, 3, 3),
-('GH777IJ', 'Citroen', 'C4', 5, 2, 0, 3, 4),
-('HI888JK', 'Peugeot', '206 SW', 5, 2, 0, 2, 4),
-('IJ999KL', 'Fortwo', 'Fortwo', 2, 1, 0, 1, 5),
-('JK000LM', 'Volkswagen', 'Up', 4, 2, 0, 2, 5);
+INSERT INTO Vehiculo (patente, marca, nombre ,imagen, capacidadPasajeros, capacidadValijas, kilometraje, fkSucursalV, fkCategoriaV) VALUES
+('AB111CD', 'Toyota', 'Hilux','http://soundinmotion.com.au/wp-content/uploads/2016/08/sr5-.png',5, 6, 0, 4, 1),
+('BC222DE', 'Ford', 'Ranger', 'http://soundinmotion.com.au/wp-content/uploads/2016/08/sr5-.png',5, 5, 0, 2, 1),
+('CD333EF', 'Chevrolet', 'Spin', 'http://soundinmotion.com.au/wp-content/uploads/2016/08/sr5-.png',7, 3, 0, 3, 2),
+('DE444FG', 'Mercedes Benz', 'Vito','http://www.worldfranchisebusiness.com/wp-content/uploads/2011/09/mercedes-benz-vito-taxi.png',8, 2, 0, 1, 2),
+('EF555GH', 'Toyota', 'Corolla', 'http://soundinmotion.com.au/wp-content/uploads/2016/08/sr5-.png',5, 3, 0, 1, 3),
+('FG666HI', 'Volkswagen', 'Vento', 'https://www.autodato.com/wp-content/uploads/2013/02/Volkswagen-Vento-Argentina-Xenon-LED-2014.png',5, 2, 0, 3, 3),
+('GH777IJ', 'Citroen', 'C4', 'https://info.citroen.co.uk/Assets/uploads/offers/individual-offers/slider/318-c4-picasso-front.png',5, 2, 0, 3, 4),
+('HI888JK', 'Peugeot', '206 SW', 'http://soundinmotion.com.au/wp-content/uploads/2016/08/sr5-.png',5, 2, 0, 2, 4),
+('IJ999KL', 'Fortwo', 'Fortwo', 'http://soundinmotion.com.au/wp-content/uploads/2016/08/sr5-.png',2, 1, 0, 1, 5),
+('JK000LM', 'Volkswagen', 'Up', 'http://soundinmotion.com.au/wp-content/uploads/2016/08/sr5-.png',4, 2, 0, 2, 5);
 
 INSERT INTO Servicio (nombre, costoPorcentual) VALUES
 ('Ninguno', 00.00),
