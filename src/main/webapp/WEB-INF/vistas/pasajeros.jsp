@@ -24,13 +24,22 @@
 				<div class="panel-body">
 					<form action="vehiculos" method="GET">
 						<div class="form-group">
-							<label for="sel1">Select list:</label> <select
+							<label for="sel1">Cantidad de pasajeros:</label> <select
 								class="form-control" id="sel1" name="cantidad">
 								<c:forEach var="i" begin="1" end="${max}">
 									<option value="${i}">${i}</option>
 								</c:forEach>
 							</select>
 						</div>
+						<div class="form-group">
+							<label for="sel1">Sucursal de retiro:</label> 
+							<select class="form-control" id="sel2" name="sucursal">
+								<c:forEach var="s" items="${sucursal }">
+									<option value="${s.ciudad}">${s.ciudad}</option>
+								</c:forEach>
+							</select>
+						</div>
+
 						<button type="submit" class="btn btn-primary">Enviar</button>
 					</form>
 				</div>

@@ -1,9 +1,12 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Vehiculo {
@@ -18,6 +21,11 @@ public class Vehiculo {
 	private Integer capacidadPasajeros;
 	private Integer capacidadValijas;
 	private Integer kilometraje;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "fkSucursalV")
+	private Sucursal fkSucursalV;
+/*	private Integer fkSucursalV;
+	private Integer fkCategoriaV;*/
 
 	public Vehiculo() {
 		super();

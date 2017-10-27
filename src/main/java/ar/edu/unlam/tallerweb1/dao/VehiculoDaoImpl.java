@@ -9,6 +9,8 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
+
+import ar.edu.unlam.tallerweb1.modelo.Sucursal;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 
 @Service("VehiculoDao")
@@ -19,10 +21,12 @@ public class VehiculoDaoImpl implements VehiculoDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Vehiculo> listarVehiculosXPasajeros(Integer cant) {
+	public List<Vehiculo> listarVehiculosXPasajeros(Integer cant, String sucursal) {
 		final Session session = sessionFactory.getCurrentSession();
 		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class)
 				.add(Restrictions.ge("capacidadPasajeros", cant))
+				.createAlias("fkSucursalV", "s")
+				.add(Restrictions.eq("s.ciudad", sucursal))
 				.addOrder(Order.asc("capacidadPasajeros"))
 				.list();
 		return vehiculos;
@@ -36,5 +40,14 @@ public class VehiculoDaoImpl implements VehiculoDao {
 					.uniqueResult();
 		return max;
 	}
+	
+		@Override
+		public List<Sucursal> obtenerSucursales(List<Sucursal> lista) {
+			final Session session = sessionFactory.getCurrentSession();
+			lista = session.createCriteria(Sucursal.class)
+					.list();
+			return lista;
+		}
+
 
 }
