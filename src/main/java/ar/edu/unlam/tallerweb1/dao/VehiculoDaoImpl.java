@@ -4,13 +4,10 @@ import java.util.List;
 import javax.inject.Inject;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
-
-import ar.edu.unlam.tallerweb1.modelo.Sucursal;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 
 @Service("VehiculoDao")
@@ -40,14 +37,5 @@ public class VehiculoDaoImpl implements VehiculoDao {
 					.uniqueResult();
 		return max;
 	}
-	
-		@Override
-		public List<Sucursal> obtenerSucursales(List<Sucursal> lista) {
-			final Session session = sessionFactory.getCurrentSession();
-			lista = session.createCriteria(Sucursal.class)
-					.list();
-			return lista;
-		}
-
 
 }

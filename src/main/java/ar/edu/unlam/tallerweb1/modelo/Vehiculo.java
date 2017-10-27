@@ -24,8 +24,9 @@ public class Vehiculo {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fkSucursalV")
 	private Sucursal fkSucursalV;
-/*	private Integer fkSucursalV;
-	private Integer fkCategoriaV;*/
+	/*	
+ 	private Integer fkCategoriaV;
+	*/
 
 	public Vehiculo() {
 		super();

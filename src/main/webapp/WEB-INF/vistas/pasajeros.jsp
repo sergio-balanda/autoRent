@@ -34,7 +34,7 @@
 						<div class="form-group">
 							<label for="sel1">Sucursal de retiro:</label> 
 							<select class="form-control" id="sel2" name="sucursal">
-								<c:forEach var="s" items="${sucursal }">
+								<c:forEach var="s" items="${sucursal}">
 									<option value="${s.ciudad}">${s.ciudad}</option>
 								</c:forEach>
 							</select>

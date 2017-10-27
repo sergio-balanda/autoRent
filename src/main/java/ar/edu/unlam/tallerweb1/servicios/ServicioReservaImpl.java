@@ -7,7 +7,7 @@ import ar.edu.unlam.tallerweb1.modelo.Reserva;
 
 @Service("servicioComic")
 @Transactional
-public class ServicioReservaImp implements ServicioReserva {
+public class ServicioReservaImpl implements ServicioReserva {
 
 	@Override
 	public Reserva guardarReserva(Integer idReserva, Integer fkSucursalR, Integer fkVehiculoR, Date fechaInicio, Date fechaFin,

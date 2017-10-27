@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Sucursal;
+import ar.edu.unlam.tallerweb1.servicios.ServicioSucursal;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
 
 @Controller
@@ -18,6 +19,8 @@ public class ControladorFront {
 
 	@Inject
 	private ServicioVehiculo servicioVehiculo;
+	@Inject
+	private ServicioSucursal servicioSucursal;
 
 
 	@RequestMapping("/vehiculos")
@@ -35,9 +38,8 @@ public class ControladorFront {
 	@RequestMapping("/pasajeros")
 	public ModelAndView selectPasajeros() {
 		ModelMap modelo = new ModelMap();
-		List<Sucursal> lista = new ArrayList<Sucursal>();
 		modelo.put("max", servicioVehiculo.maxPasajeros());
-		modelo.put("sucursal", servicioVehiculo.obtenerSucursales(lista));
+		modelo.put("sucursal", servicioSucursal.obtenerSucursales());
 		return new ModelAndView("pasajeros", modelo);
 	}
 
