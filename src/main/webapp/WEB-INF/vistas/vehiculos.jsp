@@ -26,9 +26,13 @@
 		</header>
 		<div class="panel-group">
 			<div class="panel panel-default">
-				<div class="panel-heading">Los vehiculos disponibles para su
-					seleccion son:</div>
+				<div class="panel-heading">Los vehiculos disponibles entre dia ${fch_desde} y dia ${fch_hasta} en Sucursal ${sucursal} </div>
 				<div class="panel-body">
+					<form action="generaReserva" method="GET">
+					<!--  Lo unico que se me ocurrio para pasar datos al controlador que no selecciona el usuario 
+					<input type="text" style="visibility:hidden;" name="fchdesde" value="${fch_desde}" />
+					<input type="text" style="visibility:hidden;" name="fchhasta" value="${fch_hasta}" />
+					<input type="text" style="visibility:hidden;" name="sucursal" value="${sucursal}" />-->
 					<table class="table table-bordered">
 						<thead>
 							<tr>
@@ -42,19 +46,28 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${vehiculos}" var="vehiculo">
+							<!--<c:set var="id_vehiculo" value="${0}" />-->
+							<c:forEach items="${vehiculos}" var="vehiculo" >
 								<tr>
 									<td><img src="" /></td>
-									<td><c:out value="${vehiculo.patente}" /></td>
+									<td><c:out value="${vehiculo.patente}"/></td>
 									<td><c:out value="${vehiculo.marca}" /></td>
 									<td><c:out value="${vehiculo.nombre}" /></td>
 									<td><c:out value="${vehiculo.capacidadPasajeros}" /></td>
 									<td><c:out value="${vehiculo.capacidadValijas}" /></td>
-									<td><a href="" class="btn btn-info">Ver</a></td>
+									<!-- Tambien trate con esto pero me muestra la url y no la manda por GET -->
+									<!--<c:url value="/vehiculos" >
+										<c:param name="id_vehiculo" value="${vehiculo.idVehiculo}" />
+										<c:param name="fchdesde" value="${fch_desde}" />
+										<c:param name="fchhasta" value="${fch_hasta}" />
+										<c:param name="sucursal" value="${sucursal}" />
+									</c:url>--> 
+									<td><button type="submit" class="btn btn-primary">Generar Reserva</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
+					</form>
 				</div>
 			</div>
 		</div>

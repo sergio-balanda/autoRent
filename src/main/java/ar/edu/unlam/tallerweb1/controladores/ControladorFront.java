@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,9 +25,15 @@ public class ControladorFront {
 
 
 	@RequestMapping("/vehiculos")
-	public ModelAndView verVehiculos(@RequestParam("cantidad") Integer cant, @RequestParam("sucursal") String sucursal) {
+	public ModelAndView verVehiculos(@RequestParam("cantidad") Integer cant, 
+									 @RequestParam("sucursal") String sucursal,
+									 @RequestParam("fch_desde") String fch_desde,
+									 @RequestParam("fch_hasta") String fch_hasta) {
 		ModelMap modelo = new ModelMap();
-		modelo.put("vehiculos", servicioVehiculo.listarVehiculosXPasajeros(cant, sucursal));
+		modelo.put("vehiculos", servicioVehiculo.listarVehiculosXPasajeros(cant, sucursal , fch_desde , fch_hasta));
+		modelo.put("sucursal", sucursal);
+		modelo.put("fch_desde", fch_desde);
+		modelo.put("fch_hasta", fch_hasta);
 		return new ModelAndView("vehiculos", modelo);
 	}
 
@@ -41,6 +48,23 @@ public class ControladorFront {
 		modelo.put("max", servicioVehiculo.maxPasajeros());
 		modelo.put("sucursal", servicioSucursal.obtenerSucursales());
 		return new ModelAndView("pasajeros", modelo);
+	}
+	
+	@RequestMapping("/generaReserva")
+	public ModelAndView generaReserva (/*@RequestParam ("idVehiculo") Integer id,
+									   @RequestParam ("fch_desde") Integer fdsd,
+									   @RequestParam ("fch_hasta") Integer fhst,
+									   @RequestParam ("sucursal") Integer suc*/)
+	{	//Comente el controlador porque no puedo hacer que me mande el parametro idVehiculo desde vista vehiculos 
+		//ver comentarios en vista vehiculos.
+		//desde aca hay que hacer un service y un dao que persista los datos de la reserva en table reserva
+		//el daoImpl tiene que tener un save por cada campo que mando desde aca.
+		/*ModelMap modelo = new ModelMap(); 
+		modelo.put("idVehiculo",id);
+		modelo.put("fdsd",fdsd);
+		modelo.put("fhst",fhst);
+		modelo.put("suc",suc);*/
+		return new ModelAndView("reserva");//,modelo);
 	}
 
 	

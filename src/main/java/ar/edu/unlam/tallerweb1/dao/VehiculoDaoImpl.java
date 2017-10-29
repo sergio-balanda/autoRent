@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import org.hibernate.Session;
@@ -18,12 +21,33 @@ public class VehiculoDaoImpl implements VehiculoDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Vehiculo> listarVehiculosXPasajeros(Integer cant, String sucursal) {
-		final Session session = sessionFactory.getCurrentSession();
+	public List<Vehiculo> listarVehiculosXPasajeros(Integer cant, String sucursal, String fdesde , String fhasta ) {
+        // CAST de String To Date
+		SimpleDateFormat formatodsd = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatohst = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date datedsd = new Date();
+		try {
+			datedsd = formatodsd.parse(fdesde);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Date datehst = new Date();
+		try {
+			datehst = formatohst.parse(fhasta);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// -----------FIN CAST
+        final Session session = sessionFactory.getCurrentSession();
 		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class)
 				.add(Restrictions.ge("capacidadPasajeros", cant))
 				.createAlias("fkSucursalV", "s")
 				.add(Restrictions.eq("s.ciudad", sucursal))
+				.createAlias("reserva","r")
+				.add(Restrictions.or(Restrictions.lt("r.fechaInicio", datedsd),Restrictions.gt("r.fechaFin", datehst)))
 				.addOrder(Order.asc("capacidadPasajeros"))
 				.list();
 		return vehiculos;

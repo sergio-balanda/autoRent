@@ -18,10 +18,11 @@ public class Sucursal {
 	private String ciudad;
 	private String provincia;
 	private String domicilio;
-	/*
-	@OneToMany(mappedBy="fkSucursalR",cascade=CascadeType.ALL) private
-	List<Reserva> reserva = new ArrayList<>();
-	*/
+	@OneToMany(mappedBy="fkSucursalR",cascade=CascadeType.ALL) 
+	private List<Reserva> reserva = new ArrayList<>();
+	@OneToMany(mappedBy="fkSucursalV",cascade=CascadeType.ALL) 
+	private List<Vehiculo> vehiculo = new ArrayList<>();
+	
 	
 	public Sucursal() {
 		super();

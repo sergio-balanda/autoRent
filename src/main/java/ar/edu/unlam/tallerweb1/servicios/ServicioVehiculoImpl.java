@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ public class ServicioVehiculoImpl implements ServicioVehiculo{
 	private VehiculoDao vehiculoDao;
 	
 	@Override
-	public List<Vehiculo> listarVehiculosXPasajeros(Integer cant, String sucursal) {
-		return vehiculoDao.listarVehiculosXPasajeros(cant, sucursal);
+	public List<Vehiculo> listarVehiculosXPasajeros(Integer cant, String sucursal, String fdesde , String fhasta ) {
+		return vehiculoDao.listarVehiculosXPasajeros(cant, sucursal,fdesde,fhasta);
 	}
 
 	@Override

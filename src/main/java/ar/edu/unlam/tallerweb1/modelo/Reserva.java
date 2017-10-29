@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
 import java.util.Date;
 
 @Entity
@@ -18,12 +20,12 @@ public class Reserva {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private Double costoOrigen;
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "fkVehiculoR")
-	private Vehiculo vehiculo;
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "fkVehiculo") 
+	private Vehiculo fkVehiculo;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "fkSucursalR")
-	private Sucursal sucursal;
+	private Sucursal fkSucursalR;
 	
 	public Reserva() {
 		super();
@@ -41,6 +43,41 @@ public class Reserva {
 		return fechaFin;
 	}
 
+	public Reserva(Integer idReserva, Date fechaInicio, Date fechaFin, Double costoOrigen, Vehiculo fkVehiculo,
+			Sucursal fkSucursal) {
+		super();
+		this.idReserva = idReserva;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.costoOrigen = costoOrigen;
+		this.fkVehiculo = fkVehiculo;
+		this.fkSucursalR = fkSucursal;
+	}
+
+	public Integer getIdReserva() {
+		return idReserva;
+	}
+
+	public void setIdReserva(Integer idReserva) {
+		this.idReserva = idReserva;
+	}
+
+	public Vehiculo getFkVehiculo() {
+		return fkVehiculo;
+	}
+
+	public void setFkVehiculo(Vehiculo fkVehiculo) {
+		this.fkVehiculo = fkVehiculo;
+	}
+
+	public Sucursal getFkSucursalR() {
+		return fkSucursalR;
+	}
+
+	public void setFkSucursal(Sucursal fkSucursalR) {
+		this.fkSucursalR = fkSucursalR;
+	}
+
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
@@ -53,20 +90,5 @@ public class Reserva {
 		this.costoOrigen = costoOrigen;
 	}
 
-	public Vehiculo getVehiculo() {
-		return vehiculo;
-	}
-
-	public void setVehiculo(Vehiculo vehiculo) {
-		this.vehiculo = vehiculo;
-	}
-
-	public Sucursal getSucursal() {
-		return sucursal;
-	}
-
-	public void setSucursal(Sucursal sucursal) {
-		this.sucursal = sucursal;
-	}
-
+	
 }

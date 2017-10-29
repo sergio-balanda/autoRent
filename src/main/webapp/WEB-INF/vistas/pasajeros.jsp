@@ -24,20 +24,46 @@
 				<div class="panel-body">
 					<form action="vehiculos" method="GET">
 						<div class="form-group">
-							<label for="sel1">Cantidad de pasajeros:</label> <select
-								class="form-control" id="sel1" name="cantidad">
-								<c:forEach var="i" begin="1" end="${max}">
-									<option value="${i}">${i}</option>
-								</c:forEach>
-							</select>
+							<div class="row">
+								<div class="col-sm-4">
+									<label for="sel1">Cantidad de pasajeros:</label> 
+									<select	class="form-control" id="sel1" name="cantidad">
+										<c:forEach var="i" begin="1" end="${max}">
+											<option value="${i}">${i}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
 						</div>
 						<div class="form-group">
-							<label for="sel1">Sucursal de retiro:</label> 
-							<select class="form-control" id="sel2" name="sucursal">
-								<c:forEach var="s" items="${sucursal}">
-									<option value="${s.ciudad}">${s.ciudad}</option>
-								</c:forEach>
-							</select>
+							<div class="row">
+								<div class="col-sm-4">
+									<label for="sel1">Sucursal de retiro:</label> 
+									<select class="form-control" id="sel2" name="sucursal">
+										<c:forEach var="s" items="${sucursal}">
+											<option value="${s.ciudad}">${s.ciudad}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-4">
+									<label for="fch_desde">Reserva desde:</label> 
+									<input type="date" name="fch_desde" class="form-control"/>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-4">
+									<label for="fch_hasta">Reserva hasta:</label> 
+									<input type="date" name="fch_hasta" class="form-control"/>
+								</div>
+							</div>
 						</div>
 
 						<button type="submit" class="btn btn-primary">Enviar</button>
