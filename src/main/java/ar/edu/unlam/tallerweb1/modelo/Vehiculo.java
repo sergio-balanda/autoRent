@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Vehiculo {
@@ -29,8 +28,8 @@ public class Vehiculo {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fkSucursalV")
 	private Sucursal fkSucursalV;
-	@OneToOne(mappedBy="fkVehiculo")
-	private Reserva reserva = new Reserva();
+	@OneToMany(mappedBy="fkVehiculo")
+	private List<Reserva> reserva = new ArrayList<>();
 	
 	/*	
  	private Integer fkCategoriaV;
@@ -62,7 +61,7 @@ public class Vehiculo {
 
 	public Vehiculo(Integer idVehiculo, String patente, String marca, String nombre, String imagen,
 			Integer capacidadPasajeros, Integer capacidadValijas, Integer kilometraje, Sucursal fkSucursal,
-			Reserva reserva) {
+			List<Reserva> reserva) {
 		super();
 		this.idVehiculo = idVehiculo;
 		this.patente = patente;
@@ -90,13 +89,13 @@ public class Vehiculo {
 
 
 
-	public Reserva getReserva() {
+	public List<Reserva> getReserva() {
 		return reserva;
 	}
 
 
 
-	public void setReserva(Reserva reserva) {
+	public void setReserva(List<Reserva> reserva) {
 		this.reserva = reserva;
 	}
 

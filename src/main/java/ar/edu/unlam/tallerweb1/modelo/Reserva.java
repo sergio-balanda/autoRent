@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import java.util.Date;
 
@@ -20,7 +19,7 @@ public class Reserva {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private Double costoOrigen;
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "fkVehiculo") 
 	private Vehiculo fkVehiculo;
 	@ManyToOne(cascade = CascadeType.PERSIST)
