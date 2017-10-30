@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Sucursal;
+import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioSucursal;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
 
@@ -22,6 +23,8 @@ public class ControladorFront {
 	private ServicioVehiculo servicioVehiculo;
 	@Inject
 	private ServicioSucursal servicioSucursal;
+	@Inject
+	private ServicioReserva servicioReserva;
 
 
 	@RequestMapping("/vehiculos")
@@ -51,20 +54,18 @@ public class ControladorFront {
 	}
 	
 	@RequestMapping("/generaReserva")
-	public ModelAndView generaReserva (/*@RequestParam ("idVehiculo") Integer id,
-									   @RequestParam ("fch_desde") Integer fdsd,
-									   @RequestParam ("fch_hasta") Integer fhst,
-									   @RequestParam ("sucursal") Integer suc*/)
-	{	//Comente el controlador porque no puedo hacer que me mande el parametro idVehiculo desde vista vehiculos 
-		//ver comentarios en vista vehiculos.
-		//desde aca hay que hacer un service y un dao que persista los datos de la reserva en table reserva
-		//el daoImpl tiene que tener un save por cada campo que mando desde aca.
-		/*ModelMap modelo = new ModelMap(); 
+	public ModelAndView generaReserva (@RequestParam ("idVehiculo") Integer id,
+									   @RequestParam ("fchdesde") String fdsd,
+									   @RequestParam ("fchhasta") String fhst,
+									   @RequestParam ("sucursal") String suc)
+	{	
+		ModelMap modelo = new ModelMap();
+		servicioReserva.guardarReserva(id, suc, fdsd, fhst);
 		modelo.put("idVehiculo",id);
 		modelo.put("fdsd",fdsd);
 		modelo.put("fhst",fhst);
-		modelo.put("suc",suc);*/
-		return new ModelAndView("reserva");//,modelo);
+		modelo.put("suc",suc);
+		return new ModelAndView("reserva",modelo);
 	}
 
 	

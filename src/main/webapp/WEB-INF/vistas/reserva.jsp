@@ -26,9 +26,11 @@
 		</header>
 		<div class="panel-group">
 			<div class="panel panel-default">
-				<div class="panel-heading">Reserva Generada con exito</div>
+				<div class="panel-heading">Reserva Generada con exito. Detalles</div>
 				<div class="panel-body">
-				
+					<p> Reserva generada para dia ${fdsd} hasta ${fhst} </p>
+					<p> Retira de Sucursal: ${suc} </p>
+					<p> IdVehiculo Reservado: ${idVehiculo}</p>
 				</div>
 			</div>
 		</div>

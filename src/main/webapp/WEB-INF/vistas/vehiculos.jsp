@@ -55,14 +55,14 @@
 									<td><c:out value="${vehiculo.nombre}" /></td>
 									<td><c:out value="${vehiculo.capacidadPasajeros}" /></td>
 									<td><c:out value="${vehiculo.capacidadValijas}" /></td>
-									<!-- Tambien trate con esto pero me muestra la url y no la manda por GET -->
-									<!--<c:url value="/vehiculos" >
-										<c:param name="id_vehiculo" value="${vehiculo.idVehiculo}" />
+									
+									<c:url value="/generaReserva" var="displayURL">
+										<c:param name="idVehiculo" value="${vehiculo.idVehiculo}" />
 										<c:param name="fchdesde" value="${fch_desde}" />
 										<c:param name="fchhasta" value="${fch_hasta}" />
 										<c:param name="sucursal" value="${sucursal}" />
-									</c:url>--> 
-									<td><button type="submit" class="btn btn-primary">Generar Reserva</button></td>
+									</c:url> 
+									<td><a href='<c:out value="${displayURL}"/>'>Generar Reserva</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
