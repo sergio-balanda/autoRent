@@ -31,6 +31,27 @@
 					<p> Reserva generada para dia ${fdsd} hasta ${fhst} </p>
 					<p> Retira de Sucursal: ${suc} </p>
 					<p> IdVehiculo Reservado: ${idVehiculo}</p>
+					<hr>
+								<div class="row">
+									<div class="col-md-4">
+										<img src="${vehiculo.imagen}" alt="imagen" class="img-responsive"/>
+									</div>
+									<div class="col-md-5">
+										<div class="page-header">
+											<h2>${vehiculo.nombre}</h2>
+										</div>
+										<p>${vehiculo.marca}</p>
+										<p><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> ${vehiculo.capacidadPasajeros} plazas</p>
+										<p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> ${vehiculo.capacidadValijas} equipaje</p>
+									</div>
+									<div class="col-md-3">
+										<h1>
+											<span class="label label-success">costo</span>
+										<h1>
+										<a href="pasajeros" class="btn btn-danger">volver</a>
+									</div>
+								</div>
+								
 				</div>
 			</div>
 		</div>

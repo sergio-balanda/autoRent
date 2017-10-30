@@ -25,4 +25,9 @@ public class ServicioVehiculoImpl implements ServicioVehiculo{
 		return vehiculoDao.maxPasajeros();
 	}
 	
+	@Override
+	public Vehiculo buscarhiculos(Integer idVehiculo) {
+		return vehiculoDao.buscarVehiculos(idVehiculo);
+	}
+	
 }

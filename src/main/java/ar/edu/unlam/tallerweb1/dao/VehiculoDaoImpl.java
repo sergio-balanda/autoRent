@@ -61,5 +61,14 @@ public class VehiculoDaoImpl implements VehiculoDao {
 					.uniqueResult();
 		return max;
 	}
+	
+	@Override
+	public Vehiculo buscarVehiculos(Integer idVehiculo) {
+		final Session  session = sessionFactory.getCurrentSession();
+		Vehiculo vehiculo = (Vehiculo) session.createCriteria(Vehiculo.class)
+				.add(Restrictions.eq("id", idVehiculo)).uniqueResult();
+		return vehiculo;
+	}
+	
 
 }

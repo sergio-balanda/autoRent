@@ -61,6 +61,8 @@ public class ControladorFront {
 	{	
 		ModelMap modelo = new ModelMap();
 		servicioReserva.guardarReserva(id, suc, fdsd, fhst);
+		Integer idBuscar = id;
+		modelo.put("vehiculo", servicioVehiculo.buscarhiculos(idBuscar));
 		modelo.put("idVehiculo",id);
 		modelo.put("fdsd",fdsd);
 		modelo.put("fhst",fhst);
