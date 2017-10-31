@@ -55,12 +55,13 @@ public class ControladorFront {
 	
 	@RequestMapping("/generaReserva")
 	public ModelAndView generaReserva (@RequestParam ("idVehiculo") Integer id,
+									   @RequestParam ("idVehiculo") Integer fkVehiculo,
 									   @RequestParam ("fchdesde") String fdsd,
 									   @RequestParam ("fchhasta") String fhst,
 									   @RequestParam ("sucursal") String suc)
 	{	
 		ModelMap modelo = new ModelMap();
-		servicioReserva.guardarReserva(id, suc, fdsd, fhst);
+		servicioReserva.guardarReserva(id, suc, fdsd, fhst, fkVehiculo);
 		Integer idBuscar = id;
 		modelo.put("vehiculo", servicioVehiculo.buscarhiculos(idBuscar));
 		modelo.put("idVehiculo",id);

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.ReservaDao;
+import ar.edu.unlam.tallerweb1.dao.VehiculoDao;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.Sucursal;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
@@ -24,12 +25,16 @@ import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 @Service("servicioReserva")
 @Transactional
 public class ServicioReservaImpl implements ServicioReserva {
+	
 	@Inject
 	private SessionFactory sessionFactory;
-	@Inject ReservaDao reservaDao;
+	@Inject 
+	ReservaDao reservaDao;
+	@Inject 
+	VehiculoDao vehiculoDao;
 	
 	@Override
-	public Reserva guardarReserva(Integer idVehiculo, String sucursal , String fdsd , String fhst) {
+	public Reserva guardarReserva(Integer idVehiculo, String sucursal , String fdsd , String fhst,Integer fkVehiculo) {
 		
 		final Session session = sessionFactory.getCurrentSession();
 		List<Sucursal> s = new ArrayList<>();
@@ -62,6 +67,10 @@ public class ServicioReservaImpl implements ServicioReserva {
 		//Esto lo tengo que comentar porque si no me da NULLPOINTEREXEPTION
 		//reserva.getFkVehiculo().setIdVehiculo(idVehiculo);
 		//reserva.getFkSucursalR().setIdSucursal(s.get(0).getIdSucursal());
+		
+		if ( fkVehiculo!=null ) {
+			reserva.setFkVehiculo(vehiculoDao.buscarVehiculos(idVehiculo));
+		}
 		reserva.setFechaInicio(datedsd);
 		reserva.setFechaFin(datehst);
 		reserva.setCostoOrigen(0D);

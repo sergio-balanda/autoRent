@@ -15,30 +15,6 @@ public class Sucursal {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idSucursal;
-	public Integer getIdSucursal() {
-		return idSucursal;
-	}
-
-	public void setIdSucursal(Integer idSucursal) {
-		this.idSucursal = idSucursal;
-	}
-
-	public List<Reserva> getReserva() {
-		return reserva;
-	}
-
-	public void setReserva(List<Reserva> reserva) {
-		this.reserva = reserva;
-	}
-
-	public List<Vehiculo> getVehiculo() {
-		return vehiculo;
-	}
-
-	public void setVehiculo(List<Vehiculo> vehiculo) {
-		this.vehiculo = vehiculo;
-	}
-
 	private String ciudad;
 	private String provincia;
 	private String domicilio;
@@ -76,4 +52,29 @@ public class Sucursal {
 		this.domicilio = domicilio;
 	}
 
+	public Integer getIdSucursal() {
+		return idSucursal;
+	}
+
+	public void setIdSucursal(Integer idSucursal) {
+		this.idSucursal = idSucursal;
+	}
+
+	public List<Reserva> getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(List<Reserva> reserva) {
+		this.reserva = reserva;
+	}
+
+	public List<Vehiculo> getVehiculo() {
+		return vehiculo;
+	}
+
+	public void setVehiculo(List<Vehiculo> vehiculo) {
+		this.vehiculo = vehiculo;
+	}
+	
+	
 }
