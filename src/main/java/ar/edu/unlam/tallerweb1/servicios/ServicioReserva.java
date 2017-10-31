@@ -1,8 +1,9 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import ar.edu.unlam.tallerweb1.modelo.Reserva;
 
 public interface ServicioReserva {
 	
-	public void guardarReserva(Integer idVehiculo, String sucursal , String fdsd , String fhst );
+	public Reserva guardarReserva(Integer idVehiculo, String sucursal , String fdsd , String fhst );
 
 }
