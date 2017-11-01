@@ -29,10 +29,6 @@
 				<div class="panel-heading">Los vehiculos disponibles entre dia ${fch_desde} y dia ${fch_hasta} en Sucursal ${sucursal} </div>
 				<div class="panel-body">
 					<form action="generaReserva" method="GET">
-					<!--  Lo unico que se me ocurrio para pasar datos al controlador que no selecciona el usuario 
-					<input type="text" style="visibility:hidden;" name="fchdesde" value="${fch_desde}" />
-					<input type="text" style="visibility:hidden;" name="fchhasta" value="${fch_hasta}" />
-					<input type="text" style="visibility:hidden;" name="sucursal" value="${sucursal}" />-->
 					<table class="table table-bordered">
 						<thead>
 							<tr>
@@ -49,7 +45,8 @@
 							<!--<c:set var="id_vehiculo" value="${0}" />-->
 							<c:forEach items="${vehiculos}" var="vehiculo" >
 								<tr>
-									<td><img src="" /></td>
+									<td><img src="${vehiculo.imagen}" class="img-responsive" 
+									style="display: inline" alt="" width="100" height="100"/></td>
 									<td><c:out value="${vehiculo.patente}"/></td>
 									<td><c:out value="${vehiculo.marca}" /></td>
 									<td><c:out value="${vehiculo.nombre}" /></td>
@@ -62,7 +59,7 @@
 										<c:param name="fchhasta" value="${fch_hasta}" />
 										<c:param name="sucursal" value="${sucursal}" />
 									</c:url> 
-									<td><a href='<c:out value="${displayURL}"/>'>Generar Reserva</a></td>
+									<td><a href='<c:out value="${displayURL}" />'class="btn btn-info" role="button">Generar Reserva</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
