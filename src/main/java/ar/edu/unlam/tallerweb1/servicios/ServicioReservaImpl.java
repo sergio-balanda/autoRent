@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.ReservaDao;
+import ar.edu.unlam.tallerweb1.dao.SucursalDao;
 import ar.edu.unlam.tallerweb1.dao.VehiculoDao;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.Sucursal;
@@ -32,13 +33,13 @@ public class ServicioReservaImpl implements ServicioReserva {
 	ReservaDao reservaDao;
 	@Inject 
 	VehiculoDao vehiculoDao;
+	@Inject 
+	SucursalDao sucursalDao;
 	
 	@Override
 	public Reserva guardarReserva(Integer idVehiculo, String sucursal , String fdsd , String fhst,Integer fkVehiculo) {
 		
-		final Session session = sessionFactory.getCurrentSession();
-		List<Sucursal> s = new ArrayList<>();
-		Reserva reserva = new Reserva();		
+		Reserva reserva = new Reserva();
 		 // CAST de String To Date
 		SimpleDateFormat formatodsd = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat formatohst = new SimpleDateFormat("yyyy-MM-dd");
@@ -59,18 +60,10 @@ public class ServicioReservaImpl implements ServicioReserva {
 		}
 		// -----------FIN CAST
 		
-		//Busco sucursal por ciudad
-		s = session.createCriteria(Sucursal.class)
-					  .add(Restrictions.eq("ciudad",sucursal))
-					  .list();
-		
-		//Esto lo tengo que comentar porque si no me da NULLPOINTEREXEPTION
-		//reserva.getFkVehiculo().setIdVehiculo(idVehiculo);
-		//reserva.getFkSucursalR().setIdSucursal(s.get(0).getIdSucursal());
-		
 		if ( fkVehiculo!=null ) {
 			reserva.setFkVehiculo(vehiculoDao.buscarVehiculos(idVehiculo));
 		}
+		reserva.setFkSucursalR(sucursalDao.buscarSucXCiudad(sucursal));
 		reserva.setFechaInicio(datedsd);
 		reserva.setFechaFin(datehst);
 		reserva.setCostoOrigen(0D);

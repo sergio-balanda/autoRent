@@ -23,58 +23,54 @@ public class Sucursal {
 	@OneToMany(mappedBy="fkSucursalV",cascade=CascadeType.ALL) 
 	private List<Vehiculo> vehiculo = new ArrayList<>();
 	
+	public Sucursal(){}
 	
-	public Sucursal() {
+	public Sucursal(Integer idSucursal, String ciudad, String provincia, String domicilio, List<Reserva> reserva,
+			List<Vehiculo> vehiculo) {
 		super();
-	}
-
-	public String getCiudad() {
-		return ciudad;
-	}
-
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
-	}
-
-	public String getProvincia() {
-		return provincia;
-	}
-
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
-	}
-
-	public String getDomicilio() {
-		return domicilio;
-	}
-
-	public void setDomicilio(String domicilio) {
-		this.domicilio = domicilio;
-	}
-
-	public Integer getIdSucursal() {
-		return idSucursal;
-	}
-
-	public void setIdSucursal(Integer idSucursal) {
 		this.idSucursal = idSucursal;
-	}
-
-	public List<Reserva> getReserva() {
-		return reserva;
-	}
-
-	public void setReserva(List<Reserva> reserva) {
+		this.ciudad = ciudad;
+		this.provincia = provincia;
+		this.domicilio = domicilio;
 		this.reserva = reserva;
-	}
-
-	public List<Vehiculo> getVehiculo() {
-		return vehiculo;
-	}
-
-	public void setVehiculo(List<Vehiculo> vehiculo) {
 		this.vehiculo = vehiculo;
 	}
 	
+	public Integer getIdSucursal() {
+		return idSucursal;
+	}
+	public void setIdSucursal(Integer idSucursal) {
+		this.idSucursal = idSucursal;
+	}
+	public String getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+	public String getProvincia() {
+		return provincia;
+	}
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+	public String getDomicilio() {
+		return domicilio;
+	}
+	public void setDomicilio(String domicilio) {
+		this.domicilio = domicilio;
+	}
+	public List<Reserva> getReserva() {
+		return reserva;
+	}
+	public void setReserva(List<Reserva> reserva) {
+		this.reserva = reserva;
+	}
+	public List<Vehiculo> getVehiculo() {
+		return vehiculo;
+	}
+	public void setVehiculo(List<Vehiculo> vehiculo) {
+		this.vehiculo = vehiculo;
+	}
 	
 }

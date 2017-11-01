@@ -14,9 +14,16 @@ public class ServicioSucursalImpl implements ServicioSucursal{
 	@Inject
 	private SucursalDao sucursalDao;
 	
+	
+	
 	@Override
 	public List<Sucursal> obtenerSucursales() {
 		return sucursalDao.obtenerSucursales();
 	}
+	
+	/*public Integer buscarSucXCiudad(String sucursal){
+		return sucursalDao.buscarSucXCiudad(sucursal);
+	}*/
+
 
 }
