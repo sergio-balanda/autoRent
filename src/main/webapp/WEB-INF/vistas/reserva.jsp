@@ -1,18 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Vehiculos</title>
-<!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- Bootstrap theme -->
-<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+<%@include file='../../includes/head.jsp' %>
+	<title>Reserva</title>
 </head>
 <body>
 	<div class="container">
@@ -41,18 +28,19 @@
 											<h2>${vehiculo.nombre}</h2>
 										</div>
 										<p>${vehiculo.marca}</p>
-										<p><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> ${vehiculo.capacidadPasajeros} plazas</p>
-										<p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> ${vehiculo.capacidadValijas} equipaje</p>
+										<p><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> ${vehiculo.capacidadPasajeros} equipajes</p>
+										<p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> ${vehiculo.capacidadValijas} plazas</p>
 									</div>
 									<div class="col-md-3">
 										<h1>
-											<span class="label label-success">costo</span>
+											<span class="label label-success">Costo</span>
+										</h1>
+										<hr>
+										<h1>
+										<a href="guardaReserva?idVehiculo=${idVehiculo}&fchdesde=${fdsd}&fchhasta=${fhst}&sucursal=${suc}" class="btn-lg btn-primary">Continuar</a>
 										</h1>
 										<h1>
-										<a href="guardaReserva?idVehiculo=${idVehiculo}&fchdesde=${fdsd}&fchhasta=${fhst}&sucursal=${suc}" class="btn btn-success">Generar</a>
-										</h1>
-										<h1>
-										<a href="pasajeros" class="btn btn-danger">volver</a>
+										<a href="pasajeros" class="btn-lg btn-danger">Volver</a>
 										</h1>
 									</div>
 								</div>

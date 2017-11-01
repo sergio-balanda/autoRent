@@ -1,18 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%@include file='../../includes/head.jsp' %>
 <title>Vehiculos</title>
-<!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- Bootstrap theme -->
-<link href="css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
@@ -29,7 +16,7 @@
 				<div class="panel-heading">Los vehiculos disponibles entre dia ${fch_desde} y dia ${fch_hasta} en Sucursal ${sucursal} </div>
 				<div class="panel-body">
 					<form action="generaReserva" method="GET">
-					<table class="table table-bordered">
+					<table class="table table-hover table-striped">
 						<thead>
 							<tr>
 								<th>Imagen</th>
@@ -59,7 +46,7 @@
 										<c:param name="fchhasta" value="${fch_hasta}" />
 										<c:param name="sucursal" value="${sucursal}" />
 									</c:url> 
-									<td><a href='<c:out value="${displayURL}" />'class="btn btn-info" role="button">Generar Reserva</a></td>
+									<td><a href='<c:out value="${displayURL}" />'class="btn btn-primary" role="button">Generar Reserva</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

@@ -18,12 +18,39 @@ public class ControladorReserva {
 	@Inject
 	private ServicioReserva servicioReserva;
 
-	@RequestMapping("/reserva")
-	public ModelAndView irAReserva() {
+	
+	@RequestMapping("/generaReserva")
+	public ModelAndView generaReserva (@RequestParam ("idVehiculo") Integer id,
+									   @RequestParam ("idVehiculo") Integer fkVehiculo,
+									   @RequestParam ("fchdesde") String fdsd,
+									   @RequestParam ("fchhasta") String fhst,
+									   @RequestParam ("sucursal") String suc)
+	{	
 		ModelMap modelo = new ModelMap();
-		Reserva reserva = new Reserva();
-		modelo.put("reserva", reserva);
-		return new ModelAndView("reserva", modelo);
+		
+		Integer idBuscar = id;
+		modelo.put("vehiculo", servicioVehiculo.buscarhiculos(idBuscar));
+		modelo.put("idVehiculo",id);
+		modelo.put("fdsd",fdsd);
+		modelo.put("fhst",fhst);
+		modelo.put("suc",suc);
+		return new ModelAndView("reserva",modelo);
+	}
+	
+	@RequestMapping("/guardaReserva")
+	public ModelAndView guardaReserva (@RequestParam ("idVehiculo") Integer id,
+									    @RequestParam ("idVehiculo") Integer fkVehiculo,
+			   							@RequestParam ("fchdesde") String fdsd,
+									   @RequestParam ("fchhasta") String fhst,
+									   @RequestParam ("sucursal") String suc)
+	{
+		ModelMap modelo = new ModelMap();
+		modelo.put("idVehiculo",id);
+		modelo.put("fdsd",fdsd);
+		modelo.put("fhst",fhst);
+		modelo.put("suc",suc);
+		servicioReserva.guardarReserva(id, suc, fdsd, fhst, fkVehiculo);
+		return new ModelAndView("exito",modelo);
 	}
 
 }

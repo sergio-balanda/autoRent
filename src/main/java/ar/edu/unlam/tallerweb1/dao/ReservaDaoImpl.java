@@ -5,6 +5,7 @@ package ar.edu.unlam.tallerweb1.dao;
 import javax.inject.Inject;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,14 @@ public class ReservaDaoImpl implements ReservaDao{
 	public void guardarReserva(Reserva reserva) {
 		final Session session = sessionFactory.getCurrentSession();
 			session.save(reserva);
+	}
+
+	@Override
+	public Reserva buscarReservas(Integer idReserva) {
+		final Session session = sessionFactory.getCurrentSession();
+		Reserva reserva = (Reserva) session.createCriteria(Reserva.class)
+				.add(Restrictions.eq("idReserva", idReserva)).uniqueResult();
+		return reserva;
 	}
 	
 }

@@ -4,15 +4,12 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 
 import javax.inject.Inject;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -70,6 +67,12 @@ public class ServicioReservaImpl implements ServicioReserva {
 		reservaDao.guardarReserva(reserva);
 		return reserva;
 	
+	}
+
+	@Override
+	public Reserva buscarReservas(Integer idReserva) {
+		return reservaDao.buscarReservas(idReserva);
+
 	}
 
 }
