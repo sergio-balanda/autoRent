@@ -26,9 +26,9 @@
 		</header>
 		<div class="panel-group">
 			<div class="panel panel-default">
-				<div class="panel-heading">Reserva Generada con exito. Detalles</div>
+				<div class="panel-heading">Detalles de la Reserva</div>
 				<div class="panel-body">
-					<p> Reserva generada para dia ${fdsd} hasta ${fhst} </p>
+					<p> Reserva para dia ${fdsd} hasta ${fhst} </p>
 					<p> Retira de Sucursal: ${suc} </p>
 					<p> IdVehiculo Reservado: ${idVehiculo}</p>
 					<hr>
@@ -47,8 +47,13 @@
 									<div class="col-md-3">
 										<h1>
 											<span class="label label-success">costo</span>
+										</h1>
+										<h1>
+										<a href="guardaReserva?idVehiculo=${idVehiculo}&fchdesde=${fdsd}&fchhasta=${fhst}&sucursal=${suc}" class="btn btn-success">Generar</a>
+										</h1>
 										<h1>
 										<a href="pasajeros" class="btn btn-danger">volver</a>
+										</h1>
 									</div>
 								</div>
 								

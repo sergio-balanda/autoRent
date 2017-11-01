@@ -61,7 +61,7 @@ public class ControladorFront {
 									   @RequestParam ("sucursal") String suc)
 	{	
 		ModelMap modelo = new ModelMap();
-		servicioReserva.guardarReserva(id, suc, fdsd, fhst, fkVehiculo);
+		
 		Integer idBuscar = id;
 		modelo.put("vehiculo", servicioVehiculo.buscarhiculos(idBuscar));
 		modelo.put("idVehiculo",id);
@@ -70,6 +70,24 @@ public class ControladorFront {
 		modelo.put("suc",suc);
 		return new ModelAndView("reserva",modelo);
 	}
+	
+	@RequestMapping("/guardaReserva")
+	public ModelAndView guardaReserva (@RequestParam ("idVehiculo") Integer id,
+									    @RequestParam ("idVehiculo") Integer fkVehiculo,
+			   							@RequestParam ("fchdesde") String fdsd,
+									   @RequestParam ("fchhasta") String fhst,
+									   @RequestParam ("sucursal") String suc)
+	{
+		ModelMap modelo = new ModelMap();
+		modelo.put("idVehiculo",id);
+		modelo.put("fdsd",fdsd);
+		modelo.put("fhst",fhst);
+		modelo.put("suc",suc);
+		servicioReserva.guardarReserva(id, suc, fdsd, fhst, fkVehiculo);
+		return new ModelAndView("exito",modelo);
+	}
+
+	
 
 	
 }
