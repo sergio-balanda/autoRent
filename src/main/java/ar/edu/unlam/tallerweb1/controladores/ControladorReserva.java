@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
+import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
 
@@ -17,8 +18,9 @@ public class ControladorReserva {
 	private ServicioVehiculo servicioVehiculo;
 	@Inject
 	private ServicioReserva servicioReserva;
+	@Inject
+	private ServicioCategoria servicioCategoria;
 
-	
 	@RequestMapping("/generaReserva")
 	public ModelAndView generaReserva (@RequestParam ("idVehiculo") Integer idVehiculo,
 									   @RequestParam ("fchdesde") String fDesde,
@@ -30,7 +32,7 @@ public class ControladorReserva {
 		modelo.put("fdsd", fDesde);
 		modelo.put("fhst", fHasta);
 		modelo.put("suc", suc);
-		modelo.put("cost", servicioReserva.calcularCostoOrigen(fDesde, fHasta, idVehiculo));
+		modelo.put("cost", servicioCategoria.calcularCostoOrigen(fDesde, fHasta, idVehiculo));
 		return new ModelAndView("reserva",modelo);
 	}
 	

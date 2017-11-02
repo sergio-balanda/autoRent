@@ -1,9 +1,9 @@
-package ar.edu.unlam.tallerweb1.dao;
+package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Categoria;
 
-public interface CategoriaDao {
-
+public interface ServicioCategoria {
+	
 	Categoria buscarPorId(Integer idCategoria);
 	public float calcularCostoOrigen(String fDesde, String fHasta, Integer idVehiculo);
 	

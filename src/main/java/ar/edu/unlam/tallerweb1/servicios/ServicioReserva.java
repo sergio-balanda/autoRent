@@ -6,5 +6,5 @@ public interface ServicioReserva {
 	
 	public Reserva guardarReserva(Integer idVehiculo, String sucursal , String fdsd , String fhst,Integer fkVehiculo );
 	public Reserva buscarReservas(Integer idReserva);
-	public float calcularCostoOrigen(String fDesde, String fHasta, Integer idVehiculo);
+	
 }

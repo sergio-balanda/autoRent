@@ -18,7 +18,7 @@ public class Reserva {
 	private Integer idReserva;
 	private Date fechaInicio;
 	private Date fechaFin;
-	private Double costoOrigen;
+	private float costoOrigen;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "fkVehiculoR") 
 	private Vehiculo fkVehiculoR;
@@ -28,7 +28,7 @@ public class Reserva {
 	
 	public Reserva(){}
 	
-	public Reserva(Integer idReserva, Date fechaInicio, Date fechaFin, Double costoOrigen, Vehiculo fkVehiculoR,
+	public Reserva(Integer idReserva, Date fechaInicio, Date fechaFin, float costoOrigen, Vehiculo fkVehiculoR,
 			Sucursal fkSucursalR) {
 		super();
 		this.idReserva = idReserva;
@@ -56,10 +56,10 @@ public class Reserva {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-	public Double getCostoOrigen() {
+	public float getCostoOrigen() {
 		return costoOrigen;
 	}
-	public void setCostoOrigen(Double costoOrigen) {
+	public void setCostoOrigen(float costoOrigen) {
 		this.costoOrigen = costoOrigen;
 	}
 	public Vehiculo getFkVehiculoR() {

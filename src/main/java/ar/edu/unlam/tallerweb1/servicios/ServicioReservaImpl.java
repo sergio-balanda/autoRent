@@ -3,14 +3,10 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-
 import javax.inject.Inject;
-
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import ar.edu.unlam.tallerweb1.dao.CategoriaDao;
 import ar.edu.unlam.tallerweb1.dao.ReservaDao;
 import ar.edu.unlam.tallerweb1.dao.SucursalDao;
@@ -24,8 +20,6 @@ import ar.edu.unlam.tallerweb1.modelo.Categoria;
 @Transactional
 public class ServicioReservaImpl implements ServicioReserva {
 	
-	@Inject
-	private SessionFactory sessionFactory;
 	@Inject 
 	ReservaDao reservaDao;
 	@Inject 
@@ -36,8 +30,7 @@ public class ServicioReservaImpl implements ServicioReserva {
 	CategoriaDao categoriaDao;
 	
 	@Override
-	public Reserva guardarReserva(Integer idVehiculo, String sucursal , String fdsd , String fhst,Integer fkVehiculo) {
-		
+	public Reserva guardarReserva(Integer idVehiculo, String sucursal, String fDesde, String fHasta, Integer fkVehiculo) {
 		Reserva reserva = new Reserva();
 		 // CAST de String To Date
 		SimpleDateFormat formatodsd = new SimpleDateFormat("yyyy-MM-dd");
@@ -45,14 +38,14 @@ public class ServicioReservaImpl implements ServicioReserva {
 		
 		Date datedsd = new Date();
 		try {
-			datedsd = formatodsd.parse(fdsd);
+			datedsd = formatodsd.parse(fDesde);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Date datehst = new Date();
 		try {
-			datehst = formatohst.parse(fhst);
+			datehst = formatohst.parse(fHasta);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,35 +58,14 @@ public class ServicioReservaImpl implements ServicioReserva {
 		reserva.setFkSucursalR(sucursalDao.buscarSucXCiudad(sucursal));
 		reserva.setFechaInicio(datedsd);
 		reserva.setFechaFin(datehst);
-		reserva.setCostoOrigen(0D);
+		reserva.setCostoOrigen(categoriaDao.calcularCostoOrigen(fDesde, fHasta, idVehiculo));
 		reservaDao.guardarReserva(reserva);
 		return reserva;
-	
 	}
 
 	@Override
 	public Reserva buscarReservas(Integer idReserva) {
 		return reservaDao.buscarReservas(idReserva);
-
 	}
 
-	@Override
-	public float calcularCostoOrigen(String fDesde, String fHasta, Integer idVehiculo) {
-		SimpleDateFormat formatodsd = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat formatohst = new SimpleDateFormat("yyyy-MM-dd");
-		Date dDesde = new Date();
-		Date dHasta = new Date();
-		try {
-			dDesde = formatodsd.parse(fDesde);
-			dHasta = formatohst.parse(fHasta);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Integer idCategoria = vehiculoDao.buscarVehiculos(idVehiculo).getFkCategoriaV().getIdCategoria();
-		float costoHora = categoriaDao.buscarPorId(idCategoria).getCostoHora();
-		long cant = (dHasta.getTime()-dDesde.getTime())/(1000*60*60*24);
-		float costoOrigen = cant*costoHora;
-		return costoOrigen;
-	}
 }
