@@ -47,7 +47,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<label for="fch_desde">Reserva desde:</label> 
-										<input type="date" name="fch_desde" class="form-control"/>
+										<input type="date" name="fch_desde" class="form-control" required/>
 									</div>
 								</div>
 							</div>
@@ -56,7 +56,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<label for="fch_hasta">Reserva hasta:</label> 
-										<input type="date" name="fch_hasta" class="form-control"/>
+										<input type="date" name="fch_hasta" class="form-control" required/>
 									</div>
 								</div>
 							</div>
