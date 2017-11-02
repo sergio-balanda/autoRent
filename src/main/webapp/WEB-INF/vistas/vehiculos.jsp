@@ -25,7 +25,7 @@
 								<th>Modelo</th>
 								<th>Capacidad Pasajeros</th>
 								<th>Capacidad Valijas</th>
-								<th>Seleccionar</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -46,7 +46,7 @@
 										<c:param name="fchhasta" value="${fch_hasta}" />
 										<c:param name="sucursal" value="${sucursal}" />
 									</c:url> 
-									<td><a href='<c:out value="${displayURL}" />'class="btn btn-primary" role="button">Generar Reserva</a></td>
+									<td><a href='<c:out value="${displayURL}" />'class="btn btn-primary" role="button">Seleccionar</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

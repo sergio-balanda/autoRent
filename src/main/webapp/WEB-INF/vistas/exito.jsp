@@ -18,7 +18,7 @@
 				<p> Reserva para dia ${fdsd} hasta ${fhst} </p>
 				<p> Retira de Sucursal: ${suc} </p>
 				<p> IdVehiculo Reservado: ${idVehiculo}</p>
-				
+				<a href="index" class="btn-lg btn-danger">Volver</a>
 			</div>
 		</div>
 	</div>

@@ -26,7 +26,7 @@ public class ServicioVehiculoImpl implements ServicioVehiculo{
 	}
 	
 	@Override
-	public Vehiculo buscarhiculos(Integer idVehiculo) {
+	public Vehiculo buscarVehiculos(Integer idVehiculo) {
 		return vehiculoDao.buscarVehiculos(idVehiculo);
 	}
 	

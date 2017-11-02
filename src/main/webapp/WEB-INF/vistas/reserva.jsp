@@ -33,7 +33,11 @@
 									</div>
 									<div class="col-md-3">
 										<h1>
-											<span class="label label-success">Costo</span>
+											<span class="label label-success">
+											
+											$ ${cost}
+											
+											</span>
 										</h1>
 										<hr>
 										<h1>
@@ -43,8 +47,7 @@
 										<a href="pasajeros" class="btn-lg btn-danger">Volver</a>
 										</h1>
 									</div>
-								</div>
-								
+								</div>		
 				</div>
 			</div>
 		</div>

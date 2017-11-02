@@ -20,22 +20,22 @@ public class Reserva {
 	private Date fechaFin;
 	private Double costoOrigen;
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "fkVehiculo") 
-	private Vehiculo fkVehiculo;
+	@JoinColumn(name = "fkVehiculoR") 
+	private Vehiculo fkVehiculoR;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "fkSucursalR")
 	private Sucursal fkSucursalR;
 	
 	public Reserva(){}
 	
-	public Reserva(Integer idReserva, Date fechaInicio, Date fechaFin, Double costoOrigen, Vehiculo fkVehiculo,
+	public Reserva(Integer idReserva, Date fechaInicio, Date fechaFin, Double costoOrigen, Vehiculo fkVehiculoR,
 			Sucursal fkSucursalR) {
 		super();
 		this.idReserva = idReserva;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.costoOrigen = costoOrigen;
-		this.fkVehiculo = fkVehiculo;
+		this.fkVehiculoR = fkVehiculoR;
 		this.fkSucursalR = fkSucursalR;
 	}
 	public Integer getIdReserva() {
@@ -62,11 +62,11 @@ public class Reserva {
 	public void setCostoOrigen(Double costoOrigen) {
 		this.costoOrigen = costoOrigen;
 	}
-	public Vehiculo getFkVehiculo() {
-		return fkVehiculo;
+	public Vehiculo getFkVehiculoR() {
+		return fkVehiculoR;
 	}
-	public void setFkVehiculo(Vehiculo fkVehiculo) {
-		this.fkVehiculo = fkVehiculo;
+	public void setFkVehiculoR(Vehiculo fkVehiculoR) {
+		this.fkVehiculoR = fkVehiculoR;
 	}
 	public Sucursal getFkSucursalR() {
 		return fkSucursalR;
@@ -74,7 +74,5 @@ public class Reserva {
 	public void setFkSucursalR(Sucursal fkSucursalR) {
 		this.fkSucursalR = fkSucursalR;
 	}
-	
-	
 	
 }

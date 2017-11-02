@@ -1,7 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,12 +11,14 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unlam.tallerweb1.dao.CategoriaDao;
 import ar.edu.unlam.tallerweb1.dao.ReservaDao;
 import ar.edu.unlam.tallerweb1.dao.SucursalDao;
 import ar.edu.unlam.tallerweb1.dao.VehiculoDao;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.Sucursal;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
+import ar.edu.unlam.tallerweb1.modelo.Categoria;
 
 @Service("servicioReserva")
 @Transactional
@@ -32,6 +32,8 @@ public class ServicioReservaImpl implements ServicioReserva {
 	VehiculoDao vehiculoDao;
 	@Inject 
 	SucursalDao sucursalDao;
+	@Inject 
+	CategoriaDao categoriaDao;
 	
 	@Override
 	public Reserva guardarReserva(Integer idVehiculo, String sucursal , String fdsd , String fhst,Integer fkVehiculo) {
@@ -58,7 +60,7 @@ public class ServicioReservaImpl implements ServicioReserva {
 		// -----------FIN CAST
 		
 		if ( fkVehiculo!=null ) {
-			reserva.setFkVehiculo(vehiculoDao.buscarVehiculos(idVehiculo));
+			reserva.setFkVehiculoR(vehiculoDao.buscarVehiculos(idVehiculo));
 		}
 		reserva.setFkSucursalR(sucursalDao.buscarSucXCiudad(sucursal));
 		reserva.setFechaInicio(datedsd);
@@ -75,4 +77,23 @@ public class ServicioReservaImpl implements ServicioReserva {
 
 	}
 
+	@Override
+	public float calcularCostoOrigen(String fDesde, String fHasta, Integer idVehiculo) {
+		SimpleDateFormat formatodsd = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatohst = new SimpleDateFormat("yyyy-MM-dd");
+		Date dDesde = new Date();
+		Date dHasta = new Date();
+		try {
+			dDesde = formatodsd.parse(fDesde);
+			dHasta = formatohst.parse(fHasta);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Integer idCategoria = vehiculoDao.buscarVehiculos(idVehiculo).getFkCategoriaV().getIdCategoria();
+		float costoHora = categoriaDao.buscarPorId(idCategoria).getCostoHora();
+		long cant = (dHasta.getTime()-dDesde.getTime())/(1000*60*60*24);
+		float costoOrigen = cant*costoHora;
+		return costoOrigen;
+	}
 }

@@ -26,7 +26,16 @@ public class ControladorFront {
 	@Inject
 	private ServicioReserva servicioReserva;
 
-
+	@RequestMapping("/index")
+	public ModelAndView index() {
+		return new ModelAndView("index");
+	}
+	
+	@RequestMapping(path="/")
+	public ModelAndView inicio() {
+		return new ModelAndView("redirect:/index");
+	}
+	
 	@RequestMapping("/vehiculos")
 	public ModelAndView verVehiculos(@RequestParam("cantidad") Integer cant, 
 									 @RequestParam("sucursal") String sucursal,
@@ -40,10 +49,7 @@ public class ControladorFront {
 		return new ModelAndView("vehiculos", modelo);
 	}
 
-	@RequestMapping(path="/")
-	public ModelAndView inicio() {
-		return new ModelAndView("index");
-	}
+	
 
 	@RequestMapping("/pasajeros")
 	public ModelAndView selectPasajeros() {
@@ -52,9 +58,5 @@ public class ControladorFront {
 		modelo.put("sucursal", servicioSucursal.obtenerSucursales());
 		return new ModelAndView("pasajeros", modelo);
 	}
-
-
-	
-
 	
 }//fin

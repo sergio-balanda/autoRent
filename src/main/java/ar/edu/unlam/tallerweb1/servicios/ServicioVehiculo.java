@@ -6,7 +6,7 @@ import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 
 public interface  ServicioVehiculo {
 	
-	public Vehiculo buscarhiculos(Integer idVehiculo);
+	public Vehiculo buscarVehiculos(Integer idVehiculo);
 	public List<Vehiculo> listarVehiculosXPasajeros(Integer cant, String sucursal, String fdesde , String fhasta );
 	public Integer maxPasajeros();
 	

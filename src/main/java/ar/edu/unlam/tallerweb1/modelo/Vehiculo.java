@@ -28,18 +28,23 @@ public class Vehiculo {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fkSucursalV")
 	private Sucursal fkSucursalV;
-	@OneToMany(mappedBy="fkVehiculo")
+	@OneToMany(mappedBy="fkVehiculoR")
 	private List<Reserva> reserva = new ArrayList<>();
-	
-	/*	
- 	private Integer fkCategoriaV;
-	*/
+ 	@ManyToOne(fetch = FetchType.LAZY)
+ 	@JoinColumn(name = "fkCategoriaV")
+	private Categoria fkCategoriaV;
+ 	
+	public Categoria getFkCategoriaV() {
+		return fkCategoriaV;
+	}
+
+	public void setFkCategoriaV(Categoria fkCategoriaV) {
+		this.fkCategoriaV = fkCategoriaV;
+	}
 
 	public Vehiculo() {
 		super();
 	}
-
-	
 
 	public Integer getIdVehiculo() {
 		return idVehiculo;
