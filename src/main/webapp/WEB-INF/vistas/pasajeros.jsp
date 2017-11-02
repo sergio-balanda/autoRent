@@ -1,7 +1,27 @@
-<%@include file='../../includes/head.jsp' %>
-	<title>Pasajeros</title>
+<%@include file='../../includes/head.jsp'%>
+<title>Pasajeros</title>
+<script type="text/javascript">
+	function validar() {
+		var desde = document.getElementById('fch_desde').value;
+		var hasta = document.getElementById('fch_hasta').value;
+		var error = document.getElementById('error');
+		var submit = document.getElementById('submit');
+		desde = new Date(desde);
+		hasta = new Date(hasta);
+		if (desde > hasta) {
+			submit.disabled = true;
+			error.style.display = "block";
+		} else {
+			submit.disabled = false;
+			error.style.display = "none";
+		}
+	}
+</script>
 </head>
 <body>
+
+
+
 	<div class="container">
 		<header class='page-header'>
 			<div class="container-fluid bg-1">
@@ -17,62 +37,70 @@
 				<div class="row">
 					<div class="col-md-5 col-xs-6">
 						<div class="panel-body">
-						<form action="vehiculos" method="GET">
-							<div class="form-group">
-								<div class="row">
-									<div class="col-sm-12">
-										<label for="sel1">Cantidad de pasajeros:</label> 
-										<select	class="form-control" id="sel1" name="cantidad">
-											<c:forEach var="i" begin="1" end="${max}">
-												<option value="${i}">${i}</option>
-											</c:forEach>
-										</select>
+							<form action="vehiculos" method="GET">
+								<div class="form-group">
+									<div class="row">
+										<div class="col-sm-12">
+											<label for="sel1">Cantidad de pasajeros:</label> <select
+												class="form-control" id="sel1" name="cantidad">
+												<c:forEach var="i" begin="1" end="${max}">
+													<option value="${i}">${i}</option>
+												</c:forEach>
+											</select>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<div class="row">
-									<div class="col-md-12">
-										<label for="sel1">Sucursal de retiro:</label> 
-										<select class="form-control" id="sel2" name="sucursal">
-											<c:forEach var="s" items="${sucursal}">
-												<option value="${s.ciudad}">${s.ciudad}</option>
-											</c:forEach>
-										</select>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-12">
+											<label for="sel1">Sucursal de retiro:</label> <select
+												class="form-control" id="sel2" name="sucursal">
+												<c:forEach var="s" items="${sucursal}">
+													<option value="${s.ciudad}">${s.ciudad}</option>
+												</c:forEach>
+											</select>
+										</div>
 									</div>
 								</div>
-							</div>
-							
-							<div class="form-group">
-								<div class="row">
-									<div class="col-md-12">
-										<label for="fch_desde">Reserva desde:</label> 
-										<input type="date" name="fch_desde" class="form-control" required/>
+
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-12">
+											<label for="fch_desde">Reserva desde:</label> <input
+												type="date" onChange="validar()" name="fch_desde"
+												id="fch_desde" class="form-control" required />
+										</div>
 									</div>
 								</div>
-							</div>
-							
-							<div class="form-group">
-								<div class="row">
-									<div class="col-md-12">
-										<label for="fch_hasta">Reserva hasta:</label> 
-										<input type="date" name="fch_hasta" class="form-control" required/>
+
+
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-12">
+											<label for="fch_hasta">Reserva hasta:</label> <input
+												type="date" onChange="validar()" name="fch_hasta"
+												id="fch_hasta" class="form-control" required />
+										</div>
 									</div>
 								</div>
-							</div>
-	
-							<button type="submit" class="btn btn-primary">Enviar</button>
-						</form>
+								<div class="alert alert-danger" style="display: none;"
+									id="error" class=>
+									<strong>Error!</strong> La fecha del campo 'Reserva hasta:' no
+									puede ser mayor que la del campo 'Reserva desde:'.
+								</div>
+								<button type="submit" class="btn btn-primary" id="submit">Enviar</button>
+							</form>
+						</div>
 					</div>
-					</div>
-					
-					
+
+
 					<div class="col-md-7">
-						<img alt="autorent" src="<c:url value="/img/res_car.png"/>" class="img-responsive" width="100%"/>
+						<img alt="autorent" src="<c:url value="/img/res_car.png"/>"
+							class="img-responsive" width="100%" />
 					</div>
-					
+
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
