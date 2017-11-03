@@ -13,9 +13,9 @@ import ar.edu.unlam.tallerweb1.modelo.Categoria;
 public class ServicioCategoriaImpl implements ServicioCategoria {
 
 	@Inject 
-	CategoriaDao categoriaDao;
+	private CategoriaDao categoriaDao;
 	@Inject 
-	VehiculoDao vehiculoDao;
+	private VehiculoDao vehiculoDao;
 	
 	@Override
 	public Categoria buscarPorId(Integer idCategoria) {

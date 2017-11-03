@@ -13,9 +13,9 @@
 		</header>
 		<div class="panel-group">
 			<div class="panel panel-default">
-				<div class="panel-heading">Los vehiculos disponibles entre dia ${fch_desde} y dia ${fch_hasta} en Sucursal ${sucursal} </div>
+				<div class="panel-heading">Los vehiculos disponibles entre dia ${fechaDesde} y dia ${fechaHasta} en Sucursal ${sucursal} </div>
 				<div class="panel-body">
-					<form action="generaReserva" method="GET">
+					<form action="generar-reserva" method="GET">
 					<table class="table table-hover table-striped">
 						<thead>
 							<tr>
@@ -40,10 +40,10 @@
 									<td><c:out value="${vehiculo.capacidadPasajeros}" /></td>
 									<td><c:out value="${vehiculo.capacidadValijas}" /></td>
 									
-									<c:url value="/generaReserva" var="displayURL">
+									<c:url value="/generar-reserva" var="displayURL">
 										<c:param name="idVehiculo" value="${vehiculo.idVehiculo}" />
-										<c:param name="fchdesde" value="${fch_desde}" />
-										<c:param name="fchhasta" value="${fch_hasta}" />
+										<c:param name="fechaDesde" value="${fechaDesde}" />
+										<c:param name="fechaHasta" value="${fechaHasta}" />
 										<c:param name="sucursal" value="${sucursal}" />
 									</c:url> 
 									<td><a href='<c:out value="${displayURL}" />'class="btn btn-primary" role="button">Seleccionar</a></td>

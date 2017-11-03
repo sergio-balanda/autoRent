@@ -21,13 +21,13 @@ import ar.edu.unlam.tallerweb1.modelo.Categoria;
 public class ServicioReservaImpl implements ServicioReserva {
 	
 	@Inject 
-	ReservaDao reservaDao;
+	private ReservaDao reservaDao;
 	@Inject 
-	VehiculoDao vehiculoDao;
+	private VehiculoDao vehiculoDao;
 	@Inject 
-	SucursalDao sucursalDao;
+	private SucursalDao sucursalDao;
 	@Inject 
-	CategoriaDao categoriaDao;
+	private CategoriaDao categoriaDao;
 	
 	@Override
 	public Reserva guardarReserva(Integer idVehiculo, String sucursal, String fDesde, String fHasta, Integer fkVehiculo) {

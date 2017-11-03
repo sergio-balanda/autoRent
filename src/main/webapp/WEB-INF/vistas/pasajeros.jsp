@@ -2,8 +2,8 @@
 <title>Pasajeros</title>
 <script type="text/javascript">
 	function validar() {
-		var desde = document.getElementById('fch_desde').value;
-		var hasta = document.getElementById('fch_hasta').value;
+		var desde = document.getElementById('fechaDesde').value;
+		var hasta = document.getElementById('fechaHasta').value;
 		var error = document.getElementById('error');
 		var submit = document.getElementById('submit');
 		desde = new Date(desde);
@@ -43,7 +43,7 @@
 										<div class="col-sm-12">
 											<label for="sel1">Cantidad de pasajeros:</label> <select
 												class="form-control" id="sel1" name="cantidad">
-												<c:forEach var="i" begin="1" end="${max}">
+												<c:forEach var="i" begin="1" end="${maximaCantidadVehiculos}">
 													<option value="${i}">${i}</option>
 												</c:forEach>
 											</select>
@@ -66,8 +66,8 @@
 								<div class="form-group">
 									<div class="row">
 										<div class="col-md-12">
-											<label for="fch_desde">Reserva desde:</label> <input
-												type="date" onChange="validar()" name="fch_desde"
+											<label for="fechaDesde">Reserva desde:</label> <input
+												type="date" onChange="validar()" name="fechaDesde"
 												id="fch_desde" class="form-control" required />
 										</div>
 									</div>
@@ -77,8 +77,8 @@
 								<div class="form-group">
 									<div class="row">
 										<div class="col-md-12">
-											<label for="fch_hasta">Reserva hasta:</label> <input
-												type="date" onChange="validar()" name="fch_hasta"
+											<label for="fechaHasta">Reserva hasta:</label> <input
+												type="date" onChange="validar()" name="fechaHasta"
 												id="fch_hasta" class="form-control" required />
 										</div>
 									</div>

@@ -21,33 +21,33 @@ public class ControladorReserva {
 	@Inject
 	private ServicioCategoria servicioCategoria;
 
-	@RequestMapping("/generaReserva")
+	@RequestMapping("/generar-reserva")
 	public ModelAndView generaReserva (@RequestParam ("idVehiculo") Integer idVehiculo,
-									   @RequestParam ("fchdesde") String fDesde,
-									   @RequestParam ("fchhasta") String fHasta,
-									   @RequestParam ("sucursal") String suc) {	
+									   @RequestParam ("fechaDesde") String fechaDesde,
+									   @RequestParam ("fechaHasta") String fechaHasta,
+									   @RequestParam ("sucursal") String sucursal) {	
 		ModelMap modelo = new ModelMap();
 		modelo.put("vehiculo", servicioVehiculo.buscarVehiculos(idVehiculo));
 		modelo.put("idVehiculo", idVehiculo);
-		modelo.put("fdsd", fDesde);
-		modelo.put("fhst", fHasta);
-		modelo.put("suc", suc);
-		modelo.put("cost", servicioCategoria.calcularCostoOrigen(fDesde, fHasta, idVehiculo));
+		modelo.put("fechaDesde", fechaDesde);
+		modelo.put("fechaHasta", fechaHasta);
+		modelo.put("sucursal", sucursal);
+		modelo.put("precioVehiculo", servicioCategoria.calcularCostoOrigen(fechaDesde, fechaHasta, idVehiculo));
 		return new ModelAndView("reserva",modelo);
 	}
 	
-	@RequestMapping("/guardaReserva")
+	@RequestMapping("/guardar-reserva")
 	public ModelAndView guardaReserva (@RequestParam ("idVehiculo") Integer idVehiculo,
 									    @RequestParam ("idVehiculo") Integer fkVehiculo,
-			   							@RequestParam ("fchdesde") String fDesde,
-									   @RequestParam ("fchhasta") String fHasta,
-									   @RequestParam ("sucursal") String suc) {
+			   							@RequestParam ("fechaDesde") String fechaDesde,
+									   @RequestParam ("fechaHasta") String fechaHasta,
+									   @RequestParam ("sucursal") String sucursal) {
 		ModelMap modelo = new ModelMap();
 		modelo.put("idVehiculo", idVehiculo);
-		modelo.put("fdsd", fHasta);
-		modelo.put("fhst", fHasta);
-		modelo.put("suc",suc);
-		servicioReserva.guardarReserva(idVehiculo, suc, fDesde, fHasta, fkVehiculo);
+		modelo.put("fechaDesde", fechaHasta);
+		modelo.put("fechaDesde", fechaHasta);
+		modelo.put("sucursal",sucursal);
+		servicioReserva.guardarReserva(idVehiculo, sucursal, fechaDesde, fechaHasta, fkVehiculo);
 		return new ModelAndView("exito",modelo);
 	}
 

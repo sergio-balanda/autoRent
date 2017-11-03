@@ -5,6 +5,6 @@ import ar.edu.unlam.tallerweb1.modelo.Categoria;
 public interface CategoriaDao {
 
 	Categoria buscarPorId(Integer idCategoria);
-	public float calcularCostoOrigen(String fDesde, String fHasta, Integer idVehiculo);
+	float calcularCostoOrigen(String fechaDesde, String fechaHasta, Integer idVehiculo);
 	
 }

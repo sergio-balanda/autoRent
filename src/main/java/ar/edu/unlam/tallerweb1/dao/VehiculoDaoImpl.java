@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,21 +22,21 @@ public class VehiculoDaoImpl implements VehiculoDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Vehiculo> listarVehiculosXPasajeros(Integer cant, String sucursal, String fdesde , String fhasta ) {
+	public List<Vehiculo> listarVehiculosXPasajeros(Integer cantidadPasajeros, String sucursal, String fechaDesde , String fechaHasta ) {
         // CAST de String To Date
-		SimpleDateFormat formatodsd = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat formatohst = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat formatoFechaDesde = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat formatoFechaHasta = new SimpleDateFormat("yyyy-MM-dd");
 		
-		Date datedsd = new Date();
+		Date dateDesde = new Date();
 		try {
-			datedsd = formatodsd.parse(fdesde);
+			dateDesde = formatoFechaDesde.parse(fechaDesde);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Date datehst = new Date();
+		Date dateHasta = new Date();
 		try {
-			datehst = formatohst.parse(fhasta);
+			dateHasta = formatoFechaHasta.parse(fechaHasta);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,11 +44,11 @@ public class VehiculoDaoImpl implements VehiculoDao {
 		// -----------FIN CAST
         final Session session = sessionFactory.getCurrentSession();
 		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class)
-				.add(Restrictions.ge("capacidadPasajeros", cant))
+				.add(Restrictions.ge("capacidadPasajeros", cantidadPasajeros))
 				.createAlias("fkSucursalV", "s")
 				.add(Restrictions.eq("s.ciudad", sucursal))
 				.createAlias("reserva","r")
-				.add(Restrictions.or(Restrictions.lt("r.fechaInicio", datedsd),Restrictions.gt("r.fechaFin", datehst)))
+				.add(Restrictions.or(Restrictions.lt("r.fechaInicio", dateDesde),Restrictions.gt("r.fechaFin", dateHasta)))
 				.addOrder(Order.asc("capacidadPasajeros"))
 				.list();
 		return vehiculos;
@@ -56,17 +57,17 @@ public class VehiculoDaoImpl implements VehiculoDao {
 	@Override
 	public Integer maxPasajeros() {
 		final Session session = sessionFactory.getCurrentSession();
-		Integer max  = (Integer)session.createCriteria(Vehiculo.class)
+		Integer maximaCantidadPasajeros  = (Integer)session.createCriteria(Vehiculo.class)
 					.setProjection(Projections.max("capacidadPasajeros"))
 					.uniqueResult();
-		return max;
+		return maximaCantidadPasajeros;
 	}
 	
 	@Override
 	public Vehiculo buscarVehiculos(Integer idVehiculo) {
 		final Session  session = sessionFactory.getCurrentSession();
 		Vehiculo vehiculo = (Vehiculo) session.createCriteria(Vehiculo.class)
-				.add(Restrictions.eq("id", idVehiculo)).uniqueResult();
+				.add(Restrictions.eq("idVehiculo", idVehiculo)).uniqueResult();
 		return vehiculo;
 	}
 	

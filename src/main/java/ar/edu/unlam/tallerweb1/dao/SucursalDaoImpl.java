@@ -30,12 +30,12 @@ public class SucursalDaoImpl implements SucursalDao{
 	{
 
 		final Session session = sessionFactory.getCurrentSession();
-		 Sucursal suc = (Sucursal) session.createCriteria(Sucursal.class)
+		 Sucursal listaSucursal = (Sucursal) session.createCriteria(Sucursal.class)
 				//.setProjection(Projections.projectionList().add(Projections.property("idSucursal")))
 				.add(Restrictions.eq("ciudad",sucursal))
 		        .uniqueResult();
 		
-		return suc; 
+		return listaSucursal; 
 	}
 	
 }

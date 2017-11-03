@@ -15,8 +15,8 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Detalles de la Reserva</div>
 				<div class="panel-body">
-					<p> Reserva para dia ${fdsd} hasta ${fhst} </p>
-					<p> Retira de Sucursal: ${suc} </p>
+					<p> Reserva para dia ${fechaDesde} hasta ${fechaHasta} </p>
+					<p> Retira de Sucursal: ${sucursal} </p>
 					<p> IdVehiculo Reservado: ${idVehiculo}</p>
 					<hr>
 								<div class="row">
@@ -35,13 +35,13 @@
 										<h1>
 											<span class="label label-success">
 											
-											$ ${cost}
+											${precioVehiculo}
 											
 											</span>
 										</h1>
 										<hr>
 										<h1>
-										<a href="guardaReserva?idVehiculo=${idVehiculo}&fchdesde=${fdsd}&fchhasta=${fhst}&sucursal=${suc}" class="btn-lg btn-primary">Continuar</a>
+										<a href="guardar-reserva?idVehiculo=${idVehiculo}&fechaDesde=${fechaDesde}&fechaHasta=${fechaHasta}&sucursal=${sucursal}" class="btn-lg btn-primary">Continuar</a>
 										</h1>
 										<h1>
 										<a href="pasajeros" class="btn-lg btn-danger">Volver</a>

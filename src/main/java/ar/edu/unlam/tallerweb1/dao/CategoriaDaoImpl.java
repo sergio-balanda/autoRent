@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,7 +20,7 @@ public class CategoriaDaoImpl implements CategoriaDao{
 	@Inject
 	private SessionFactory sessionFactory;
 	@Inject 
-	VehiculoDao vehiculoDao;
+	private VehiculoDao vehiculoDao;
 
 	@Override
 	public Categoria buscarPorId(Integer idCategoria) {
@@ -30,22 +31,22 @@ public class CategoriaDaoImpl implements CategoriaDao{
 	}
 	
 	@Override
-	public float calcularCostoOrigen(String fDesde, String fHasta, Integer idVehiculo) {
-		SimpleDateFormat formatodsd = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat formatohst = new SimpleDateFormat("yyyy-MM-dd");
-		Date dDesde = new Date();
-		Date dHasta = new Date();
+	public float calcularCostoOrigen(String fechaDesde, String fechaHasta, Integer idVehiculo) {
+		DateFormat formatoFechaDesde = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat formatoFechaHasta = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateDesde = new Date();
+		Date dateHasta = new Date();
 		try {
-			dDesde = formatodsd.parse(fDesde);
-			dHasta = formatohst.parse(fHasta);
+			dateDesde = formatoFechaDesde.parse(fechaDesde);
+			dateHasta = formatoFechaHasta.parse(fechaHasta);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Integer idCategoria = vehiculoDao.buscarVehiculos(idVehiculo).getFkCategoriaV().getIdCategoria();
 		float costoHora = buscarPorId(idCategoria).getCostoHora();
-		long cant = (dHasta.getTime()-dDesde.getTime())/(1000*60*60*24);
-		float costoOrigen = cant*costoHora;
+		long cantidadDias = (dateHasta.getTime()-dateDesde.getTime())/(1000*60*60*24);
+		float costoOrigen = cantidadDias*costoHora;
 		return costoOrigen;
 	}
 	
