@@ -20,7 +20,6 @@
 						<thead>
 							<tr>
 								<th>Imagen</th>
-								<th>Patente</th>
 								<th>Marca</th>
 								<th>Modelo</th>
 								<th>Capacidad Pasajeros</th>
@@ -34,7 +33,6 @@
 								<tr>
 									<td><img src="${vehiculo.imagen}" class="img-responsive" 
 									style="display: inline" alt="" width="100" height="100"/></td>
-									<td><c:out value="${vehiculo.patente}"/></td>
 									<td><c:out value="${vehiculo.marca}" /></td>
 									<td><c:out value="${vehiculo.nombre}" /></td>
 									<td><c:out value="${vehiculo.capacidadPasajeros}" /></td>
