@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
@@ -38,13 +39,13 @@ public class ControladorReserva {
 	@RequestMapping(path = "/guardar-reserva", method = RequestMethod.POST)
 	public ModelAndView guardaReserva(@RequestParam("idVehiculo") Integer idVehiculo,
 			@RequestParam("idVehiculo") Integer fkVehiculo, @RequestParam("fechaDesde") String fechaDesde,
-			@RequestParam("fechaHasta") String fechaHasta, @RequestParam("sucursal") String sucursal) {
+			@RequestParam("fechaHasta") String fechaHasta, @RequestParam("sucursal") String sucursal,@RequestParam (value="usuario") Integer idUsuario) {
 		ModelMap modelo = new ModelMap();
 		modelo.put("idVehiculo", idVehiculo);
 		modelo.put("fechaDesde", fechaHasta);
 		modelo.put("fechaDesde", fechaHasta);
 		modelo.put("sucursal", sucursal);
-		servicioReserva.guardarReserva(idVehiculo, sucursal, fechaDesde, fechaHasta, fkVehiculo);
+		servicioReserva.guardarReserva(idVehiculo, sucursal, fechaDesde, fechaHasta, fkVehiculo,idUsuario);
 		return new ModelAndView("exito", modelo);
 	}
 

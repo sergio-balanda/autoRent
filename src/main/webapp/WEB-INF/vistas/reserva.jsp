@@ -2,6 +2,10 @@
 <title>Reserva</title>
 </head>
 <body>
+	<c:set var="usuario" value="${usuario}" scope="session"/>
+	<c:if test="${not empty usuario}">
+		<p class="text-right text-muted"><b>Usuario:<b> ${usuario.nombre} para salir click click <a href="logout">aqu&iacute;.</a></p>
+	</c:if>
 	<div class="container">
 		<header class='page-header'>
 			<div class="container-fluid bg-1">
@@ -45,6 +49,8 @@
 							<form:form action="guardar-reserva" method="POST">
 								<input type="hidden" name="idVehiculo" id="idVehiculo"
 									value="${idVehiculo}" />
+								<input type="hidden" name="usuario" id="usuario"
+									value="${usuario.id}" />
 								<input type="hidden" name="fechaDesde" id="fechaDesde"
 									value="${fechaDesde}" />
 								<input type="hidden" name="fechaHasta" id="fechaHasta"
