@@ -10,23 +10,31 @@
 	</c:if>
 	<c:if
 		test="${not empty usuario.administrador and usuario.administrador}">
-		<div class="jumbotron">
-			<div class="container">
-				<p class="text-right text-muted">
-					<b>Usuario:<b> ${usuario.nombre} para salir click <a
-							href="logout">aqu&iacute;.</a>
-				</p>
-
-				<h1>Zona Admin</h1>
-				<h2>
-					ADMIN
-					<c:out value="${usuario.nombre}" />
-				</h2>
-			</div>
-		</div>
 		<div class="container">
-			<p>Cantidad de puntos ${usuario.puntos}</p>
-			<p>ID de usuario ${usuario.id}</p>
+			<header class='page-header'>
+				<div class="container-fluid bg-1">
+					<img src="img/logo.jpg" class="img-responsive"
+						style="display: inline" alt="" width="100" height="100">
+					<h1 class="margin" style="display: inline; margin-left: 100px">Auto
+						Rent</h1>
+					<p class="text-right text-muted">
+					<b>Usuario:</b> ${usuario.nombre} para salir click <a href="logout">aqu&iacute;.</a>
+				</p>
+				</div>
+				<h1>Zona de Admininistracion</h1>
+			</header>
+			<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">Bienvenido</div>
+					<div class="panel-body">
+						<form:form action="devolver-vehiculo" method="POST" modelAttribute="usuario">
+							
+							Devolucion de vehiculos
+							
+						</form:form>
+					</div>
+				</div>
+			</div>
 		</div>
 	</c:if>
 

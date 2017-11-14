@@ -39,6 +39,8 @@ public class ControladorLogin {
 	public ModelAndView irAadmin() {
 		return new ModelAndView("admin");
 	}
+	
+	@RequestMapping()
 
 	// El método recibe un objeto Usuario el que tiene los datos ingresados en
 	// el form correspondiente y
