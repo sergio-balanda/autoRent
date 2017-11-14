@@ -1,5 +1,5 @@
 <%@include file='../../includes/head.jsp'%>
-<title>Zona admin</title>
+<title>Lista de reservas</title>
 </head>
 <body>
 
@@ -25,19 +25,35 @@
 			</header>
 			<div class="panel-group">
 				<div class="panel panel-default">
-					<div class="panel-heading">Bienvenido</div>
+					<div class="panel-heading">Lista de reservas</div>
 					<div class="panel-body">
-						<form:form action="devolver-vehiculo" method="POST" modelAttribute="usuario">
-							
-							Devolucion de vehiculos
-							
-						</form:form>
-						<a href="vista-reservas" class="btn btn-info">Ver todas las reservas</a>
+						<table class="table table-hover table-striped">
+						<thead>
+							<tr>
+								<th>Reserva</th>
+								<th>Costo</th>
+								<th>Fecha inicio</th>
+								<th>Fecha fin</th>
+								<th>Ver Reserva</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${reservas}" var="reserva" >
+								<tr>
+						
+									<td><c:out value="${reserva.idReserva}" /></td>
+									<td><c:out value="${reserva.costoOrigen}" /></td>
+									<td><c:out value="${reserva.fechaInicio}" /></td>
+									<td><c:out value="${reserva.fechaFin}" /></td>
+									<td><a href='detalle-reserva?reserva=<c:out value="${reserva.idReserva}" />'class="btn btn-primary" role="button">Seleccionar</a></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 					</div>
 				</div>
 			</div>
 		</div>
 	</c:if>
-
 </body>
 </html>

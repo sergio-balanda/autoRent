@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,23 +13,29 @@ import ar.edu.unlam.tallerweb1.modelo.Reserva;
 
 @Service("reservaDao")
 @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-public class ReservaDaoImpl implements ReservaDao{
+public class ReservaDaoImpl implements ReservaDao {
 
 	@Inject
 	private SessionFactory sessionFactory;
 
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public void guardarReserva(Reserva reserva) {
 		final Session session = sessionFactory.getCurrentSession();
-			session.save(reserva);
+		session.save(reserva);
 	}
 
 	@Override
 	public Reserva buscarReservas(Integer idReserva) {
 		final Session session = sessionFactory.getCurrentSession();
-		Reserva reserva = (Reserva) session.createCriteria(Reserva.class)
-				.add(Restrictions.eq("idReserva", idReserva)).uniqueResult();
+		Reserva reserva = (Reserva) session.createCriteria(Reserva.class).add(Restrictions.eq("idReserva", idReserva))
+				.uniqueResult();
 		return reserva;
 	}
-	
+
+	@Override
+	public List<Reserva> listarReservas() {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Reserva.class).list();
+	}
+
 }

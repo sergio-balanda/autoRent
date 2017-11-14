@@ -1,8 +1,7 @@
 <%@include file='../../includes/head.jsp'%>
-<title>Zona admin</title>
+<title>detalle de reservas</title>
 </head>
 <body>
-
 	<c:set var="usuario" value="${usuario}" scope="session" />
 	<c:if
 		test="${not empty usuario.administrador and not usuario.administrador}">
@@ -18,21 +17,26 @@
 					<h1 class="margin" style="display: inline; margin-left: 100px">Auto
 						Rent</h1>
 					<p class="text-right text-muted">
-					<b>Usuario:</b> ${usuario.nombre} para salir click <a href="logout">aqu&iacute;.</a>
-				</p>
+						<b>Usuario:</b> ${usuario.nombre} para salir click <a
+							href="logout">aqu&iacute;.</a>
+					</p>
 				</div>
 				<h1>Zona de Admininistracion</h1>
 			</header>
+			<p>fehcas...</p>
 			<div class="panel-group">
 				<div class="panel panel-default">
 					<div class="panel-heading">Bienvenido</div>
 					<div class="panel-body">
-						<form:form action="devolver-vehiculo" method="POST" modelAttribute="usuario">
-							
-							Devolucion de vehiculos
-							
+						<form:form action="devolver-vehiculo" method="POST">
+
+							<input type="number" value="${reserva.idReserva}"
+								name="idReserva">
+							<input type="number" placeholder="costo">
+
 						</form:form>
-						<a href="vista-reservas" class="btn btn-info">Ver todas las reservas</a>
+						<a href="vista-reservas" class="btn btn-info">Ver todas las
+							reservas</a>
 					</div>
 				</div>
 			</div>
