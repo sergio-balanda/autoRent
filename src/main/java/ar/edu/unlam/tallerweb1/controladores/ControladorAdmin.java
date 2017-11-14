@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,16 +25,21 @@ public class ControladorAdmin {
 	}
 
 	@RequestMapping("/detalle-reserva")
-	public ModelAndView verDetalleReserva(@RequestParam("reserva") Integer reserva) {
+	public ModelAndView verDetalleReserva() {
+		return new ModelAndView("detalle-reserva");
+	}
+
+	@RequestMapping("/devolver-vehiculo")
+	public ModelAndView devolverVehiculo() {
+
+		return new ModelAndView("detalle-reserva");
+	}
+
+	@RequestMapping(value = "/detalle-reserva", method = RequestMethod.GET)
+	public ModelAndView helloWorld(@RequestParam("reserva") Integer reserva) {
 		ModelMap modelo = new ModelMap();
 		modelo.put("idReserva", reserva);
 		modelo.put("reserva", servicioReserva.buscarReservas(reserva));
-		return new ModelAndView("detalle-reserva");
-	}
-	
-	@RequestMapping ("/devolver-vehiculo")
-	public ModelAndView devolverVehiculo(){
-
-		return new ModelAndView ("detalle-reserva");
+		return new ModelAndView("detalle-reserva", modelo);
 	}
 }

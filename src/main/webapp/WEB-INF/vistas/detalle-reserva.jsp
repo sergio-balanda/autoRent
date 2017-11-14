@@ -32,7 +32,7 @@
 
 							<input type="number" value="${reserva.idReserva}"
 								name="idReserva">
-							<input type="number" placeholder="costo">
+							<input type="number" placeholder="${reserva.costoOrigen}">
 
 						</form:form>
 						<a href="vista-reservas" class="btn btn-info">Ver todas las
