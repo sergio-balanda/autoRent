@@ -3,11 +3,11 @@ taller web unlam
 
 ##
 
-* ultimos cambios borre algunos archivos, el tp funciona igual, ver autorent/reserva no tiene nada en especial 
-  pero tiene algo de la logica de la reserva, uno de los modelos esta comentado una parte por q sino me tiraba error,
-  cambie la contraseña si alguien no puede levantar el proyecto, ver dao service, controladorReserva, un cambio en db
-  string img.
+* para ver autorent/registro-usuario creo que era asi para crear el usuario, o /login para entrar, en los insert meti dos usuarios
+    por defecto se crea como usuario comun y 0 puntos, para crear un admin a mano poniendo en el insert administrador true.
+    despues hay que agregar que solo usuarios registrados puedan reservar, pero eso es facil es un if y listo.
+    Al hacer una reserva suma puntos noc si es la mejor forma de hacer todo esto pero funciona.
 
 ###
 
-* para buscar para cantidad dao y servicio algo asi List<Vehiculos> listarVehiculosPorCantidadDePersonas(Integer cantidadDePersonas);
+

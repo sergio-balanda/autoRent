@@ -2,6 +2,7 @@
 	<title>AutoRent - TP Taller WEB 1</title>
 </head>
 <body>
+	<p class="text-right text-muted"><a href="login">login</a></p>
 	<div class="container">
 		<header class='page-header'>
 		<div class="container-fluid bg-1">

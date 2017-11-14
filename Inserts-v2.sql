@@ -1,4 +1,11 @@
 USE autorent;
+select * from reserva;
+select * from vehiculo;
+select * from usuario;
+
+insert into usuario(administrador,email,nombre,password,puntos) values (true,'a@mail.com','julio',1,100);
+insert into usuario(administrador,email,nombre,password,puntos) values (false,'b@mail.com','esteban',1,500);
+
 
 INSERT INTO Sucursal (ciudad, provincia, domicilio) VALUES
 ('Capital Federal', 'Buenos Aires', 'Jose Bonifacio 846'),
