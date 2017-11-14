@@ -8,6 +8,7 @@ import java.util.List;
 import javax.inject.Inject;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -42,13 +43,14 @@ public class VehiculoDaoImpl implements VehiculoDao {
 			e.printStackTrace();
 		}
 		// -----------FIN CAST
-        final Session session = sessionFactory.getCurrentSession();
+       
+		final Session session = sessionFactory.getCurrentSession();
 		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class)
-				.add(Restrictions.ge("capacidadPasajeros", cantidadPasajeros))
-				.createAlias("fkSucursalV", "s")
-				.add(Restrictions.eq("s.ciudad", sucursal))
 				.createAlias("reserva","r")
-				.add(Restrictions.or(Restrictions.lt("r.fechaInicio", dateDesde),Restrictions.gt("r.fechaFin", dateHasta)))
+				.createAlias("fkSucursalV", "s")
+				.add(Restrictions.ge("capacidadPasajeros", cantidadPasajeros))
+				.add(Restrictions.eq("s.ciudad", sucursal))
+				.add(Restrictions.or(Restrictions.or(Restrictions.gt("r.fechaInicio", dateHasta),Restrictions.lt("r.fechaFin", dateDesde))))
 				.addOrder(Order.asc("capacidadPasajeros"))
 				.list();
 		return vehiculos;

@@ -17,12 +17,12 @@ INSERT INTO Categoria (nombre, costoHora) VALUES
 INSERT INTO Vehiculo (patente, marca, nombre ,imagen, capacidadPasajeros, capacidadValijas, kilometraje, fkSucursalV, fkCategoriaV) VALUES
 ('AB111CD', 'Toyota', 'Hilux', 'img/hilux.jpg', 5, 6, 0, 4, 1),
 ('BC222DE', 'Ford', 'Ranger', 'img/ranger.jpg', 5, 5, 0, 2, 1),
-('CD333EF', 'Chevrolet', 'Spin', 'img/spin.jpg', 7, 3, 0, 3, 2),
+('CD333EF', 'Chevrolet', 'spin', 'img/spin.jpg', 7, 3, 0, 3, 2),
 ('DE444FG', 'Mercedes Benz', 'Vito', 'img/vito.jpg', 8, 2, 0, 1, 2),
 ('EF555GH', 'Toyota', 'Corolla', 'img/corolla.jpg', 5, 3, 0, 1, 3),
 ('FG666HI', 'Volkswagen', 'Vento', 'img/vento.jpg', 5, 2, 0, 3, 3),
 ('GH777IJ', 'Citroen', 'C4', 'img/c4.jpg', 5, 2, 0, 3, 4),
-('HI888JK', 'Peugeot', '206 SW', 'img/206SW.jpg', 5, 2, 0, 2, 4),
+('HI888JK', 'Peugeot', '206SW', 'img/206SW.jpg', 5, 2, 0, 2, 4),
 ('IJ999KL', 'Fortwo', 'Fortwo', 'img/fortwo.jpg', 2, 1, 0, 1, 5),
 ('JK000LM', 'Volkswagen', 'Up', 'img/up.jpg', 4, 2, 0, 2, 5);
 
