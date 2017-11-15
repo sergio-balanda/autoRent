@@ -18,16 +18,18 @@
 					<h1 class="margin" style="display: inline; margin-left: 100px">Auto
 						Rent</h1>
 					<p class="text-right text-muted">
-					<b>Usuario:</b> ${usuario.nombre} para salir click <a href="logout">aqu&iacute;.</a>
-				</p>
+						<b>Usuario:</b> ${usuario.nombre} para salir click <a
+							href="logout">aqu&iacute;.</a>
+					</p>
 				</div>
 				<h1>Zona de Admininistracion</h1>
 			</header>
 			<div class="panel-group">
 				<div class="panel panel-default">
-					<div class="panel-heading">Bienvenido</div>
-					<div class="panel-body">
-						<a href="listar-reservas" class="btn btn-info">Ver todas las reservas</a>
+					<div class="panel-heading">Devolucion de vehiculos</div>
+					<div class="panel-body text-center">
+						<a href="vista-reservas" class="btn btn-info">Ver todas las
+							reservas</a>
 					</div>
 				</div>
 			</div>

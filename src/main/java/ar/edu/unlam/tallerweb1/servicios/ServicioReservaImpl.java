@@ -6,10 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import ar.edu.unlam.tallerweb1.dao.CategoriaDao;
 import ar.edu.unlam.tallerweb1.dao.ReservaDao;
 import ar.edu.unlam.tallerweb1.dao.SucursalDao;
@@ -86,14 +84,41 @@ public class ServicioReservaImpl implements ServicioReserva {
 	public List<Reserva> listarReservas() {
 		return reservaDao.listarReservas();
 	}
-	
+
 	@Override
-	/*public Integer guardarFecha(Integer idReserva,String fechaFinReserva){
-		return reservaDao.guardarFecha(idReserva,fechaFinReserva);
-	}*/
-	
-	public Integer guardarFecha(Reserva reserva){
-		return reservaDao.guardarFecha(reserva);
+	public Reserva guardarActualizarReserva(Integer idReserva, String fechaInicio, String fechaFin, float costoOrigen,
+			Integer fkVehiculoR, Integer id_usuario) {
+		Reserva reserva = null;
+		// CAST de String To Date
+		SimpleDateFormat formatodsd = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatohst = new SimpleDateFormat("yyyy-MM-dd");
+
+		Date datedsd = new Date();
+		try {
+			datedsd = formatodsd.parse(fechaInicio);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Date datehst = new Date();
+		try {
+			datehst = formatohst.parse(fechaFin);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (idReserva != null) {
+			reserva = reservaDao.buscarReservas(idReserva);
+		} else {
+			reserva = new Reserva();
+		}
+
+		reserva.setCostoOrigen(costoOrigen);
+		reserva.setFechaFin(datehst);
+
+		reservaDao.guardarActualizarReserva(reserva);
+
+		return reserva;
 	}
 
-}
+}// fin

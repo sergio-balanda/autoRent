@@ -21,22 +21,73 @@
 							href="logout">aqu&iacute;.</a>
 					</p>
 				</div>
-				<h1>Zona de Admininistracion</h1>
+				<h1>Datos de Reserva</h1>
 			</header>
-			
 			<div class="panel-group">
 				<div class="panel panel-default">
-					<div class="panel-heading">Fecha de Devolucion</div>
+					<div class="panel-heading">Veficar fecha de entraga, ingresar el costo por entrega
+				posterior de la fecha</div>
 					<div class="panel-body">
-						<form:form action="actualizar-reserva" method="POST" modelAttribute="reserva">
-							<label> Reserva nro ${reserva.idReserva}</label>
-							<label> Ingresar fecha de devolucion del vehiculo</label>
-							<form:input path="idReserva" class="hidden" name="idReserva" value="${reserva.idReserva}" />
-							<form:input path="fechaFin" type="date" name="fechaFin" />
-							<button type="Submit" class="btn btn-succes">Listo</button>
-						</form:form>
-						<a href="listar-reservas" class="btn btn-info">Ver todas las
-							reservas</a>
+						<div class="row">
+							<div class="col-md-4 col-md-offset-4">
+								<form:form action="actualizar-reserva" method="POST">
+									<div class="form-group">
+										<input type="hidden" value="${reserva.idReserva}"
+											name="idReserva" readonly class="form-control">
+									</div>
+									<div class="form-group">
+										<label for="nombre" class="col-xs-12 control-label">Fehca
+											de inicio</label>
+										<div class="col-xs-12">
+											<input type="text" value="${reserva.fechaInicio}"
+												name="fechaInicio" readonly class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="nombre" class="col-xs-12 control-label">Fecha
+											de entrega</label>
+										<div class="col-xs-12">
+											<input type="text" value="${reserva.fechaFin}"
+												name="fechaFin" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="nombre" class="col-xs-12 control-label">Costo</label>
+										<div class="col-xs-12">
+											<input type="number" value="${reserva.costoOrigen}"
+												name="costoOrigen" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-12">
+											<input type="hidden" value="${fkVehiculoR}"
+												name="fkVehiculoR" readonly class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-12">
+											<input type="hidden" value="${FkSucursalR}"
+												name="fkSucursalR" readonly class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-12">
+											<input type="hidden" value="${id_usuario}" name="idUsuario"
+												readonly class="form-control">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<div class="col-xs-12 text-center">
+											<br>
+											<a href="vista-reservas" class="btn btn-danger">Volver</a>
+											<button type="submit" class="btn btn-primary">Modificar</button>
+
+										</div>
+									</div>
+								</form:form>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
