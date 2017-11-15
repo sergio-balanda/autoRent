@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -36,6 +37,15 @@ public class ReservaDaoImpl implements ReservaDao {
 	public List<Reserva> listarReservas() {
 		final Session session = sessionFactory.getCurrentSession();
 		return session.createCriteria(Reserva.class).list();
+	}
+	
+	public Integer guardarFecha(Reserva reserva){
+		final Session session = sessionFactory.getCurrentSession();
+		session.update(reserva);
+		// ver calculo de dias
+		return 1; 
+
+		
 	}
 
 }

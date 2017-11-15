@@ -23,17 +23,16 @@
 				</div>
 				<h1>Zona de Admininistracion</h1>
 			</header>
-			<p>fehcas...</p>
+			
 			<div class="panel-group">
 				<div class="panel panel-default">
-					<div class="panel-heading">Bienvenido</div>
+					<div class="panel-heading">Fecha de Devolucion</div>
 					<div class="panel-body">
-						<form:form action="devolver-vehiculo" method="POST">
-
-							<input type="number" value="${reserva.idReserva}"
-								name="idReserva">
-							<input type="number" placeholder="${reserva.costoOrigen}">
-
+						<form:form action="actualiza-reserva" method="POST" modelAttribute="reserva">
+							<label> Reserva nro ${reserva.idReserva}</label>
+							<label> Ingresar fecha de devolucion del vehiculo</label>
+							<input type="date" name="fechaFin">
+							<button type="submit" class="btn btn-succes">Listo</button>
 						</form:form>
 						<a href="vista-reservas" class="btn btn-info">Ver todas las
 							reservas</a>

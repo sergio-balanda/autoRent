@@ -84,5 +84,11 @@ public class ServicioReservaImpl implements ServicioReserva {
 	public List<Reserva> listarReservas() {
 		return reservaDao.listarReservas();
 	}
+	
+	@Override
+	public Integer guardarFecha(Reserva reserva){
+		return reservaDao.guardarFecha(reserva);
+	}
+	
 
 }

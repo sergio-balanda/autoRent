@@ -12,5 +12,7 @@ public interface ServicioReserva {
 	public Reserva buscarReservas(Integer idReserva);
 
 	public List<Reserva> listarReservas();
+	
+	Integer guardarFecha(Reserva reserva);
 
 }
