@@ -45,7 +45,7 @@
 									<td><c:out value="${reserva.costoOrigen}" /></td>
 									<td><c:out value="${reserva.fechaInicio}" /></td>
 									<td><c:out value="${reserva.fechaFin}" /></td>
-									<td><a href='detalle-reserva?reserva=<c:out value="${reserva.idReserva}" />'class="btn btn-primary" role="button">Seleccionar</a></td>
+									<td><a href='devolver-id-reserva?reserva=<c:out value="${reserva.idReserva}" />'class="btn btn-primary" role="button">Seleccionar</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

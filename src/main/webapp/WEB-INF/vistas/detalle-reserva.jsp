@@ -28,13 +28,14 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Fecha de Devolucion</div>
 					<div class="panel-body">
-						<form:form action="actualiza-reserva" method="POST" modelAttribute="reserva">
+						<form:form action="actualizar-reserva" method="POST" modelAttribute="reserva">
 							<label> Reserva nro ${reserva.idReserva}</label>
 							<label> Ingresar fecha de devolucion del vehiculo</label>
-							<input type="date" name="fechaFin">
-							<button type="submit" class="btn btn-succes">Listo</button>
+							<form:input path="idReserva" class="hidden" name="idReserva" value="${reserva.idReserva}" />
+							<form:input path="fechaFin" type="date" name="fechaFin" />
+							<button type="Submit" class="btn btn-succes">Listo</button>
 						</form:form>
-						<a href="vista-reservas" class="btn btn-info">Ver todas las
+						<a href="listar-reservas" class="btn btn-info">Ver todas las
 							reservas</a>
 					</div>
 				</div>

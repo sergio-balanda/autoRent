@@ -40,7 +40,7 @@ public class ControladorLogin {
 		return new ModelAndView("admin");
 	}
 	
-	@RequestMapping()
+	//@RequestMapping()
 
 	// El método recibe un objeto Usuario el que tiene los datos ingresados en
 	// el form correspondiente y

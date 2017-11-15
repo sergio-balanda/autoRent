@@ -12,5 +12,6 @@ public interface ReservaDao {
 
 	List<Reserva> listarReservas();
 	
+	//Integer guardarFecha(Integer idReserva,String fechaFinReserva);
 	Integer guardarFecha(Reserva reserva);
 }

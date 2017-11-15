@@ -13,6 +13,6 @@ public interface ServicioReserva {
 
 	public List<Reserva> listarReservas();
 	
+	//Integer guardarFecha(Integer idReserva,String fechaFinReserva);
 	Integer guardarFecha(Reserva reserva);
-
 }

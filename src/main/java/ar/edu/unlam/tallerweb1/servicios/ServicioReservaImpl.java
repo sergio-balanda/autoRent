@@ -6,8 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import ar.edu.unlam.tallerweb1.dao.CategoriaDao;
 import ar.edu.unlam.tallerweb1.dao.ReservaDao;
 import ar.edu.unlam.tallerweb1.dao.SucursalDao;
@@ -86,9 +88,12 @@ public class ServicioReservaImpl implements ServicioReserva {
 	}
 	
 	@Override
+	/*public Integer guardarFecha(Integer idReserva,String fechaFinReserva){
+		return reservaDao.guardarFecha(idReserva,fechaFinReserva);
+	}*/
+	
 	public Integer guardarFecha(Reserva reserva){
 		return reservaDao.guardarFecha(reserva);
 	}
-	
 
 }

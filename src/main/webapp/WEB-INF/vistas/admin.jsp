@@ -27,12 +27,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Bienvenido</div>
 					<div class="panel-body">
-						<form:form action="devolver-vehiculo" method="POST" modelAttribute="usuario">
-							
-							Devolucion de vehiculos
-							
-						</form:form>
-						<a href="vista-reservas" class="btn btn-info">Ver todas las reservas</a>
+						<a href="listar-reservas" class="btn btn-info">Ver todas las reservas</a>
 					</div>
 				</div>
 			</div>
