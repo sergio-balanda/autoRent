@@ -3,10 +3,13 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import ar.edu.unlam.tallerweb1.dao.CategoriaDao;
 import ar.edu.unlam.tallerweb1.dao.ReservaDao;
 import ar.edu.unlam.tallerweb1.dao.SucursalDao;
@@ -31,8 +34,8 @@ public class ServicioReservaImpl implements ServicioReserva {
 	private UsuarioDao usuarioDao;
 
 	@Override
-	public Reserva guardarReserva(Integer idVehiculo, String sucursal, String fDesde, String fHasta,
-			Integer fkVehiculo,Integer idUsuario) {
+	public Reserva guardarReserva(Integer idVehiculo, String sucursal, String fDesde, String fHasta, Integer fkVehiculo,
+			Integer idUsuario) {
 		Reserva reserva = new Reserva();
 		// CAST de String To Date
 		SimpleDateFormat formatodsd = new SimpleDateFormat("yyyy-MM-dd");
@@ -58,11 +61,11 @@ public class ServicioReservaImpl implements ServicioReserva {
 			reserva.setFkVehiculoR(vehiculoDao.buscarVehiculos(idVehiculo));
 		}
 		reserva.setUsuario(usuarioDao.obtenerUsuarioPorId(idUsuario));
-		if(idUsuario != null){
+		if (idUsuario != null) {
 			Usuario usuario;
 			usuario = usuarioDao.obtenerUsuarioPorId(idUsuario);
-			Integer puntosAcuales=usuario.getPuntos();
-			Integer sumarPuntos=puntosAcuales+500;
+			Integer puntosAcuales = usuario.getPuntos();
+			Integer sumarPuntos = puntosAcuales + 500;
 			usuario.setPuntos(sumarPuntos);
 			usuarioDao.guardarUsuario(usuario);
 		}
@@ -77,6 +80,20 @@ public class ServicioReservaImpl implements ServicioReserva {
 	@Override
 	public Reserva buscarReservas(Integer idReserva) {
 		return reservaDao.buscarReservas(idReserva);
+	}
+
+	@Override
+	public List<Reserva> listarReservas() {
+		return reservaDao.listarReservas();
+	}
+	
+	@Override
+	/*public Integer guardarFecha(Integer idReserva,String fechaFinReserva){
+		return reservaDao.guardarFecha(idReserva,fechaFinReserva);
+	}*/
+	
+	public Integer guardarFecha(Reserva reserva){
+		return reservaDao.guardarFecha(reserva);
 	}
 
 }

@@ -1,8 +1,7 @@
 <%@include file='../../includes/head.jsp'%>
-<title>Zona admin</title>
+<title>detalle de reservas</title>
 </head>
 <body>
-
 	<c:set var="usuario" value="${usuario}" scope="session" />
 	<c:if
 		test="${not empty usuario.administrador and not usuario.administrador}">
@@ -18,16 +17,26 @@
 					<h1 class="margin" style="display: inline; margin-left: 100px">Auto
 						Rent</h1>
 					<p class="text-right text-muted">
-					<b>Usuario:</b> ${usuario.nombre} para salir click <a href="logout">aqu&iacute;.</a>
-				</p>
+						<b>Usuario:</b> ${usuario.nombre} para salir click <a
+							href="logout">aqu&iacute;.</a>
+					</p>
 				</div>
 				<h1>Zona de Admininistracion</h1>
 			</header>
+			
 			<div class="panel-group">
 				<div class="panel panel-default">
-					<div class="panel-heading">Bienvenido</div>
+					<div class="panel-heading">Fecha de Devolucion</div>
 					<div class="panel-body">
-						<a href="listar-reservas" class="btn btn-info">Ver todas las reservas</a>
+						<form:form action="actualizar-reserva" method="POST" modelAttribute="reserva">
+							<label> Reserva nro ${reserva.idReserva}</label>
+							<label> Ingresar fecha de devolucion del vehiculo</label>
+							<form:input path="idReserva" class="hidden" name="idReserva" value="${reserva.idReserva}" />
+							<form:input path="fechaFin" type="date" name="fechaFin" />
+							<button type="Submit" class="btn btn-succes">Listo</button>
+						</form:form>
+						<a href="listar-reservas" class="btn btn-info">Ver todas las
+							reservas</a>
 					</div>
 				</div>
 			</div>
