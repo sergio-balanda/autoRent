@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.dao.VehiculoDao;
+import ar.edu.unlam.tallerweb1.modelo.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 
 @Service("servicioVehiculo")
@@ -27,6 +28,12 @@ public class ServicioVehiculoImpl implements ServicioVehiculo {
 	@Override
 	public Vehiculo buscarVehiculos(Integer idVehiculo) {
 		return vehiculoDao.buscarVehiculos(idVehiculo);
+	}
+	
+	@Override
+	public List<Reserva> mostrarTodos() {
+		
+		return vehiculoDao.mostrarTodos();
 	}
 
 }

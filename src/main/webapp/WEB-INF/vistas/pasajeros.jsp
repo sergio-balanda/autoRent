@@ -93,6 +93,7 @@
 								</div>
 								<button type="submit" class="btn btn-primary" id="submit">Enviar</button>
 							</form>
+							<a href="mostrar-todos" class="btn btn-primary" >Mostrar todos</a> 
 						</div>
 					</div>
 

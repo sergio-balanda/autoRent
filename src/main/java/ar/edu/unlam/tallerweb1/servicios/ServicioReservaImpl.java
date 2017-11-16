@@ -32,23 +32,23 @@ public class ServicioReservaImpl implements ServicioReserva {
 	private UsuarioDao usuarioDao;
 
 	@Override
-	public Reserva guardarReserva(Integer idVehiculo, String sucursal, String fDesde, String fHasta, Integer fkVehiculo,
+	public Reserva guardarReserva(Integer idVehiculo, String sucursal, String fechaDesde, String fechaHasta, Integer fkVehiculo,
 			Integer idUsuario) {
 		Reserva reserva = new Reserva();
 		// CAST de String To Date
-		SimpleDateFormat formatodsd = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat formatohst = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatoDesde = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatoHasta = new SimpleDateFormat("yyyy-MM-dd");
 
-		Date datedsd = new Date();
+		Date dateDesde = new Date();
 		try {
-			datedsd = formatodsd.parse(fDesde);
+			dateDesde = formatoDesde.parse(fechaDesde);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Date datehst = new Date();
+		Date dateHasta = new Date();
 		try {
-			datehst = formatohst.parse(fHasta);
+			dateHasta = formatoHasta.parse(fechaHasta);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -68,9 +68,9 @@ public class ServicioReservaImpl implements ServicioReserva {
 			usuarioDao.guardarUsuario(usuario);
 		}
 		reserva.setFkSucursalR(sucursalDao.buscarSucXCiudad(sucursal));
-		reserva.setFechaInicio(datedsd);
-		reserva.setFechaFin(datehst);
-		reserva.setCostoOrigen(categoriaDao.calcularCostoOrigen(fDesde, fHasta, idVehiculo));
+		reserva.setFechaInicio(dateDesde);
+		reserva.setFechaFin(dateHasta);
+		reserva.setCostoOrigen(categoriaDao.calcularCostoOrigen(fechaDesde, fechaHasta, idVehiculo));
 		reservaDao.guardarReserva(reserva);
 		return reserva;
 	}

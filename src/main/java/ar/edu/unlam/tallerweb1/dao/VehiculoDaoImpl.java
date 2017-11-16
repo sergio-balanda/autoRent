@@ -13,6 +13,8 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
+
+import ar.edu.unlam.tallerweb1.modelo.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 
 @Service("VehiculoDao")
@@ -53,6 +55,7 @@ public class VehiculoDaoImpl implements VehiculoDao {
 				.add(Restrictions.or(Restrictions.or(Restrictions.gt("r.fechaInicio", dateHasta),Restrictions.lt("r.fechaFin", dateDesde))))
 				.addOrder(Order.asc("capacidadPasajeros"))
 				.list();
+		
 		return vehiculos;
 	}
 
@@ -72,6 +75,15 @@ public class VehiculoDaoImpl implements VehiculoDao {
 				.add(Restrictions.eq("idVehiculo", idVehiculo)).uniqueResult();
 		return vehiculo;
 	}
+	
+	@Override
+	public List<Reserva> mostrarTodos(){
+		final Session  session = sessionFactory.getCurrentSession();
+		List<Reserva> reserva = session.createCriteria(Reserva.class)
+							   .list();
+		return reserva;
+	}
+
 	
 
 }

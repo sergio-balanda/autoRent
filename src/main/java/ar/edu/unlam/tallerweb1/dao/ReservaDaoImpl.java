@@ -1,5 +1,9 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -20,7 +24,7 @@ public class ReservaDaoImpl implements ReservaDao {
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public void guardarReserva(Reserva reserva) {
-		final Session session = sessionFactory.getCurrentSession();
+		final Session session = sessionFactory.getCurrentSession();		
 		session.saveOrUpdate(reserva);
 	}
 

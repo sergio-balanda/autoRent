@@ -42,11 +42,19 @@ public class ControladorReserva {
 			@RequestParam("fechaHasta") String fechaHasta, @RequestParam("sucursal") String sucursal,@RequestParam (value="usuario") Integer idUsuario) {
 		ModelMap modelo = new ModelMap();
 		modelo.put("idVehiculo", idVehiculo);
-		modelo.put("fechaDesde", fechaHasta);
-		modelo.put("fechaDesde", fechaHasta);
+		modelo.put("fechaDesde", fechaDesde);
+		modelo.put("fechaHasta", fechaHasta);
 		modelo.put("sucursal", sucursal);
 		servicioReserva.guardarReserva(idVehiculo, sucursal, fechaDesde, fechaHasta, fkVehiculo,idUsuario);
 		return new ModelAndView("exito", modelo);
+	}
+	
+	@RequestMapping("/mostrar-todos")
+	public ModelAndView mostrarVehiculos() {
+		ModelMap modelo = new ModelMap();
+		modelo.put("reserva", servicioVehiculo.mostrarTodos());
+		return new ModelAndView("ver-todos", modelo);
+	
 	}
 
 }
