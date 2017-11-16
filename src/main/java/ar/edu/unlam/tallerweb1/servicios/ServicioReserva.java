@@ -9,10 +9,9 @@ public interface ServicioReserva {
 	public Reserva guardarReserva(Integer idVehiculo, String sucursal, String fdsd, String fhst, Integer fkVehiculo,
 			Integer idUsuario);
 
-	public Reserva buscarReservas(Integer idReserva);
+	public Reserva guardarReservas(Integer idReserva,String fechaFinReserva);
 
 	public List<Reserva> listarReservas();
 	
-	//Integer guardarFecha(Integer idReserva,String fechaFinReserva);
-	Integer guardarFecha(Reserva reserva);
+	
 }

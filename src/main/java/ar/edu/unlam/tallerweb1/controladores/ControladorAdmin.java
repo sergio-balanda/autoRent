@@ -28,33 +28,11 @@ public class ControladorAdmin {
 	}
 	
 	@RequestMapping(value = "/devolver-id-reserva", method = RequestMethod.GET)
-	public ModelAndView mostrarReserva(@RequestParam("reserva") Integer idReserva) {
+	public ModelAndView mostrarReserva(@RequestParam("idReserva") Integer idReserva,
+									   @RequestParam("fechaFinReserva") String fechaFinReserva) {
 		ModelMap modelo = new ModelMap();
-		modelo.put("reserva", servicioReserva.buscarReservas(idReserva));
-		return new ModelAndView("detalle-reserva", modelo);
-	}
-	
-	/*@RequestMapping(path="/actualizar-reserva",method=RequestMethod.POST)
-	public ModelAndView actualizarReserva(@RequestParam("fechaFin") String fechaFinReserva,
-										  @RequestParam("idReserva") Integer idReserva	)
-	{
-		ModelMap modelo = new ModelMap();
-		Integer adicional = 0;
-		adicional = servicioReserva.guardarFecha(idReserva,fechaFinReserva);
-		modelo.put("precioAdicional",adicional);
-		return new ModelAndView("vista-adicional",modelo);
-		
-	}*/
-	
-	@RequestMapping(path="/actualizar-reserva",method=RequestMethod.POST)
-	public ModelAndView actualizarReserva(@ModelAttribute("reserva") Reserva reserva )
-	{
-		ModelMap modelo = new ModelMap();
-		Integer adicional = 0;
-		adicional = servicioReserva.guardarFecha(reserva);
-		modelo.put("precioAdicional",adicional);
-		return new ModelAndView("vista-adicional",modelo);
-		
+		modelo.put("reserva", servicioReserva.guardarReservas(idReserva,fechaFinReserva));
+		return new ModelAndView("vista-reservas", modelo);
 	}
 	
 }

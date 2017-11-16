@@ -78,8 +78,8 @@ public class ServicioReservaImpl implements ServicioReserva {
 	}
 
 	@Override
-	public Reserva buscarReservas(Integer idReserva) {
-		return reservaDao.buscarReservas(idReserva);
+	public Reserva guardarReservas(Integer idReserva,String fechaFinReserva) {
+		return reservaDao.guardarReservas(idReserva,fechaFinReserva);
 	}
 
 	@Override
@@ -87,13 +87,6 @@ public class ServicioReservaImpl implements ServicioReserva {
 		return reservaDao.listarReservas();
 	}
 	
-	@Override
-	/*public Integer guardarFecha(Integer idReserva,String fechaFinReserva){
-		return reservaDao.guardarFecha(idReserva,fechaFinReserva);
-	}*/
 	
-	public Integer guardarFecha(Reserva reserva){
-		return reservaDao.guardarFecha(reserva);
-	}
 
 }

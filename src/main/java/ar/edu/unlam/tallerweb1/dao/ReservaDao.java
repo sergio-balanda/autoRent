@@ -8,10 +8,8 @@ public interface ReservaDao {
 
 	void guardarReserva(Reserva reserva);
 
-	Reserva buscarReservas(Integer idReserva);
+	Reserva guardarReservas(Integer idReserva, String fechaFinReserva);
 
 	List<Reserva> listarReservas();
 	
-	//Integer guardarFecha(Integer idReserva,String fechaFinReserva);
-	Integer guardarFecha(Reserva reserva);
 }

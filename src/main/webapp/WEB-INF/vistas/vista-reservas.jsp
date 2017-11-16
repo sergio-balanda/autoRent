@@ -18,8 +18,9 @@
 					<h1 class="margin" style="display: inline; margin-left: 100px">Auto
 						Rent</h1>
 					<p class="text-right text-muted">
-					<b>Usuario:</b> ${usuario.nombre} para salir click <a href="logout">aqu&iacute;.</a>
-				</p>
+						<b>Usuario:</b> ${usuario.nombre} para salir click <a
+							href="logout">aqu&iacute;.</a>
+					</p>
 				</div>
 				<h1>Zona de Admininistracion</h1>
 			</header>
@@ -28,28 +29,42 @@
 					<div class="panel-heading">Lista de reservas</div>
 					<div class="panel-body">
 						<table class="table table-hover table-striped">
-						<thead>
-							<tr>
-								<th>Reserva</th>
-								<th>Costo</th>
-								<th>Fecha inicio</th>
-								<th>Fecha fin</th>
-								<th>Ver Reserva</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${reservas}" var="reserva" >
+							<thead>
 								<tr>
-						
-									<td><c:out value="${reserva.idReserva}" /></td>
-									<td><c:out value="${reserva.costoOrigen}" /></td>
-									<td><c:out value="${reserva.fechaInicio}" /></td>
-									<td><c:out value="${reserva.fechaFin}" /></td>
-									<td><a href='devolver-id-reserva?reserva=<c:out value="${reserva.idReserva}" />'class="btn btn-primary" role="button">Seleccionar</a></td>
+									<th>Reserva</th>
+									<th>Costo</th>
+									<th>Fecha inicio</th>
+									<th>Fecha fin</th>
+									<th>Ver Reserva</th>
 								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								<form action="devolver-id-reserva">
+									<c:forEach items="${reservas}" var="reserva">
+										<tr>
+											<td><c:out value="${reserva.idReserva}" /></td>
+											<input type="text" class="hidden" name="idReserva"
+												value="${reserva.idReserva}" />
+											<td><c:out value="${reserva.costoOrigen}" /></td>
+											<td><c:out value="${reserva.fechaInicio}" /></td>
+											<td><c:choose>
+													<c:when test='${reserva.fechaFin==null}'>
+														<input type="date" name="fechaFinReserva" />
+													</c:when>
+													<c:when test='${reserva.fechaFin!=null}'>
+														<c:out value="${reserva.fechaFin}" />
+													</c:when>
+													<c:otherwise>
+														<p> error </p>
+													</c:otherwise>
+												</c:choose>	
+											</td>
+											<td><button type="Submit" class="btn btn-primary">Seleccionar</button></td>
+										</tr>
+									</c:forEach>
+								</form>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
