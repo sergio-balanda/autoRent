@@ -48,17 +48,25 @@ public class VehiculoDaoImpl implements VehiculoDao {
        
 		final Session session = sessionFactory.getCurrentSession();
 		
-		Criterion cond1 =  Restrictions.and(Restrictions.gt("r.fechaInicio", dateHasta),Restrictions.gt("r.fechaInicio", dateDesde)  );
-		Criterion cond2 =  Restrictions.and(Restrictions.lt("r.fechaFin", dateHasta),Restrictions.lt("r.fechaFin", dateDesde)    );
+		Criterion cond1 = Restrictions.and(Restrictions.ge("fechaInicio",dateDesde),Restrictions.le("fechaInicio",dateHasta) );
+		Criterion cond2 = Restrictions.and(Restrictions.ge("fechaFin",dateDesde),Restrictions.le("fechaFin",dateHasta) );
 		
-		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class)
-				.createAlias("reserva","r")
+		Integer fkV = (Integer)session.createCriteria(Reserva.class)
+					  .add(Restrictions.and(cond1,cond2))
+					  .setProjection(Projections.projectionList().add(Projections.property("reserva.fkVehiculoR")))
+					  .uniqueResult();
+					  
+		
+		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class,"v")
 				.createAlias("fkSucursalV", "s")
 				.add(Restrictions.ge("capacidadPasajeros", cantidadPasajeros))
 				.add(Restrictions.eq("s.ciudad", sucursal))
-				 .add( Restrictions.or(cond1,cond2))
+				 .add( Restrictions.ne("v.fkVehiculoR",fkV))
 				.addOrder(Order.asc("capacidadPasajeros"))
 				.list();
+		
+		//fkVehiculoR <> ( select r1_.fkVehiculoR from reserva r1_ where 
+		//	( ( r1_.fechaInicio between '2017-11-01' and '2017-11-01' ) and ( r1_.fechaFin between '2017-11-01' and '2017-11-01' ) ) ) ;
 		
 		return vehiculos;
 	}
