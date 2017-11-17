@@ -47,12 +47,16 @@ public class VehiculoDaoImpl implements VehiculoDao {
 		// -----------FIN CAST
        
 		final Session session = sessionFactory.getCurrentSession();
+		
+		Criterion cond1 =  Restrictions.and(Restrictions.gt("r.fechaInicio", dateHasta),Restrictions.gt("r.fechaInicio", dateDesde)  );
+		Criterion cond2 =  Restrictions.and(Restrictions.lt("r.fechaFin", dateHasta),Restrictions.lt("r.fechaFin", dateDesde)    );
+		
 		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class)
 				.createAlias("reserva","r")
 				.createAlias("fkSucursalV", "s")
 				.add(Restrictions.ge("capacidadPasajeros", cantidadPasajeros))
 				.add(Restrictions.eq("s.ciudad", sucursal))
-				.add(Restrictions.or(Restrictions.or(Restrictions.gt("r.fechaInicio", dateHasta),Restrictions.lt("r.fechaFin", dateDesde))))
+				 .add( Restrictions.or(cond1,cond2))
 				.addOrder(Order.asc("capacidadPasajeros"))
 				.list();
 		
