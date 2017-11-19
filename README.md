@@ -2,11 +2,13 @@
 taller web unlam
 
 ##
-
-* para ver autorent/registro-usuario creo que era asi para crear el usuario, o /login para entrar, en los insert meti dos usuarios
-    por defecto se crea como usuario comun y 0 puntos, para crear un admin a mano poniendo en el insert administrador true.
-    despues hay que agregar que solo usuarios registrados puedan reservar, pero eso es facil es un if y listo.
-    Al hacer una reserva suma puntos noc si es la mejor forma de hacer todo esto pero funciona.
+* nuevo sql
+* cambio reserva modelo campo finalizada, se crea por defecto como false, y cuando el admin selecciona una reserva de la lista de reservas
+    y preciona modificar esa reserva se da por finalizada y sale de las listas de reservas.
+* vista de perfil de usuario pensado para ver depues el tema de los puntos, al hacer una reserva al usuario se le sumar 500 puntos,
+    pero el vista detalle-usuario, que se ve haciendo click en nombre de usuario parte superior derecha una vez loqueado, no se ve
+    el cambio de los puntos por ahora, pero si en mysql hacen select * from usuario van a ver q se le suma puntos, 
+    para arreglar eso en el controlador usuario falta buscarUsuarioPorID y hacer un put de los puntos
 
 ###
 

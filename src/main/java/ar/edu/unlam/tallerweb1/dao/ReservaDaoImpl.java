@@ -39,7 +39,9 @@ public class ReservaDaoImpl implements ReservaDao {
 	@Override
 	public List<Reserva> listarReservas() {
 		final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Reserva.class).list();
+		return session.createCriteria(Reserva.class)
+				.add(Restrictions.eq("finalizada", false))
+				.list();
 	}
 
 	@Override

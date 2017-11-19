@@ -70,6 +70,7 @@ public class ServicioReservaImpl implements ServicioReserva {
 		reserva.setFkSucursalR(sucursalDao.buscarSucXCiudad(sucursal));
 		reserva.setFechaInicio(dateDesde);
 		reserva.setFechaFin(dateHasta);
+		reserva.setFinalizada(false);
 		reserva.setCostoOrigen(categoriaDao.calcularCostoOrigen(fechaDesde, fechaHasta, idVehiculo));
 		reservaDao.guardarReserva(reserva);
 		return reserva;
@@ -87,7 +88,7 @@ public class ServicioReservaImpl implements ServicioReserva {
 
 	@Override
 	public Reserva guardarActualizarReserva(Integer idReserva, String fechaInicio, String fechaFin, float costoOrigen,
-			Integer fkVehiculoR, Integer id_usuario) {
+			Integer fkVehiculoR,Boolean finalizada, Integer id_usuario) {
 		Reserva reserva = null;
 		// CAST de String To Date
 		SimpleDateFormat formatodsd = new SimpleDateFormat("yyyy-MM-dd");
@@ -115,6 +116,7 @@ public class ServicioReservaImpl implements ServicioReserva {
 
 		reserva.setCostoOrigen(costoOrigen);
 		reserva.setFechaFin(datehst);
+		reserva.setFinalizada(true);
 
 		reservaDao.guardarActualizarReserva(reserva);
 

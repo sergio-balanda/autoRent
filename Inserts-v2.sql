@@ -34,12 +34,12 @@ INSERT INTO Vehiculo (patente, marca, nombre ,imagen, capacidadPasajeros, capaci
 ('JK000LM', 'Volkswagen', 'Up', 'img/up.jpg', 4, 2, 0, 2, 5);
 
 
-INSERT INTO Reserva (fkVehiculoR, fkSucursalR, fechaInicio, fechaFin, costoOrigen,id_usuario) VALUES
-(9, 1, '2018-01-01 09:00:00', '2018-01-01 19:00:00', 455.00,1), 
-(5, 1, '2018-02-01 09:00:00', '2018-02-06 09:00:00', 10399.20,1),
-(6, 3, '2018-03-01 09:00:00', '2018-03-02 09:00:00', 2079.84,1),
-(1, 4, '2018-04-01 09:00:00', '2018-04-01 10:00:00', 125.42,2),
-(3, 3, '2018-05-01 09:00:00', '2018-05-11 09:00:00', 23496.00,2);
+INSERT INTO Reserva (fkVehiculoR, fkSucursalR, fechaInicio, fechaFin, costoOrigen,finalizada,id_usuario) VALUES
+(9, 1, '2018-01-01 09:00:00', '2018-01-01 19:00:00', 455.00,false,1), 
+(5, 1, '2018-02-01 09:00:00', '2018-02-06 09:00:00', 10399.20,false,1),
+(6, 3, '2018-03-01 09:00:00', '2018-03-02 09:00:00', 2079.84,false,1),
+(1, 4, '2018-04-01 09:00:00', '2018-04-01 10:00:00', 125.42,false,2),
+(3, 3, '2018-05-01 09:00:00', '2018-05-11 09:00:00', 23496.00,false,2);
 
 
 

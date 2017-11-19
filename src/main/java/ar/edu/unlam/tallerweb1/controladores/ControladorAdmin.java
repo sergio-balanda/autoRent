@@ -39,8 +39,9 @@ public class ControladorAdmin {
 	public ModelAndView actualizarReserva(@RequestParam("idReserva") Integer idReserva,
 			@RequestParam("fechaInicio") String fechaInicio, @RequestParam("fechaFin") String fechaFin,
 			@RequestParam("costoOrigen") float costoOrigen, @RequestParam("fkVehiculoR") Integer fkVehiculoR,
+			@RequestParam("finalizada") Boolean finalizada,
 			@RequestParam("idUsuario") Integer idUsuario) {
-		servicioReserva.guardarActualizarReserva(idReserva, fechaInicio, fechaFin, costoOrigen, fkVehiculoR, idUsuario);
+		servicioReserva.guardarActualizarReserva(idReserva, fechaInicio, fechaFin, costoOrigen, fkVehiculoR,finalizada, idUsuario);
 		return new ModelAndView("redirect:/vista-reservas");
 
 	}
