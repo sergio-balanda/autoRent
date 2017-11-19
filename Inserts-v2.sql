@@ -4,7 +4,7 @@ select * from vehiculo;
 select * from usuario;
 
 insert into usuario(administrador,cuit,email,nombre,password,puntos) values (true,'46237709','a@mail.com','julio',1,100);
-insert into usuario(administrador,cuit,email,nombre,password,puntos) values (false,'46235700','b@mail.com','esteban',1,500);
+insert into usuario(administrador,cuit,email,nombre,password,puntos) values (false,'46235700','b@mail.com','esteban',1,1000);
 
 
 INSERT INTO Sucursal (ciudad, provincia, domicilio) VALUES
