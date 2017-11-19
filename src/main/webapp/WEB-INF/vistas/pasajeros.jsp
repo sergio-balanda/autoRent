@@ -21,9 +21,11 @@
 <body>
 	<c:set var="usuario" value="${usuario}" scope="session"/>
 	<c:if test="${not empty usuario}">
-		<p class="text-right text-muted"><b>Usuario:<b> ${usuario.nombre} para salir click click <a href="logout">aqu&iacute;.</a></p>
+		<p class="text-right text-muted"><b>Usuario:<b> <a href="detalle-usuario">${usuario.nombre}</a> para salir click <a href="logout">aqu&iacute;.</a></p>
 	</c:if>
-	
+	<c:if test="${empty usuario}">
+	<p class="text-right text-muted"><a href="login">login</a></p>
+	</c:if>
 	
 	<div class="container">
 		<header class='page-header'>

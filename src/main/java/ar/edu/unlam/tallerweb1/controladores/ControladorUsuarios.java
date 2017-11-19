@@ -45,4 +45,11 @@ public class ControladorUsuarios {
 		return new ModelAndView("registro-usuario-exitoso", modelo);
 	}
 
+	@RequestMapping("/detalle-usuario")
+	public ModelAndView irDetalleUsuario() {
+		//hay q buscar el usuario por id, y un put de los puntos porq de esta forma noc se ve cuando suma,
+		//pero si hacen selec * from usuario si se ve que suma puntos, es como q la session no se actualiza
+		return new ModelAndView("detalle-usuario");
+	}
+
 }// fin

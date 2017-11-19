@@ -4,7 +4,7 @@
 <body>
 	<c:set var="usuario" value="${usuario}" scope="session"/>
 	<c:if test="${not empty usuario}">
-		<p class="text-right text-muted"><b>Usuario:<b> ${usuario.nombre} para salir click click <a href="logout">aqu&iacute;.</a></p>
+		<p class="text-right text-muted"><b>Usuario:<b> <a href="detalle-usuario">${usuario.nombre}</a> para salir click <a href="logout">aqu&iacute;.</a></p>
 	</c:if>
 	<div class="container">
 		<header class='page-header'>
@@ -41,6 +41,9 @@
 								${vehiculo.capacidadValijas} plazas
 							</p>
 						</div>
+						
+						<c:choose>
+						<c:when test="${not empty usuario}">
 						<div class="col-md-3">
 							<h1>
 								<span class="label label-success"> ${precioVehiculo} </span>
@@ -64,6 +67,14 @@
 								</button>
 							</form:form>
 						</div>
+						</c:when>
+						<c:otherwise>
+							<div class="row text-center">
+								<h4>Ir al login para realizar una reserva</h4>
+								<a href="login" class="btn btn-primary">Login</a>
+							</div>
+						</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
