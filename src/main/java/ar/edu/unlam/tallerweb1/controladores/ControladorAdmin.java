@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
+import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
 
 @Controller
 public class ControladorAdmin {
 	@Inject
 	private ServicioReserva servicioReserva;
+	@Inject
+	private ServicioReserva servicioVehiculo;
 
 	@RequestMapping("/vista-reservas")
 	public ModelAndView verVistaReservas() {
@@ -30,7 +35,8 @@ public class ControladorAdmin {
 		modelo.put("reserva", servicioReserva.buscarReservas(reserva));
 		modelo.put("FkSucursalR", servicioReserva.buscarReservas(reserva).getFkSucursalR().getIdSucursal());
 		modelo.put("fkVehiculoR", servicioReserva.buscarReservas(reserva).getFkVehiculoR().getIdVehiculo());
-		modelo.put("id_usuario", servicioReserva.buscarReservas(reserva).getUsuario().getId());
+		Usuario UsuarioDeLaReserva = servicioReserva.buscarReservas(reserva).getUsuario();
+		modelo.put("UsuarioDeLaReserva", UsuarioDeLaReserva);
 
 		return new ModelAndView("detalle-reserva", modelo);
 	}
