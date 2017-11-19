@@ -19,7 +19,7 @@ public class ControladorAdmin {
 	@Inject
 	private ServicioReserva servicioReserva;
 	@Inject
-	private ServicioReserva servicioVehiculo;
+	private ServicioVehiculo servicioVehiculo;
 
 	@RequestMapping("/vista-reservas")
 	public ModelAndView verVistaReservas() {
@@ -35,8 +35,13 @@ public class ControladorAdmin {
 		modelo.put("reserva", servicioReserva.buscarReservas(reserva));
 		modelo.put("FkSucursalR", servicioReserva.buscarReservas(reserva).getFkSucursalR().getIdSucursal());
 		modelo.put("fkVehiculoR", servicioReserva.buscarReservas(reserva).getFkVehiculoR().getIdVehiculo());
+		// busco usuario de la reserva para mostrar
 		Usuario UsuarioDeLaReserva = servicioReserva.buscarReservas(reserva).getUsuario();
 		modelo.put("UsuarioDeLaReserva", UsuarioDeLaReserva);
+		// busco vehiculo de la reserva para mostrar
+		Integer idVehiculo = servicioReserva.buscarReservas(reserva).getFkVehiculoR().getIdVehiculo();
+		Vehiculo vehiculoDeLaReserva = servicioVehiculo.buscarVehiculos(idVehiculo);
+		modelo.put("vehiculoDeLaReserva", vehiculoDeLaReserva);
 
 		return new ModelAndView("detalle-reserva", modelo);
 	}
@@ -45,9 +50,9 @@ public class ControladorAdmin {
 	public ModelAndView actualizarReserva(@RequestParam("idReserva") Integer idReserva,
 			@RequestParam("fechaInicio") String fechaInicio, @RequestParam("fechaFin") String fechaFin,
 			@RequestParam("costoOrigen") float costoOrigen, @RequestParam("fkVehiculoR") Integer fkVehiculoR,
-			@RequestParam("finalizada") Boolean finalizada,
-			@RequestParam("idUsuario") Integer idUsuario) {
-		servicioReserva.guardarActualizarReserva(idReserva, fechaInicio, fechaFin, costoOrigen, fkVehiculoR,finalizada, idUsuario);
+			@RequestParam("finalizada") Boolean finalizada, @RequestParam("idUsuario") Integer idUsuario) {
+		servicioReserva.guardarActualizarReserva(idReserva, fechaInicio, fechaFin, costoOrigen, fkVehiculoR, finalizada,
+				idUsuario);
 		return new ModelAndView("redirect:/vista-reservas");
 
 	}

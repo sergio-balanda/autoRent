@@ -33,6 +33,7 @@
 							<div class="col">
 							
 							<div class="col-xs-6">
+							<div class="col-xs-12">
 								<div class="panel panel-default">
 									<div class="panel-heading">
 									<h4 class="text-primary"><b>Datos del cliente</b></h4>
@@ -44,6 +45,21 @@
 										<p><b>Puntos :</b> ${UsuarioDeLaReserva.puntos}<p>
 									</div>
 								</div>
+							</div>
+							
+							<div class="col-xs-12">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									<h4 class="text-primary"><b>Datos del vehiculo</b></h4>
+									</div>
+									<div class="panel-body">
+										<p><b>Patente :</b> ${vehiculoDeLaReserva.patente}<p>
+										<p><b>Nombre :</b> ${vehiculoDeLaReserva.marca} ${vehiculoDeLaReserva.nombre}<p>
+										<p><b>Capacidad de pasajeros :</b> ${vehiculoDeLaReserva.capacidadPasajeros}<p>
+										<p><b>Capacidad de valijas :</b> ${vehiculoDeLaReserva.capacidadValijas}<p>
+									</div>
+								</div>
+							</div>
 							</div>
 						</div>
 						
@@ -63,12 +79,28 @@
 									</div>
 									<div class="form-group">
 										<label for="nombre" class="col-xs-12 control-label">Fehca
-											de inicio</label>
+											de inicio de Reserva</label>
 										<div class="col-xs-12">
 											<input type="text" value="${reserva.fechaInicio}"
 												name="fechaInicio" readonly class="form-control">
 										</div>
 									</div>
+									
+									<div class="form-group">
+										<label for="nombre" class="col-xs-12 control-label">Fecha
+											de entrega acordada</label>
+										<div class="col-xs-12">
+											<input type="text" value="${reserva.fechaFin}"
+												 class="form-control" readonly="readonly">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-12">
+											<h4 class="text-danger">En caso de no coicidir la fecha de entrega acordada, 
+											cambiar fecha de entrega y costo </h4>
+										</div>
+									</div>
+									<hr>
 									<div class="form-group">
 										<label for="nombre" class="col-xs-12 control-label">Fecha
 											de entrega</label>
