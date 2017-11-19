@@ -1,11 +1,14 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
+
 import javax.inject.Inject;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
@@ -26,10 +29,13 @@ public class VehiculoDaoImpl implements VehiculoDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Vehiculo> listarVehiculosXPasajeros(Integer cantidadPasajeros, String sucursal, String fechaDesde , String fechaHasta ) {
-        // CAST de String To Date
-		DateFormat formatoFechaDesde = new SimpleDateFormat("yyyy-MM-dd");
-		DateFormat formatoFechaHasta = new SimpleDateFormat("yyyy-MM-dd");
+		// convierto el string que viene del form de yyyy-mm-dd a yyyy-mm-dd HH:mm:ss
+		fechaDesde += " 23:59:59";
+		fechaHasta += " 23:59:59";
 		
+		// CAST  String To Date
+		DateFormat formatoFechaDesde = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		DateFormat formatoFechaHasta = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date dateDesde = new Date();
 		try {
 			dateDesde = formatoFechaDesde.parse(fechaDesde);
@@ -44,29 +50,28 @@ public class VehiculoDaoImpl implements VehiculoDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// -----------FIN CAST
-       
+		
 		final Session session = sessionFactory.getCurrentSession();
+		 
+		//Genero una subquery que me trae una List de enteros con los idVehiculos que no se pueden reservar en esa fecha
+		List<Integer> fkV = (List<Integer>)session.createCriteria(Reserva.class)
+					  .createAlias("fkVehiculoR","v")
+					  .setProjection(Projections.projectionList().add(Projections.property("v.idVehiculo")))
+					  .add(Restrictions.and(Restrictions.and(Restrictions.le("fechaInicio",dateHasta),Restrictions.ge("fechaFin",dateDesde) )))
+					  .list();
 		
-		Criterion cond1 = Restrictions.and(Restrictions.ge("fechaInicio",dateDesde),Restrictions.le("fechaInicio",dateHasta) );
-		Criterion cond2 = Restrictions.and(Restrictions.ge("fechaFin",dateDesde),Restrictions.le("fechaFin",dateHasta) );
-		
-		Integer fkV = (Integer)session.createCriteria(Reserva.class)
-					  .add(Restrictions.and(cond1,cond2))
-					  .setProjection(Projections.projectionList().add(Projections.property("reserva.fkVehiculoR")))
-					  .uniqueResult();
-					  
-		
+		//Si no hay ningun vehiculo que no se puede reservar (se puede reserva cualquiera en esa fecha)
+		if(fkV.size()==0)
+			fkV.add(0);
+		System.out.print(fkV);
+		// Query con la condicion de cantidad de pasajeros y sucursal y que no este en la subquery anterior 
 		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class,"v")
 				.createAlias("fkSucursalV", "s")
-				.add(Restrictions.ge("capacidadPasajeros", cantidadPasajeros))
+				.add(Restrictions.ge("v.capacidadPasajeros", cantidadPasajeros))
 				.add(Restrictions.eq("s.ciudad", sucursal))
-				 .add( Restrictions.ne("v.fkVehiculoR",fkV))
-				.addOrder(Order.asc("capacidadPasajeros"))
+				.add(Restrictions.not(Restrictions.in("v.idVehiculo",fkV)))
+				.addOrder(Order.asc("v.capacidadPasajeros"))
 				.list();
-		
-		//fkVehiculoR <> ( select r1_.fkVehiculoR from reserva r1_ where 
-		//	( ( r1_.fechaInicio between '2017-11-01' and '2017-11-01' ) and ( r1_.fechaFin between '2017-11-01' and '2017-11-01' ) ) ) ;
 		
 		return vehiculos;
 	}
