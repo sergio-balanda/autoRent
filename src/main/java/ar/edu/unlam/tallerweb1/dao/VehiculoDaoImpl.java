@@ -54,22 +54,22 @@ public class VehiculoDaoImpl implements VehiculoDao {
 		final Session session = sessionFactory.getCurrentSession();
 		 
 		//Genero una subquery que me trae una List de enteros con los idVehiculos que no se pueden reservar en esa fecha
-		List<Integer> fkV = (List<Integer>)session.createCriteria(Reserva.class)
+		List<Integer> fkVehiculoNoReserva = (List<Integer>)session.createCriteria(Reserva.class)
 					  .createAlias("fkVehiculoR","v")
 					  .setProjection(Projections.projectionList().add(Projections.property("v.idVehiculo")))
 					  .add(Restrictions.and(Restrictions.and(Restrictions.le("fechaInicio",dateHasta),Restrictions.ge("fechaFin",dateDesde) )))
 					  .list();
 		
 		//Si no hay ningun vehiculo que no se puede reservar (se puede reserva cualquiera en esa fecha)
-		if(fkV.size()==0)
-			fkV.add(0);
-		System.out.print(fkV);
+		if(fkVehiculoNoReserva.size()==0)
+			fkVehiculoNoReserva.add(0);
+		
 		// Query con la condicion de cantidad de pasajeros y sucursal y que no este en la subquery anterior 
 		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class,"v")
 				.createAlias("fkSucursalV", "s")
 				.add(Restrictions.ge("v.capacidadPasajeros", cantidadPasajeros))
 				.add(Restrictions.eq("s.ciudad", sucursal))
-				.add(Restrictions.not(Restrictions.in("v.idVehiculo",fkV)))
+				.add(Restrictions.not(Restrictions.in("v.idVehiculo",fkVehiculoNoReserva)))
 				.addOrder(Order.asc("v.capacidadPasajeros"))
 				.list();
 		
