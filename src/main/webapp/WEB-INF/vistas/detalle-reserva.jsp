@@ -25,8 +25,8 @@
 			</header>
 			<div class="panel-group">
 				<div class="panel panel-default">
-					<div class="panel-heading">Veficar fecha de entraga, ingresar el costo por entrega
-				posterior de la fecha</div>
+					<div class="panel-heading">Veficar fecha de entraga, ingresar
+						el costo por entrega posterior de la fecha</div>
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-4 col-md-offset-4">
@@ -72,15 +72,20 @@
 									</div>
 									<div class="form-group">
 										<div class="col-xs-12">
+											<input type="hidden" value="${finalizada}" name="finalizada"
+												readonly class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-12">
 											<input type="hidden" value="${id_usuario}" name="idUsuario"
 												readonly class="form-control">
 										</div>
 									</div>
-									
+
 									<div class="form-group">
 										<div class="col-xs-12 text-center">
-											<br>
-											<a href="vista-reservas" class="btn btn-danger">Volver</a>
+											<br> <a href="vista-reservas" class="btn btn-danger">Volver</a>
 											<button type="submit" class="btn btn-primary">Modificar</button>
 
 										</div>
