@@ -2,9 +2,12 @@
 <title>Categorias</title>
 </head>
 <body>
-	<c:set var="usuario" value="${usuario}" scope="session"/>
+	<c:set var="usuario" value="${usuario}" scope="session" />
 	<c:if test="${not empty usuario}">
-		<p class="text-right text-muted"><b>Usuario:<b> ${usuario.nombre} para salir click click <a href="logout">aqu&iacute;.</a></p>
+		<p class="text-right text-muted">
+			<b>Usuario:<b> ${usuario.nombre} para salir click <a
+					href="logout">aqu&iacute;.</a>
+		</p>
 	</c:if>
 	<div class="container">
 		<header class='page-header'>
@@ -17,7 +20,7 @@
 		</header>
 		<div class="panel-group">
 			<div class="panel panel-default">
-				<div class="panel-heading">Reserva generada con exito</div>
+				<div class="panel-heading"><h4 class="text-success">Reserva generada con exito</h4></div>
 				<div class="panel-body">
 					<p>Reserva para dia ${fdsd} hasta ${fhst}</p>
 					<p>Retira de Sucursal: ${suc}</p>
@@ -26,6 +29,10 @@
 				</div>
 			</div>
 		</div>
+		
+		<a href="accesorios" class="btn-lg btn-primary">Continuar con la reserva</a>
+		
+
 	</div>
 </body>
 </html>
