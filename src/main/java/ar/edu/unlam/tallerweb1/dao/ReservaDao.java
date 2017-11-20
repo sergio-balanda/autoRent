@@ -14,4 +14,6 @@ public interface ReservaDao {
 
 	void guardarActualizarReserva(Reserva reserva);
 
+	Reserva UltimaReservaDeUnUsuario(Integer id);
+
 }

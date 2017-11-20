@@ -9,6 +9,7 @@ import java.util.List;
 import javax.inject.Inject;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -24,7 +25,7 @@ public class ReservaDaoImpl implements ReservaDao {
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public void guardarReserva(Reserva reserva) {
-		final Session session = sessionFactory.getCurrentSession();		
+		final Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(reserva);
 	}
 
@@ -39,9 +40,7 @@ public class ReservaDaoImpl implements ReservaDao {
 	@Override
 	public List<Reserva> listarReservas() {
 		final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Reserva.class)
-				.add(Restrictions.eq("finalizada", false))
-				.list();
+		return session.createCriteria(Reserva.class).add(Restrictions.eq("finalizada", false)).list();
 	}
 
 	@Override
@@ -49,6 +48,16 @@ public class ReservaDaoImpl implements ReservaDao {
 		final Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(reserva);
 
+	}
+
+	@Override
+	public Reserva UltimaReservaDeUnUsuario(Integer id) {
+		final Session session = sessionFactory.getCurrentSession();
+		Reserva reserva =  (Reserva) session.createCriteria(Reserva.class,"rv")
+				.add(Restrictions.eq("rv.usuario.id", id))
+				// .setProjection(Projections.max("rv.idReserva"))
+				.addOrder(Order.desc("rv.idReserva")).setMaxResults(1).uniqueResult();
+		return reserva;
 	}
 
 }

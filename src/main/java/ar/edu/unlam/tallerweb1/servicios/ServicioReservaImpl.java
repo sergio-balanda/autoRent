@@ -32,8 +32,8 @@ public class ServicioReservaImpl implements ServicioReserva {
 	private UsuarioDao usuarioDao;
 
 	@Override
-	public Reserva guardarReserva(Integer idVehiculo, String sucursal, String fechaDesde, String fechaHasta, Integer fkVehiculo,
-			Integer idUsuario) {
+	public Reserva guardarReserva(Integer idVehiculo, String sucursal, String fechaDesde, String fechaHasta,
+			Integer fkVehiculo, Integer idUsuario) {
 		Reserva reserva = new Reserva();
 		// CAST de String To Date
 		SimpleDateFormat formatoDesde = new SimpleDateFormat("yyyy-MM-dd");
@@ -88,7 +88,7 @@ public class ServicioReservaImpl implements ServicioReserva {
 
 	@Override
 	public Reserva guardarActualizarReserva(Integer idReserva, String fechaInicio, String fechaFin, float costoOrigen,
-			Integer fkVehiculoR,Boolean finalizada, Integer id_usuario) {
+			Integer fkVehiculoR, Boolean finalizada, Integer id_usuario) {
 		Reserva reserva = null;
 		// CAST de String To Date
 		SimpleDateFormat formatodsd = new SimpleDateFormat("yyyy-MM-dd");
@@ -121,6 +121,12 @@ public class ServicioReservaImpl implements ServicioReserva {
 		reservaDao.guardarActualizarReserva(reserva);
 
 		return reserva;
+	}
+
+	@Override
+	public Reserva UltimaReservaDeUnUsuario(Integer id) {
+		return reservaDao.UltimaReservaDeUnUsuario(id);
+
 	}
 
 }// fin

@@ -3,7 +3,6 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface ServicioReserva {
 
@@ -15,6 +14,8 @@ public interface ServicioReserva {
 	public List<Reserva> listarReservas();
 
 	Reserva guardarActualizarReserva(Integer idReserva, String fechaInicio, String fechaFin, float costoOrigen,
-			Integer fkVehiculoR,Boolean finalizada, Integer id_usuario);
+			Integer fkVehiculoR, Boolean finalizada, Integer id_usuario);
+
+	Reserva UltimaReservaDeUnUsuario(Integer id);
 
 }
