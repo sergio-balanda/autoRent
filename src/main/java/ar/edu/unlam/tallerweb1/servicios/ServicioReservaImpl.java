@@ -129,4 +129,13 @@ public class ServicioReservaImpl implements ServicioReserva {
 
 	}
 
+	@Override
+	public Double convertirCostoDeReservaDeUnUsuarioAPuntos(Integer idUsuario) {
+		Double convertirCostoApuntos = null;
+		Usuario usuario = usuarioDao.obtenerUsuarioPorId(idUsuario);
+		Integer puntos = usuario.getPuntos();
+		convertirCostoApuntos=(double) (puntos*5/1000);//1000*5/1000=5pesos
+		return convertirCostoApuntos;
+	}
+
 }// fin

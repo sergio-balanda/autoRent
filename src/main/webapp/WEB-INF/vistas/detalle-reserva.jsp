@@ -43,6 +43,7 @@
 										<p><b>Cuit :</b> ${UsuarioDeLaReserva.cuit}<p>
 										<p><b>Email :</b> ${UsuarioDeLaReserva.email}<p>
 										<p><b>Puntos :</b> ${UsuarioDeLaReserva.puntos}<p>
+										<p><b>Equivalencia de puntos a dinero:</b> $ ${convertir}<p>
 									</div>
 								</div>
 							</div>
@@ -150,6 +151,9 @@
 									</div>
 								</form:form>
 							</div>
+							<h4 class="text-warning">AGREGARIA UN BTN CON UN IF O ALGO POR ESTILO,QUE SI LA CONVERCION DE PUNTOS A PESOS ES MAYOR
+							O IGUAL A AL COSTO, SALGA UN BTN PARA PAGAR CON PUNTOS, TENDRIA QUE ESTAR EN FORMULARIO
+							Y QUE EN EL SERVICIO SE PONGA UN SETPUNTOS 0 (va NO SE SI 0 HABRIA Q RESTAR)</h4>
 						</div>
 					</div>
 				</div>

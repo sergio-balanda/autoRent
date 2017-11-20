@@ -3,8 +3,10 @@ select * from reserva;
 select * from vehiculo;
 select * from usuario;
 
-insert into usuario(administrador,cuit,email,nombre,password,puntos) values (true,'46237709','a@mail.com','julio',1,100);
-insert into usuario(administrador,cuit,email,nombre,password,puntos) values (false,'46235700','b@mail.com','esteban',1,1000);
+insert into usuario(administrador,cuit,email,nombre,password,puntos) values (true,'46237709','a@mail.com','Fabian Solis',1,100);
+insert into usuario(administrador,cuit,email,nombre,password,puntos) values (false,'46235700','b@mail.com','Esteban Silva',1,1000);
+insert into usuario(administrador,cuit,email,nombre,password,puntos) values (false,'46235700','c@mail.com','Raul Ramirez',1,35000);
+
 
 
 INSERT INTO Sucursal (ciudad, provincia, domicilio) VALUES
@@ -35,8 +37,8 @@ INSERT INTO Vehiculo (patente, marca, nombre ,imagen, capacidadPasajeros, capaci
 
 
 INSERT INTO Reserva (fkVehiculoR, fkSucursalR, fechaInicio, fechaFin, costoOrigen,finalizada,id_usuario) VALUES
-(9, 1, '2018-01-01 09:00:00', '2018-01-01 19:00:00', 455.00,false,1), 
-(5, 1, '2018-02-01 09:00:00', '2018-02-06 09:00:00', 10399.20,false,1),
+(9, 1, '2018-01-01 09:00:00', '2018-01-01 19:00:00', 85.00,false,3), 
+(5, 1, '2018-02-01 09:00:00', '2018-02-06 09:00:00', 10399.20,false,2),
 (6, 3, '2018-03-01 09:00:00', '2018-03-02 09:00:00', 2079.84,false,1),
 (1, 4, '2018-04-01 09:00:00', '2018-04-01 10:00:00', 125.42,false,2),
 (3, 3, '2018-05-01 09:00:00', '2018-05-11 09:00:00', 23496.00,false,2);

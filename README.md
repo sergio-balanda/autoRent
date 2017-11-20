@@ -11,6 +11,8 @@ taller web unlam
     para que muestran el nombre ahi si no hace nada, al hacer una reserva al usuario se le suma 500 puntos,
     pero en la vista detalle-usuario, que se ve haciendo click en nombre de usuario parte superior derecha una vez loqueado(un usuario comun, no admin), se ve su perfil con los puntos ojo q por locura de spring si hago una reserva y voy a la vista detalle-usuario no se ven cambios en
     los puntos hay que salir de la session y volver a entrar y ahi si se ven los cambios.
+    
+* convertir puntos a pesos cuando se ingresa comos admin en el detalle-reserva.(no terminado), en servicio reserva esta la logica.
 
 ###
 

@@ -42,6 +42,7 @@ public class ControladorAdmin {
 		Integer idVehiculo = servicioReserva.buscarReservas(reserva).getFkVehiculoR().getIdVehiculo();
 		Vehiculo vehiculoDeLaReserva = servicioVehiculo.buscarVehiculos(idVehiculo);
 		modelo.put("vehiculoDeLaReserva", vehiculoDeLaReserva);
+		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(UsuarioDeLaReserva.getId()));
 
 		return new ModelAndView("detalle-reserva", modelo);
 	}

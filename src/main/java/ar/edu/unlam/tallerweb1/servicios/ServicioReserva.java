@@ -18,4 +18,6 @@ public interface ServicioReserva {
 
 	Reserva UltimaReservaDeUnUsuario(Integer id);
 
+	Double convertirCostoDeReservaDeUnUsuarioAPuntos(Integer idUsuario);
+
 }
