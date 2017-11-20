@@ -5,8 +5,11 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Accesorio;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAccesorio;
 
 @Controller
@@ -21,6 +24,13 @@ public class ControladorAlquiler {
 		modelo.put("accesorios", servicioAccesorio.listarAccesorios());
 		modelo.put("hola", "holll");
 		return new ModelAndView("accesorios", modelo);
+	}
+
+	@RequestMapping(path = "/guardar-accesorios", method = RequestMethod.POST)
+	public ModelAndView guardarAccesorios(@RequestParam("accesorios") String accesorios) {
+		ModelMap modelo = new ModelMap();
+		modelo.put("accesorios", accesorios);
+		return new ModelAndView("pruebas", modelo);
 	}
 
 }// fin
