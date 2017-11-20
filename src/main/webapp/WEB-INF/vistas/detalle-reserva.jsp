@@ -151,9 +151,12 @@
 									</div>
 								</form:form>
 							</div>
-							<h4 class="text-warning">AGREGARIA UN BTN CON UN IF O ALGO POR ESTILO,QUE SI LA CONVERCION DE PUNTOS A PESOS ES MAYOR
-							O IGUAL A AL COSTO, SALGA UN BTN PARA PAGAR CON PUNTOS, TENDRIA QUE ESTAR EN FORMULARIO
-							Y QUE EN EL SERVICIO SE PONGA UN SETPUNTOS 0 (va NO SE SI 0 HABRIA Q RESTAR)</h4>
+							<c:if
+								test="${  convertir gt reserva.costoOrigen }">
+							<h4 class="text-warning">Pagar con puntos</h4>
+							<button class="btn btn-success">no hago nada</button>
+							<p>con otros usuario no se ve</p>
+							</c:if>
 						</div>
 					</div>
 				</div>
