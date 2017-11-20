@@ -8,6 +8,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.Sucursal;
+import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 
 @Service("SucursalDao")
 public class SucursalDaoImpl implements SucursalDao {
@@ -31,6 +32,14 @@ public class SucursalDaoImpl implements SucursalDao {
 				.add(Restrictions.eq("ciudad", sucursal)).uniqueResult();
 
 		return listaSucursal;
+	}
+
+	@Override
+	public Sucursal buscarSucursales(Integer idSucursal) {
+		final Session session = sessionFactory.getCurrentSession();
+		Sucursal sucursal = (Sucursal) session.createCriteria(Sucursal.class)
+				.add(Restrictions.eq("idSucursal", idSucursal)).uniqueResult();
+		return sucursal;
 	}
 
 }

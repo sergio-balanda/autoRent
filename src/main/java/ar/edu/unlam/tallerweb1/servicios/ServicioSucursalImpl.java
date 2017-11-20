@@ -9,21 +9,24 @@ import ar.edu.unlam.tallerweb1.modelo.Sucursal;
 
 @Service("servicioSucursal")
 @Transactional
-public class ServicioSucursalImpl implements ServicioSucursal{
+public class ServicioSucursalImpl implements ServicioSucursal {
 
 	@Inject
 	private SucursalDao sucursalDao;
-	
-	
-	
+
 	@Override
 	public List<Sucursal> obtenerSucursales() {
 		return sucursalDao.obtenerSucursales();
 	}
-	
-	/*public Integer buscarSucXCiudad(String sucursal){
-		return sucursalDao.buscarSucXCiudad(sucursal);
-	}*/
 
+	@Override
+	public Sucursal buscarSucursales(Integer idSucursal) {
+		return sucursalDao.buscarSucursales(idSucursal);
+	}
 
-}
+	/*
+	 * public Integer buscarSucXCiudad(String sucursal){ return
+	 * sucursalDao.buscarSucXCiudad(sucursal); }
+	 */
+
+}// fin

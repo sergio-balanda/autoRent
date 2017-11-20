@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Sucursal;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
+import ar.edu.unlam.tallerweb1.servicios.ServicioSucursal;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
 
 @Controller
@@ -20,6 +22,8 @@ public class ControladorAdmin {
 	private ServicioReserva servicioReserva;
 	@Inject
 	private ServicioVehiculo servicioVehiculo;
+	@Inject
+	private ServicioSucursal servicioSucursal;
 
 	@RequestMapping("/vista-reservas")
 	public ModelAndView verVistaReservas() {
@@ -42,8 +46,12 @@ public class ControladorAdmin {
 		Integer idVehiculo = servicioReserva.buscarReservas(reserva).getFkVehiculoR().getIdVehiculo();
 		Vehiculo vehiculoDeLaReserva = servicioVehiculo.buscarVehiculos(idVehiculo);
 		modelo.put("vehiculoDeLaReserva", vehiculoDeLaReserva);
+		// busco sucursal de la reserva para mostrar
+		Integer idSucursal = servicioReserva.buscarReservas(reserva).getFkSucursalR().getIdSucursal();
+		Sucursal sucursalDeLaReserva = servicioSucursal.buscarSucursales(idSucursal);
+		modelo.put("sucursalDeLaReserva", sucursalDeLaReserva);
+		
 		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(UsuarioDeLaReserva.getId()));
-
 		return new ModelAndView("detalle-reserva", modelo);
 	}
 

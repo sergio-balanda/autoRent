@@ -96,6 +96,13 @@
 										</div>
 									</div>
 									<div class="form-group">
+										<label for="nombre" class="col-xs-12 control-label">Sucursal de la reserva</label>
+										<div class="col-xs-12">
+											<input type="text" value="${sucursalDeLaReserva.domicilio} ${sucursalDeLaReserva.ciudad} "
+												 readonly class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
 										<div class="col-xs-12">
 											<h4 class="text-danger">En caso de no coicidir la fecha de entrega acordada, 
 											cambiar fecha de entrega y costo </h4>
@@ -129,6 +136,7 @@
 												name="fkSucursalR" readonly class="form-control">
 										</div>
 									</div>
+							
 									<div class="form-group">
 										<div class="col-xs-12">
 											<input type="hidden" value="${finalizada}" name="finalizada"
