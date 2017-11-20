@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Accesorio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idAccesorios;
+	private Integer idAccesorio;
 	private String nombre;
 	private Double costoDia;
 
@@ -17,12 +17,12 @@ public class Accesorio {
 
 	}
 
-	public Integer getIdAccesorios() {
-		return idAccesorios;
+	public Integer getIdAccesorio() {
+		return idAccesorio;
 	}
 
-	public void setIdAccesorios(Integer idAccesorios) {
-		this.idAccesorios = idAccesorios;
+	public void setIdAccesorio(Integer idAccesorio) {
+		this.idAccesorio = idAccesorio;
 	}
 
 	public String getNombre() {

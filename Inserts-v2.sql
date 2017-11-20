@@ -1,7 +1,9 @@
 USE autorent;
-select * from reserva;
-select * from vehiculo;
-select * from usuario;
+SELECT * FROM reserva;
+SELECT * FROM vehiculo;
+SELECT * FROM usuario;
+SELECT * FROM sucursal;
+SELECT * FROM accesorio;
 
 insert into usuario(administrador,cuit,email,nombre,password,puntos) values (true,'46237709','a@mail.com','Fabian Solis',1,100);
 insert into usuario(administrador,cuit,email,nombre,password,puntos) values (false,'46235700','b@mail.com','Esteban Silva',1,1000);
@@ -44,5 +46,11 @@ INSERT INTO Reserva (fkVehiculoR, fkSucursalR, fechaInicio, fechaFin, costoOrige
 (3, 3, '2018-05-01 09:00:00', '2018-05-11 09:00:00', 23496.00,false,2);
 
 
-
+INSERT INTO Accesorio (nombre, costoDia) VALUES
+('Ninguno', 00.00),
+('GPS', 75.00),
+('Telepeaje', 100.00),
+('Porta equipaje', 50.00),
+('Carro para valijas', 50.00),
+('Transporte al aeropuerto', 100.00);
 
