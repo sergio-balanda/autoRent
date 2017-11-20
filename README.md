@@ -4,6 +4,9 @@ taller web unlam
 ##
 * nuevo sql
 
+* ALQUILER deberia tener la sucursal de devolucion, porq reserva tiene la de retiro del vehiculo. Esto lo arranque pero lo deje por que 
+    me parece q el orden del trello seria otro.
+
 * cambio reserva modelo campo finalizada, se crea por defecto como false, y cuando el admin selecciona una reserva de la lista de reservas
     y preciona modificar esa reserva se da por finalizada y sale de las listas de reservas.
     
