@@ -1,17 +1,15 @@
 package ar.edu.unlam.tallerweb1.dao;
 
-import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -94,13 +92,6 @@ public class VehiculoDaoImpl implements VehiculoDao {
 		Vehiculo vehiculo = (Vehiculo) session.createCriteria(Vehiculo.class)
 				.add(Restrictions.eq("idVehiculo", idVehiculo)).uniqueResult();
 		return vehiculo;
-	}
-
-	@Override
-	public List<Reserva> mostrarTodos() {
-		final Session session = sessionFactory.getCurrentSession();
-		List<Reserva> reserva = session.createCriteria(Reserva.class).list();
-		return reserva;
 	}
 
 }

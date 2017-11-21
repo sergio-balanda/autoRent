@@ -49,12 +49,5 @@ public class ControladorReserva {
 		return new ModelAndView("exito", modelo);
 	}
 	
-	@RequestMapping("/mostrar-todos")
-	public ModelAndView mostrarVehiculos() {
-		ModelMap modelo = new ModelMap();
-		modelo.put("reserva", servicioVehiculo.mostrarTodos());
-		return new ModelAndView("ver-todos", modelo);
-	
-	}
 
 }

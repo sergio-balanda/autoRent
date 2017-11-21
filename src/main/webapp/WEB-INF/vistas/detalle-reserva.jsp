@@ -153,7 +153,7 @@
 									<div class="form-group">
 										<div class="col-xs-12 text-center">
 											<br> <a href="vista-reservas" class="btn btn-danger">Volver</a>
-											<button type="submit" class="btn btn-primary">Modificar</button>
+											<button type="submit" class="btn btn-primary">Finalizar</button>
 
 										</div>
 									</div>
