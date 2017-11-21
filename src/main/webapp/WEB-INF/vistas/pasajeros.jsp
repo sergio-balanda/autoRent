@@ -2,8 +2,8 @@
 <title>Pasajeros</title>
 <script type="text/javascript">
 	function validar() {
-		var desde = document.getElementById('fechaDesde').value;
-		var hasta = document.getElementById('fechaHasta').value;
+		var desde = document.getElementById('fch_desde').value;
+		var hasta = document.getElementById('fch_hasta').value;
 		var error = document.getElementById('error');
 		var submit = document.getElementById('submit');
 		desde = new Date(desde);
