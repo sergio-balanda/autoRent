@@ -21,7 +21,10 @@ public class ControladorFront {
 
 	@RequestMapping("/index")
 	public ModelAndView index() {
-		return new ModelAndView("index");
+		ModelMap modelo = new ModelMap();
+		modelo.put("maximaCantidadPasajeros", servicioVehiculo.maxPasajeros());
+		modelo.put("sucursal", servicioSucursal.obtenerSucursales());
+		return new ModelAndView("index", modelo);
 	}
 
 	@RequestMapping(path = "/")
@@ -29,16 +32,8 @@ public class ControladorFront {
 		return new ModelAndView("redirect:/index");
 	}
 
-	@RequestMapping("/pasajeros")
-	public ModelAndView selectPasajeros() {
-		ModelMap modelo = new ModelMap();
-		modelo.put("maximaCantidadVehiculos", servicioVehiculo.maxPasajeros());
-		modelo.put("sucursal", servicioSucursal.obtenerSucursales());
-		return new ModelAndView("pasajeros", modelo);
-	}
-
 	@RequestMapping("/vehiculos")
-	public ModelAndView verVehiculos(@RequestParam("cantidad") Integer cant, @RequestParam("sucursal") String sucursal,
+	public ModelAndView verVehiculos(@RequestParam("pasajeros") Integer cant, @RequestParam("sucursal") String sucursal,
 			@RequestParam("fechaDesde") String fechaDesde, @RequestParam("fechaHasta") String fechaHasta) {
 		ModelMap modelo = new ModelMap();
 		modelo.put("vehiculos", servicioVehiculo.listarVehiculosXPasajeros(cant, sucursal, fechaDesde, fechaHasta));
