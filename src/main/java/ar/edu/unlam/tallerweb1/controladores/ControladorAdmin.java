@@ -50,7 +50,7 @@ public class ControladorAdmin {
 		Integer idSucursal = servicioReserva.buscarReservas(reserva).getFkSucursalR().getIdSucursal();
 		Sucursal sucursalDeLaReserva = servicioSucursal.buscarSucursales(idSucursal);
 		modelo.put("sucursalDeLaReserva", sucursalDeLaReserva);
-		
+
 		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(UsuarioDeLaReserva.getId()));
 		return new ModelAndView("detalle-reserva", modelo);
 	}
@@ -64,6 +64,10 @@ public class ControladorAdmin {
 				idUsuario);
 		return new ModelAndView("redirect:/vista-reservas");
 
+	}
+
+	public void setServicioReserva(ServicioReserva servicioReserva) {
+		this.servicioReserva = servicioReserva;
 	}
 
 }// fin
