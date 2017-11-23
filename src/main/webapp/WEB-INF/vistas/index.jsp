@@ -27,14 +27,14 @@
 				<ul class='nav navbar-nav'>
 					<li class='active'><a href='#'>Home</a></li>
 					<li><a href='#'>Sucursales</a></li>
-					<li><a href='#'>Vehiculos</a></li>
+					<li><a href='vehiculos'>Vehiculos</a></li>
 					<li><a href='#'>Accesorios</a></li>
 					<li><a href='#'>Servicios</a></li>
 				</ul>
 				<ul class='nav navbar-nav navbar-right'>
 					<li><a href='#'><span class='glyphicon glyphicon-user'></span>
 							Registrarse</a></li>
-					<li><a href='#'><span class='glyphicon glyphicon-log-in'></span>
+					<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>
 							Login</a></li>
 				</ul>
 			</div>

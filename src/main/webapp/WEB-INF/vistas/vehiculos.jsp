@@ -1,21 +1,55 @@
 <%@include file='../../includes/head.jsp' %>
-<title>Vehiculos</title>
 </head>
 <body>
 	<c:set var="usuario" value="${usuario}" scope="session"/>
 	<c:if test="${not empty usuario}">
 		<p class="text-right text-muted"><b>Usuario:<b> <a href="detalle-usuario">${usuario.nombre}</a> para salir click <a href="logout">aqu&iacute;.</a></p>
 	</c:if>
+	<header class='page-header'>
+		<nav class='navbar navbar-inverse navbar-fixed-top'>
+			<div class='container-fluid'>
+				<div class='navbar-header'>
+					<a class='navbar-brand' href='#'>AutoRent</a>
+				</div>
+				<ul class='nav navbar-nav'>
+					<li><a href='index'>Home</a></li>
+					<li><a href='#'>Sucursales</a></li>
+					<li class='active'><a href=#>Vehiculos</a></li>
+					<li><a href='#'>Accesorios</a></li>
+					<li><a href='#'>Servicios</a></li>
+				</ul>
+				<ul class='nav navbar-nav navbar-right'>
+					<li><a href='#'><span class='glyphicon glyphicon-user'></span>
+							Registrarse</a></li>
+					<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>
+							Login</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<div class='container'>	
+			<c:forEach items="${vehiculos}" var="vehiculo" >
+				
+					<div class='vehiculoContainer'>
+						<h3><c:out value="${vehiculo.marca}" /></h3>
+						<h4><c:out value="${vehiculo.nombre}" /></h4>
+						<br>
+						<img src="${vehiculo.imagen}" class="img-responsive" 
+					style="display: inline" alt="" width="200" height="200"/>
+						<br>
+						<h5>
+							<span style="margin-left: 1em;" class="glyphicon glyphicon-user" aria-hidden="true"></span><c:out value="${vehiculo.capacidadPasajeros}" />
+							<span style="margin-left: 1em;" class="glyphicon glyphicon-briefcase" aria-hidden="true"><c:out value="${vehiculo.capacidadValijas}" />
+						</h5>
+					</div>
+				
+			</c:forEach>
+		</div>
+	</main>
+	
 	
 	<div class="container">
-		<header class='page-header'>
-		<div class="container-fluid bg-1">
-			<img src="img/logo.jpg" class="img-responsive"
-				style="display: inline" alt="" width="100" height="100">
-			<h1 class="margin" style="display: inline; margin-left: 100px">Auto
-				Rent</h1>
-		</div>
-		</header>
 		<div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading">Los vehiculos disponibles entre dia ${fechaDesde} y dia ${fechaHasta} en Sucursal ${sucursal} </div>
