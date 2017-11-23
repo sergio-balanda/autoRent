@@ -32,5 +32,9 @@ public class ServicioVehiculoImpl implements ServicioVehiculo {
 		return vehiculoDao.buscarVehiculos(idVehiculo);
 	}
 	
+	@Override
+	public List<Vehiculo> listarVehiculos() {
+		return vehiculoDao.listarVehiculos();
+	}
 
 }

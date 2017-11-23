@@ -32,15 +32,22 @@ public class ControladorFront {
 		return new ModelAndView("redirect:/index");
 	}
 
-	@RequestMapping("/vehiculos")
-	public ModelAndView verVehiculos(@RequestParam("pasajeros") Integer cant, @RequestParam("sucursal") String sucursal,
+	@RequestMapping("/elegir-vehiculo")
+	public ModelAndView elegirVehiculo(@RequestParam("pasajeros") Integer cant, @RequestParam("sucursal") String sucursal,
 			@RequestParam("fechaDesde") String fechaDesde, @RequestParam("fechaHasta") String fechaHasta) {
 		ModelMap modelo = new ModelMap();
 		modelo.put("vehiculos", servicioVehiculo.listarVehiculosXPasajeros(cant, sucursal, fechaDesde, fechaHasta));
 		modelo.put("sucursal", sucursal);
 		modelo.put("fechaDesde", fechaDesde);
 		modelo.put("fechaHasta", fechaHasta);
-		return new ModelAndView("vehiculos", modelo);
+		return new ModelAndView("elegir-vehiculo", modelo);
+	}
+	
+	@RequestMapping("/listado-vehiculos")
+	public ModelAndView verVehiculos() {
+		ModelMap modelo = new ModelMap();
+		modelo.put("vehiculos", servicioVehiculo.listarVehiculos());
+		return new ModelAndView("listado-vehiculos", modelo);
 	}
 
 }

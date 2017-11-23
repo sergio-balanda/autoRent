@@ -25,6 +25,10 @@ h5{
 	background-repeat: no-repeat;
 }
 
+.bgbars {
+	background-color: #FFBF00;
+}
+
 .clear {
 	clear: both;
 }

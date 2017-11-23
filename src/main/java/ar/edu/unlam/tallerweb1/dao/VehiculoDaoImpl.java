@@ -26,6 +26,17 @@ public class VehiculoDaoImpl implements VehiculoDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	public List<Vehiculo> listarVehiculos() {
+		final Session session = sessionFactory.getCurrentSession();
+		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class, "v")
+			//	.setProjection(Projections.distinct(Projections.property("v.nombre")))
+				.addOrder(Order.asc("v.capacidadPasajeros"))
+				.list();
+		return vehiculos;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
 	public List<Vehiculo> listarVehiculosXPasajeros(Integer cantidadPasajeros, String sucursal, String fechaDesde,
 			String fechaHasta) {
 		// convierto el string que viene del form de yyyy-mm-dd a yyyy-mm-dd

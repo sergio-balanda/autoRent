@@ -11,5 +11,6 @@ public interface VehiculoDao {
 	Vehiculo buscarVehiculos(Integer idVehiculo);
 	List<Vehiculo> listarVehiculosXPasajeros(Integer cantidadPasajeros, String sucursal, String fechaDesde , String fechaHasta );
 	Integer maxPasajeros();
+	List<Vehiculo> listarVehiculos();
 
 }

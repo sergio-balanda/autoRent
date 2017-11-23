@@ -27,17 +27,11 @@
 				<ul class='nav navbar-nav'>
 					<li class='active'><a href='#'>Home</a></li>
 					<li><a href='#'>Sucursales</a></li>
-					<li><a href='vehiculos'>Vehiculos</a></li>
+					<li><a href='listado-vehiculos'>Vehiculos</a></li>
 					<li><a href='#'>Accesorios</a></li>
 					<li><a href='#'>Servicios</a></li>
 				</ul>
 				<ul class='nav navbar-nav navbar-right'>
-<<<<<<< HEAD
-					<li><a href='#'><span class='glyphicon glyphicon-user'></span>
-							Registrarse</a></li>
-					<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>
-							Login</a></li>
-=======
 					<c:set var="usuario" value="${usuario}" scope="session" />
 					<c:if test="${empty usuario.nombre}">
 							<li><a href='registro-usuario'><span class='glyphicon glyphicon-user'></span>Registrarse</a></li>
@@ -45,8 +39,6 @@
 						</c:if> <c:if test="${not empty usuario.nombre}">
 							<li><h5>Bienvenido, ${usuario.nombre} para salir click <a href="logout">aqu&iacute;.</a></h5></li>
 						</c:if>
-					
->>>>>>> d670cc302cb98aa979fae6d664437ac2b598a38b
 				</ul>
 			</div>
 		</nav>
@@ -57,7 +49,7 @@
 			<div class='col-sm-1 sidenav'></div>
 			<div class='col-sm-4 well'
 				style='background: rgba(255, 230, 128, 0.8) !important;'>
-				<form action='vehiculos' method='GET'>
+				<form action='elegir-vehiculo' method='GET'>
 					<h1 style='margin-bottom: 20px;'>
 						<b>Alquiler de autom&oacute;viles</b>
 					</h1>

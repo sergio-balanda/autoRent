@@ -11,5 +11,7 @@ public interface ServicioVehiculo {
 	public List<Vehiculo> listarVehiculosXPasajeros(Integer cant, String sucursal, String fdesde, String fhasta);
 
 	public Integer maxPasajeros();
+	
+	public List<Vehiculo> listarVehiculos();
 
 }
