@@ -28,7 +28,7 @@
 		</nav>
 	</header>
 	<main style='margin-top: -20px;'>
-		<div class='container' style='background: white; height: 709px; margin-top: 20px;'>
+		<div class='container' style='background: white; min-height: 709px; margin-top: 20px;'>
 			<div class="alert alert-warning alert-dismissable" style='margin-top: 20px;'>
 				<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 				Se muestran los veh&iacute;culos disponibles entre el ${fechaDesde} y el ${fechaHasta} en la sucursal de ${sucursal}
