@@ -32,6 +32,8 @@ public class ControladorReserva {
 		modelo.put("fechaDesde", fechaDesde);
 		modelo.put("fechaHasta", fechaHasta);
 		modelo.put("sucursal", sucursal);
+		modelo.put("cantidadDias", servicioReserva.calcularCantidadDeDias(fechaDesde, fechaHasta));
+		modelo.put("costoPorDia", servicioCategoria.verCostoDiario(idVehiculo));
 		modelo.put("precioVehiculo", servicioCategoria.calcularCostoOrigen(fechaDesde, fechaHasta, idVehiculo));
 		return new ModelAndView("reserva", modelo);
 	}

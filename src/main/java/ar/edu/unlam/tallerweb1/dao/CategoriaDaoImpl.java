@@ -50,4 +50,11 @@ public class CategoriaDaoImpl implements CategoriaDao{
 		return costoOrigen;
 	}
 	
+	@Override
+	public float verCostoDiario(Integer idVehiculo) {
+		Integer idCategoria = vehiculoDao.buscarVehiculos(idVehiculo).getFkCategoriaV().getIdCategoria();
+		float costoHora = buscarPorId(idCategoria).getCostoHora();
+		return costoHora;
+	}
+	
 }

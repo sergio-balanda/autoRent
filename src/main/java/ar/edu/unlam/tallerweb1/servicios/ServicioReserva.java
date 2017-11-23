@@ -19,5 +19,7 @@ public interface ServicioReserva {
 	Reserva UltimaReservaDeUnUsuario(Integer id);
 
 	Double convertirCostoDeReservaDeUnUsuarioAPuntos(Integer idUsuario);
+	
+	long calcularCantidadDeDias(String fechaDesde, String fechaHasta);
 
 }

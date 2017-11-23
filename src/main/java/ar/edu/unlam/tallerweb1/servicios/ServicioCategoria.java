@@ -6,5 +6,6 @@ public interface ServicioCategoria {
 	
 	Categoria buscarPorId(Integer idCategoria);
 	public float calcularCostoOrigen(String fDesde, String fHasta, Integer idVehiculo);
+	float verCostoDiario(Integer idVehiculo);
 	
 }

@@ -23,4 +23,8 @@ public class ServicioCategoriaImpl implements ServicioCategoria {
 		return categoriaDao.calcularCostoOrigen(fDesde, fHasta, idVehiculo);
 	}
 
+	@Override
+	public float verCostoDiario(Integer idVehiculo) {
+		return categoriaDao.verCostoDiario(idVehiculo);
+	}
 }

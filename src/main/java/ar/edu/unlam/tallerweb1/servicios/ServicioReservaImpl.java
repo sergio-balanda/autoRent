@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,6 +32,23 @@ public class ServicioReservaImpl implements ServicioReserva {
 	@Inject
 	private UsuarioDao usuarioDao;
 
+	@Override
+	public long calcularCantidadDeDias(String fechaDesde, String fechaHasta) {
+		DateFormat formatoFechaDesde = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat formatoFechaHasta = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateDesde = new Date();
+		Date dateHasta = new Date();
+		try {
+			dateDesde = formatoFechaDesde.parse(fechaDesde);
+			dateHasta = formatoFechaHasta.parse(fechaHasta);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		long cantidadDias = (dateHasta.getTime()-dateDesde.getTime())/(1000*60*60*24);
+		return cantidadDias;
+	}
+	
 	@Override
 	public Reserva guardarReserva(Integer idVehiculo, String sucursal, String fechaDesde, String fechaHasta,
 			Integer fkVehiculo, Integer idUsuario) {
