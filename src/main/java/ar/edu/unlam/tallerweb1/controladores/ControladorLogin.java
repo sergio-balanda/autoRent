@@ -39,7 +39,6 @@ public class ControladorLogin {
 	public ModelAndView irAadmin() {
 		return new ModelAndView("admin");
 	}
-	
 
 	// El método recibe un objeto Usuario el que tiene los datos ingresados en
 	// el form correspondiente y
@@ -55,10 +54,10 @@ public class ControladorLogin {
 			request.getSession().setAttribute("usuario", usuarioBuscar);
 
 			if (usuarioBuscar.getAdministrador()) {
-				//modelo.put("usuario", usuario);
+				// modelo.put("usuario", usuario);
 				return new ModelAndView("redirect:/admin");
 			} else {
-				//Redirije a index con el usuario logueado.	
+				// Redirije a index con el usuario logueado.
 				return new ModelAndView("redirect:/index");
 			}
 
@@ -75,6 +74,15 @@ public class ControladorLogin {
 	public ModelAndView logout(HttpServletRequest request) {
 		request.getSession().removeAttribute("usuario");
 		return new ModelAndView("redirect:/login");
+	}
+
+	// test mockito
+	public ServicioLogin getServicioLogin() {
+		return servicioLogin;
+	}
+
+	public void setServicioLogin(ServicioLogin servicioLogin) {
+		this.servicioLogin = servicioLogin;
 	}
 
 }// fin

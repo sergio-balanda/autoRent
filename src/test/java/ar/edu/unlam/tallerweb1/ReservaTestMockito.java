@@ -7,12 +7,24 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.controladores.ControladorAdmin;
+import ar.edu.unlam.tallerweb1.controladores.ControladorFront;
+import ar.edu.unlam.tallerweb1.controladores.ControladorLogin;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
+import ar.edu.unlam.tallerweb1.modelo.Sucursal;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
+import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
+import junit.framework.Assert;
 
 public class ReservaTestMockito {
 
@@ -67,6 +79,77 @@ public class ReservaTestMockito {
 		// vista-reservas es el return del controlador
 		assertThat(miVista.getViewName()).isEqualTo("vista-reservas");
 		// System.out.println(servicioFake.listarReservas().size());
+		Assert.assertEquals(servicioFake.listarReservas().size(), 3);
+	}
+	
+	@Test
+	public void sePruebaControladorLogin() {
+		
+		Usuario usuarioFake = mock(Usuario.class);
+		ServicioLogin servicioLoginFake = mock(ServicioLogin.class);
+		HttpServletRequest request = mock(HttpServletRequest.class);
+		HttpSession session = mock(HttpSession.class);
+		HttpServletResponse responseFake = mock(HttpServletResponse.class);
+		
+		
+		when(servicioLoginFake.consultarUsuario(usuarioFake)).thenReturn(usuarioFake);
+		when(request.getSession()).thenReturn(session);
+		ControladorLogin controlLogin = new ControladorLogin();
+		
+		
+		controlLogin.setServicioLogin(servicioLoginFake);
+		
+		ModelAndView modeloVista = controlLogin.validarLogin(usuarioFake, request, responseFake);
+		//ver si se cambio la ruta
+		assertThat(modeloVista.getViewName()).isEqualTo("redirect:/index");   
+	}
+	
+	@Test
+	public void sePruebaQueSePuedanListarVehiculosPorCantidadDePasajeros() {
+		// esta hecho para el controlador front, 
+		//me devuelve siempre null el serviciofake falta algo!!!!
+
+		Integer cantidad = 4;
+
+		// SUCURSAL
+		Sucursal sucursal = mock(Sucursal.class);
+		when(sucursal.getCiudad()).thenReturn("Capital");
+
+		// VEHICULOS
+		Vehiculo vehiculoUno = mock(Vehiculo.class);
+		Vehiculo vehiculoDos = mock(Vehiculo.class);
+		Vehiculo vehiculoTres = mock(Vehiculo.class);
+		when(vehiculoUno.getFkSucursal()).thenReturn(sucursal);
+		when(vehiculoUno.getIdVehiculo()).thenReturn(1);
+		when(vehiculoUno.getCapacidadPasajeros()).thenReturn(5);
+		// System.out.println(vehiculoUno.getFkSucursal().getCiudad());
+		when(vehiculoDos.getFkSucursal()).thenReturn(sucursal);
+		when(vehiculoUno.getCapacidadPasajeros()).thenReturn(2);
+
+		// LISTAR vehiculos
+		List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+		listaVehiculos.add(vehiculoUno);
+		listaVehiculos.add(vehiculoDos);
+		listaVehiculos.add(vehiculoTres);
+
+		ControladorFront controladorFake = new ControladorFront();
+		ServicioVehiculo servicioFake = mock(ServicioVehiculo.class);
+
+		when(servicioFake.listarVehiculosXPasajeros(cantidad, sucursal.getCiudad(), "2011-01-01", "2017-01-02"))
+				.thenReturn(listaVehiculos);
+
+		controladorFake.setServicioVehiculo(servicioFake);
+
+		ModelAndView miVista = controladorFake.elegirVehiculo(cantidad, sucursal.getCiudad(), "2017-01-01", "2017-01-02");
+		// vista-reservas es el return del controlador
+		assertThat(miVista.getViewName()).isEqualTo("elegir-vehiculo");
+		System.out.println(servicioFake.buscarVehiculos(1));
+		//me devulve siempre vacio algo me falta pero no lo veo.
+	}
+	
+	@Test
+	public void sePruebaQueSeNoSePuedaReservarUnVehiculoYaReservado() {
+		
 	}
 
 }
