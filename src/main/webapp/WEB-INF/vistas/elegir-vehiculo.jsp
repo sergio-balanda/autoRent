@@ -9,14 +9,14 @@
 		<nav class='navbar navbar-inverse navbar-fixed-top'>
 			<div class='container-fluid'>
 				<div class='navbar-header'>
-					<a class='navbar-brand' href='#'>AutoRent</a>
+					<a class='navbar-brand' href='index'>AutoRent</a>
 				</div>
 				<ul class='nav navbar-nav'>
 					<li><a href='index'>Home</a></li>
-					<li><a href='#'>Sucursales</a></li>
+					<li class='disabled'><a href='#'>Sucursales</a></li>
 					<li><a href='listado-vehiculos'>Vehiculos</a></li>
-					<li><a href='#'>Accesorios</a></li>
-					<li><a href='#'>Servicios</a></li>
+					<li class='disabled'><a href='#'>Accesorios</a></li>
+					<li class='disabled'><a href='#'>Servicios</a></li>
 				</ul>
 				<ul class='nav navbar-nav navbar-right'>
 					<li><a href='#'><span class='glyphicon glyphicon-user'></span>
