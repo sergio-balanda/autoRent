@@ -32,10 +32,14 @@
 					<li><a href='#'>Servicios</a></li>
 				</ul>
 				<ul class='nav navbar-nav navbar-right'>
-					<li><a href='#'><span class='glyphicon glyphicon-user'></span>
-							Registrarse</a></li>
-					<li><a href='#'><span class='glyphicon glyphicon-log-in'></span>
-							Login</a></li>
+					<c:set var="usuario" value="${usuario}" scope="session" />
+					<c:if test="${empty usuario.nombre}">
+							<li><a href='registro-usuario'><span class='glyphicon glyphicon-user'></span>Registrarse</a></li>
+							<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>Login</a></li>
+						</c:if> <c:if test="${not empty usuario.nombre}">
+							<li><h5>Bienvenido, ${usuario.nombre} para salir click <a href="logout">aqu&iacute;.</a></h5></li>
+						</c:if>
+					
 				</ul>
 			</div>
 		</nav>
@@ -51,8 +55,8 @@
 						<b>Alquiler de autom&oacute;viles</b>
 					</h1>
 					<div class='container-fluid text-left'>
-						<label for='pasajeros'>Cantidad de pasajeros:</label>
-						<select	class='form-control' id='pasajeros' name='pasajeros' required>
+						<label for='pasajeros'>Cantidad de pasajeros:</label> <select
+							class='form-control' id='pasajeros' name='pasajeros' required>
 							<c:forEach var='p' begin='1' end='${maximaCantidadPasajeros}'>
 								<option value='${p}'>${p}</option>
 							</c:forEach>
@@ -60,8 +64,8 @@
 					</div>
 					<br>
 					<div class='container-fluid text-left'>
-						<label for='sucursal'>Sucursal de retiro:</label> 
-						<select	class='form-control' id='sucursal' name='sucursal' required>
+						<label for='sucursal'>Sucursal de retiro:</label> <select
+							class='form-control' id='sucursal' name='sucursal' required>
 							<c:forEach var='s' items='${sucursal}'>
 								<option value='${s.ciudad}'>${s.ciudad}</option>
 							</c:forEach>
@@ -79,9 +83,10 @@
 							class='form-control' required />
 					</div>
 					<div class='clear'></div>
-					<div class='alert alert-danger' style='display: none; margin: 20px 0px;' id='error'>
-						<strong>Error!</strong><br> La fecha del campo 'Reservar desde' no
-						puede ser mayor que la del campo 'Reservar hasta'.
+					<div class='alert alert-danger'
+						style='display: none; margin: 20px 0px;' id='error'>
+						<strong>Error!</strong><br> La fecha del campo 'Reservar
+						desde' no puede ser mayor que la del campo 'Reservar hasta'.
 					</div>
 					<div class='col-lg-12 text-right' style='margin: 20px 0px;'>
 						<button type='submit' class='btn btn-success btn-lg' id='submit'>Enviar</button>

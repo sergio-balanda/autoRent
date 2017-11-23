@@ -51,7 +51,6 @@ public class ControladorLogin {
 
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioBuscar = servicioLogin.consultarUsuario(usuario);
-
 		if (usuarioBuscar != null) {
 			request.getSession().setAttribute("usuario", usuarioBuscar);
 
@@ -59,8 +58,8 @@ public class ControladorLogin {
 				//modelo.put("usuario", usuario);
 				return new ModelAndView("redirect:/admin");
 			} else {
-
-				return new ModelAndView("redirect:/pasajeros");
+				//Redirije a index con el usuario logueado.	
+				return new ModelAndView("redirect:/index");
 			}
 
 		} else {
