@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioSucursal;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
 
@@ -37,7 +40,7 @@ public class ControladorFront {
 			@RequestParam("sucursal") String sucursal, @RequestParam("fechaDesde") String fechaDesde,
 			@RequestParam("fechaHasta") String fechaHasta) {
 		ModelMap modelo = new ModelMap();
-		modelo.put("vehiculos", servicioVehiculo.listarVehiculosXPasajeros(cant, sucursal, fechaDesde, fechaHasta));
+		modelo.put("vehiculos",servicioVehiculo.listarVehiculosXPasajeros(cant, sucursal, fechaDesde, fechaHasta));
 		modelo.put("sucursal", sucursal);
 		modelo.put("fechaDesde", fechaDesde);
 		modelo.put("fechaHasta", fechaHasta);

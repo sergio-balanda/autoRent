@@ -13,6 +13,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
@@ -29,8 +30,14 @@ public class VehiculoDaoImpl implements VehiculoDao {
 	public List<Vehiculo> listarVehiculos() {
 		final Session session = sessionFactory.getCurrentSession();
 		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class, "v")
-			//	.setProjection(Projections.distinct(Projections.property("v.nombre")))
+				.setProjection(Projections.projectionList()
+						.add(Projections.property("v.marca").as("marca"))
+						.add(Projections.property("v.imagen").as("imagen"))
+						.add(Projections.property("v.capacidadPasajeros").as("capacidadPasajeros"))
+						.add(Projections.property("v.capacidadValijas").as("capacidadValijas"))
+						.add(Projections.groupProperty("v.nombre").as("nombre")) )
 				.addOrder(Order.asc("v.capacidadPasajeros"))
+				.setResultTransformer(Transformers.aliasToBean(Vehiculo.class))
 				.list();
 		return vehiculos;
 	}
