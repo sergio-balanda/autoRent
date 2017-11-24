@@ -1,15 +1,14 @@
 USE autorent;
-SELECT * FROM reserva;
+
+/*SELECT * FROM reserva;
 SELECT * FROM vehiculo;
 SELECT * FROM usuario;
 SELECT * FROM sucursal;
-SELECT * FROM accesorio;
+SELECT * FROM accesorio;*/
 
 insert into usuario(administrador,cuit,email,nombre,password,puntos) values (true,'46237709','a@mail.com','Fabian Solis',1,100);
 insert into usuario(administrador,cuit,email,nombre,password,puntos) values (false,'46235700','b@mail.com','Esteban Silva',1,1000);
 insert into usuario(administrador,cuit,email,nombre,password,puntos) values (false,'46235700','c@mail.com','Raul Ramirez',1,35000);
-
-
 
 INSERT INTO Sucursal (ciudad, provincia, domicilio) VALUES
 ('Capital Federal', 'Buenos Aires', 'Jose Bonifacio 846'),
@@ -35,7 +34,11 @@ INSERT INTO Vehiculo (patente, marca, nombre ,imagen, capacidadPasajeros, capaci
 ('GH777IJ', 'Citroen', 'C4', 'img/c4.jpg', 5, 2, 0, 3, 4),
 ('HI888JK', 'Peugeot', '206 SW', 'img/206SW.jpg', 5, 2, 0, 2, 4),
 ('IJ999KL', 'Fortwo', 'Fortwo', 'img/fortwo.jpg', 2, 1, 0, 1, 5),
-('JK000LM', 'Volkswagen', 'Up', 'img/up.jpg', 4, 2, 0, 2, 5);
+('JK000LM', 'Volkswagen', 'Up', 'img/up.jpg', 4, 2, 0, 2, 5),
+('KL123MN', 'Toyota', 'Corolla', 'img/corolla.jpg', 5, 3, 0, 1, 3),
+('LM234NO', 'Toyota', 'Corolla', 'img/corolla.jpg', 5, 3, 0, 1, 3),
+('MN345OP', 'Peugeot', '206 SW', 'img/206SW.jpg', 5, 2, 0, 2, 4),
+('NO456PQ', 'Peugeot', '206 SW', 'img/206SW.jpg', 5, 2, 0, 2, 4);
 
 
 INSERT INTO Reserva (fkVehiculoR, fkSucursalR, fechaInicio, fechaFin, costoOrigen,finalizada,id_usuario) VALUES
