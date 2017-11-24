@@ -37,7 +37,7 @@
 							<li><a href='registro-usuario'><span class='glyphicon glyphicon-user'></span>Registrarse</a></li>
 							<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>Login</a></li>
 						</c:if> <c:if test="${not empty usuario.nombre}">
-							<li><h5>Bienvenido, ${usuario.nombre} para salir click <a href="logout">aqu&iacute;.</a></h5></li>
+							<li><h5>Bienvenido, ${usuario.nombre} para salir click  <a href="logout">aqu&iacute;.</a></h5></li>
 						</c:if>
 				</ul>
 			</div>
