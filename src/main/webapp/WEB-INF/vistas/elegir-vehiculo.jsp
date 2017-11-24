@@ -15,10 +15,13 @@
 					<li class='disabled'><a href='#'>Servicios</a></li>
 				</ul>
 				<ul class='nav navbar-nav navbar-right'>
-					<li><a href='#'><span class='glyphicon glyphicon-user'></span>
-							Registrarse</a></li>
-					<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>
-							Login</a></li>
+					<c:set var="usuario" value="${usuario}" scope="session" />
+					<c:if test="${empty usuario.nombre}">
+							<li><a href='registro-usuario'><span class='glyphicon glyphicon-user'></span>Registrarse</a></li>
+							<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>Login</a></li>
+						</c:if> <c:if test="${not empty usuario.nombre}">
+							<li><h5>Bienvenido, ${usuario.nombre} para salir click <a href="logout">aqu&iacute;.</a></h5></li>
+						</c:if>
 				</ul>
 			</div>
 		</nav>
