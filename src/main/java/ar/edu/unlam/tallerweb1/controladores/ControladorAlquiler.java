@@ -33,4 +33,6 @@ public class ControladorAlquiler {
 		return new ModelAndView("pruebas", modelo);
 	}
 
+	
+	
 }// fin

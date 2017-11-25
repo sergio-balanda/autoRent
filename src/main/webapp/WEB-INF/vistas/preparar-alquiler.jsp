@@ -7,7 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-		INICIANDO RESERVA
+	<form action="">
+		<h1>${accesorios}</h1>
+	</form>
+	
+	<br> <br>
+	
+	El código de la reserva es: ${idReserva}
 
 </body>
 </html>

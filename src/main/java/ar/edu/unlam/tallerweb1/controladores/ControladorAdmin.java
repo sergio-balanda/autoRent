@@ -28,11 +28,11 @@ public class ControladorAdmin {
 	@Inject
 	private ServicioAccesorio servicioAccesorio;
 
-	@RequestMapping("/vista-reservas")
+	@RequestMapping("/listado-reservas")
 	public ModelAndView verVistaReservas() {
 		ModelMap modelo = new ModelMap();
 		modelo.put("reservas", servicioReserva.listarReservas());
-		return new ModelAndView("vista-reservas", modelo);
+		return new ModelAndView("listado-reservas", modelo);
 	}
 
 	@RequestMapping(value = "/detalle-reserva", method = RequestMethod.GET)

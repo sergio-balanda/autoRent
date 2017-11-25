@@ -165,7 +165,7 @@
 									<div class="form-group">
 										<div class="col-xs-12 text-center">
 											<br> <a href="vista-reservas" class="btn btn-danger">Volver</a>
-											<button type="submit" class="btn btn-primary" onclick=this.form.action="iniciar-reserva">Iniciar alquiler</button>
+											<button type="submit" class="btn btn-primary" onclick=this.form.action="preparar-alquiler">Iniciar alquiler</button>
 											<button type="submit" class="btn btn-primary" onclick=this.form.action="actualizar-reserva">Terminar alquiler</button>
 
 										</div>

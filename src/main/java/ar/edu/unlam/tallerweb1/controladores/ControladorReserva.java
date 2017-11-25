@@ -51,11 +51,13 @@ public class ControladorReserva {
 		return new ModelAndView("exito", modelo);
 	}
 
-	@RequestMapping(path = "/iniciar-reserva", method = RequestMethod.POST)
-	public ModelAndView iniciarReserva (){
+	@RequestMapping(path = "/preparar-alquiler", method = RequestMethod.POST)
+	public ModelAndView iniciarAlquiler (@RequestParam("accesorios") String accesorios, @RequestParam("idReserva") Integer idReserva){
 		ModelMap modelo = new ModelMap();
+		modelo.put("accesorios", accesorios);
+		modelo.put("idReserva", idReserva);
 
-		return new ModelAndView("iniciar-reserva", modelo);
+		return new ModelAndView("preparar-alquiler", modelo);
 	}
 
 }
