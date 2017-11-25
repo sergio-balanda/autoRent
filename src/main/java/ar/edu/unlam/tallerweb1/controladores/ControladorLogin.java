@@ -35,11 +35,6 @@ public class ControladorLogin {
 		return new ModelAndView("login", modelo);
 	}
 
-	@RequestMapping("/admin")
-	public ModelAndView irAadmin() {
-		return new ModelAndView("admin");
-	}
-
 	// El método recibe un objeto Usuario el que tiene los datos ingresados en
 	// el form correspondiente y
 	// se corresponde con el modelAttribute definido en el tag form:form
@@ -55,7 +50,7 @@ public class ControladorLogin {
 
 			if (usuarioBuscar.getAdministrador()) {
 				// modelo.put("usuario", usuario);
-				return new ModelAndView("redirect:/admin");
+				return new ModelAndView("redirect:/control");
 			} else {
 				// Redirije a index con el usuario logueado.
 				return new ModelAndView("redirect:/index");
