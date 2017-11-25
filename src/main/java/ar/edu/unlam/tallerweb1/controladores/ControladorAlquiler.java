@@ -37,12 +37,11 @@ public class ControladorAlquiler {
 	private ServicioAlquiler servicioAlquiler;
 
 
-	@RequestMapping("/accesorios")
+	@RequestMapping("/listado-accesorios")
 	public ModelAndView irAccesorios() {
 		ModelMap modelo = new ModelMap();
 		modelo.put("accesorios", servicioAccesorio.listarAccesorios());
-		modelo.put("hola", "holll");
-		return new ModelAndView("accesorios", modelo);
+		return new ModelAndView("listado-accesorios", modelo);
 	}
 
 	@RequestMapping(path = "/guardar-accesorios", method = RequestMethod.POST)

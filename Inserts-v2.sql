@@ -1,17 +1,14 @@
 USE autorent;
 
-/*
-SELECT * FROM reserva;
+/*SELECT * FROM reserva;
 SELECT * FROM vehiculo;
 SELECT * FROM usuario;
 SELECT * FROM sucursal;
-SELECT * FROM accesorio;
-*/
+SELECT * FROM accesorio;*/
 
-INSERT INTO Usuario(administrador, nombre, email, password, cuit, puntos) VALUES 
-(true, 'Fabian Solis', 'a@mail.com', 1, '46237709', 100),
-(false, 'Esteban Silva', 'b@mail.com', 1, '46235700', 1000),
-(false, 'Raul Ramirez', 'c@mail.com', 1, '46235700', 35000);
+insert into usuario(administrador,cuit,email,nombre,password,puntos) values (true,'46237709','a@mail.com','Fabian Solis',1,100);
+insert into usuario(administrador,cuit,email,nombre,password,puntos) values (false,'46235700','b@mail.com','Esteban Silva',1,1000);
+insert into usuario(administrador,cuit,email,nombre,password,puntos) values (false,'46235700','c@mail.com','Raul Ramirez',1,35000);
 
 INSERT INTO Sucursal (ciudad, provincia, domicilio) VALUES
 ('Capital Federal', 'Buenos Aires', 'Jose Bonifacio 846'),
@@ -43,18 +40,20 @@ INSERT INTO Vehiculo (patente, marca, nombre ,imagen, capacidadPasajeros, capaci
 ('MN345OP', 'Peugeot', '206 SW', 'img/206SW.jpg', 5, 2, 0, 2, 4),
 ('NO456PQ', 'Peugeot', '206 SW', 'img/206SW.jpg', 5, 2, 0, 2, 4);
 
-INSERT INTO Reserva (fkVehiculoR, fkSucursalR, fechaInicio, fechaFin, costoOrigen,finalizada,id_usuario) VALUES
-(9, 1, '2018-01-01 09:00:00', '2018-01-01 19:00:00', 85.00, false, 3), 
-(5, 1, '2018-02-01 09:00:00', '2018-02-06 09:00:00', 10399.20, false, 2),
-(6, 3, '2018-03-01 09:00:00', '2018-03-02 09:00:00', 2079.84, false, 1),
-(1, 4, '2018-04-01 09:00:00', '2018-04-01 10:00:00', 125.42, false, 2),
-(3, 3, '2018-05-01 09:00:00', '2018-05-11 09:00:00', 23496.00, false, 2);
 
-INSERT INTO Accesorio (nombre, costoDia) VALUES
-('Ninguno', 00.00),
-('GPS', 75.00),
-('Telepeaje', 100.00),
-('Porta equipaje', 50.00),
-('Carro para valijas', 50.00),
-('Transporte al aeropuerto', 100.00);
+INSERT INTO Reserva (fkVehiculoR, fkSucursalR, fechaInicio, fechaFin, costoOrigen,finalizada,id_usuario) VALUES
+(9, 1, '2018-01-01 09:00:00', '2018-01-01 19:00:00', 85.00,false,3), 
+(5, 1, '2018-02-01 09:00:00', '2018-02-06 09:00:00', 10399.20,false,2),
+(6, 3, '2018-03-01 09:00:00', '2018-03-02 09:00:00', 2079.84,false,1),
+(1, 4, '2018-04-01 09:00:00', '2018-04-01 10:00:00', 125.42,false,2),
+(3, 3, '2018-05-01 09:00:00', '2018-05-11 09:00:00', 23496.00,false,2);
+
+
+INSERT INTO Accesorio (nombre, costoDia , imagen) VALUES
+('Ninguno', 00.00, ' '),
+('GPS', 75.00,'img/gps.jpg'),
+('Telepeaje', 100.00,'img/telepeaje.jpg'),
+('Porta equipaje', 50.00,'img/portaeq.jpg'),
+('Carro para valijas', 50.00,'img/carro.jpg'),
+('Transporte al aeropuerto', 100.00,'img/taxi.jpg');
 

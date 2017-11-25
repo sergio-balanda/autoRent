@@ -28,7 +28,7 @@
 					<li class='active'><a href='#'>Home</a></li>
 					<li class='disabled'><a href='#'>Sucursales</a></li>
 					<li><a href='listado-vehiculos'>Vehiculos</a></li>
-					<li class='disabled'><a href='#'>Accesorios</a></li>
+					<li><a href='listado-accesorios'>Accesorios</a></li>
 					<li class='disabled'><a href='#'>Servicios</a></li>
 				</ul>
 				<ul class='nav navbar-nav navbar-right'>

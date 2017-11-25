@@ -16,6 +16,7 @@ public class Accesorio {
 	private Integer idAccesorio;
 	private String nombre;
 	private Double costoDia;
+	private String imagen;
 	@OneToMany(mappedBy="fkAccesorio")
 	private List<AlquilerAccesorio> accesorio = new ArrayList<>();
 	
@@ -23,11 +24,12 @@ public class Accesorio {
 		super();
 	}
 
-	public Accesorio(Integer idAccesorio, String nombre, Double costoDia, List<AlquilerAccesorio> accesorio) {
+	public Accesorio(Integer idAccesorio, String nombre, Double costoDia,String imagen, List<AlquilerAccesorio> accesorio) {
 		super();
 		this.idAccesorio = idAccesorio;
 		this.nombre = nombre;
 		this.costoDia = costoDia;
+		this.imagen = imagen;
 		this.accesorio = accesorio;
 	}
 
@@ -53,6 +55,14 @@ public class Accesorio {
 
 	public void setCostoDia(Double costoDia) {
 		this.costoDia = costoDia;
+	}
+	
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 	public List<AlquilerAccesorio> getAccesorio() {
