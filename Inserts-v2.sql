@@ -1,14 +1,17 @@
 USE autorent;
 
-/*SELECT * FROM reserva;
+/*
+SELECT * FROM reserva;
 SELECT * FROM vehiculo;
 SELECT * FROM usuario;
 SELECT * FROM sucursal;
-SELECT * FROM accesorio;*/
+SELECT * FROM accesorio;
+*/
 
-insert into usuario(administrador,cuit,email,nombre,password,puntos) values (true,'46237709','a@mail.com','Fabian Solis',1,100);
-insert into usuario(administrador,cuit,email,nombre,password,puntos) values (false,'46235700','b@mail.com','Esteban Silva',1,1000);
-insert into usuario(administrador,cuit,email,nombre,password,puntos) values (false,'46235700','c@mail.com','Raul Ramirez',1,35000);
+INSERT INTO Usuario(administrador, nombre, email, password, cuit, puntos) VALUES 
+(true, 'Fabian Solis', 'a@mail.com', 1, '46237709', 100),
+(false, 'Esteban Silva', 'b@mail.com', 1, '46235700', 1000),
+(false, 'Raul Ramirez', 'c@mail.com', 1, '46235700', 35000);
 
 INSERT INTO Sucursal (ciudad, provincia, domicilio) VALUES
 ('Capital Federal', 'Buenos Aires', 'Jose Bonifacio 846'),

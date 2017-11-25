@@ -44,7 +44,7 @@ public class ControladorLogin {
 	// el form correspondiente y
 	// se corresponde con el modelAttribute definido en el tag form:form
 	// HttpServletRequest devuelve una sesión de usuario.
-	@RequestMapping(path = "/confimar-login", method = RequestMethod.POST)
+	@RequestMapping(path = "/confirmar-login", method = RequestMethod.POST)
 	public ModelAndView validarLogin(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request,
 			HttpServletResponse response) {
 
@@ -73,7 +73,7 @@ public class ControladorLogin {
 	@RequestMapping("/logout")
 	public ModelAndView logout(HttpServletRequest request) {
 		request.getSession().removeAttribute("usuario");
-		return new ModelAndView("redirect:/login");
+		return new ModelAndView("redirect:/index");
 	}
 
 	// test mockito
