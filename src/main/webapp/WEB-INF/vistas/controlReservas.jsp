@@ -1,5 +1,4 @@
 <%@include file='../../includes/head.jsp'%>
-<title>Lista de reservas</title>
 </head>
 <body class='bgbars'>
 	<header class='page-header'>
@@ -49,7 +48,7 @@
 							<td><c:out value="${reserva.fechaInicio}" /></td>
 							<td><c:out value="${reserva.fechaFin}" /></td>
 							<td>
-								<a href='detalle-reserva?reserva=<c:out value="${reserva.idReserva}" />' class="btn btn-primary" role="button">
+								<a href='detalleReserva?reserva=<c:out value="${reserva.idReserva}" />' class="btn btn-primary" role="button">
 									Ver Detalle&nbsp;&nbsp;
 									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 								</a>

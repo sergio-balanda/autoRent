@@ -63,6 +63,7 @@ public class ControladorReserva {
 		return new ModelAndView("guardar-reserva", modelo);
 	}
 
+
 	@RequestMapping(path = "/preparar-alquiler", method = RequestMethod.POST)
 	public ModelAndView iniciarAlquiler(@RequestParam("accesorios") ArrayList<Integer> accesorios,
 			@RequestParam("idReserva") Integer idReserva, @RequestParam("costoOrigen") Double costoOrigen,

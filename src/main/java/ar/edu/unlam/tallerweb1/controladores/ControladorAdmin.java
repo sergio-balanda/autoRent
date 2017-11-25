@@ -35,7 +35,7 @@ public class ControladorAdmin {
 		return new ModelAndView("controlReservas", modelo);
 	}
 
-	@RequestMapping(value = "/detalle-reserva", method = RequestMethod.GET)
+	@RequestMapping(value = "/detalleReserva", method = RequestMethod.GET)
 	public ModelAndView helloWorld(@RequestParam("reserva") Integer reserva) {
 		ModelMap modelo = new ModelMap();
 		modelo.put("idReserva", reserva);
@@ -59,7 +59,7 @@ public class ControladorAdmin {
 		modelo.put("accesorios", servicioAccesorio.listarAccesorios());
 
 		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(UsuarioDeLaReserva.getId()));
-		return new ModelAndView("detalle-reserva", modelo);
+		return new ModelAndView("detalleReserva", modelo);
 	}
 
 	@RequestMapping(path = "/actualizar-reserva", method = RequestMethod.POST)
