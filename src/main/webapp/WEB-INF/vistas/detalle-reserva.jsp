@@ -70,7 +70,7 @@
 										<h4 class="text-primary"><b>Datos de la reserva</b></h4>
 									</div>
 								</div>
-								<form:form action="actualizar-reserva" method="POST">
+								<form:form action="" method="POST">
 									<div class="form-group">
 										<label for="nombre" class="col-xs-12 control-label">Numero de reserva</label>
 										<div class="col-xs-12">
@@ -124,6 +124,17 @@
 												name="costoOrigen" class="form-control">
 										</div>
 									</div>
+
+									<div class="form-group">
+										<div class="col-xs-12 text-center">
+										<c:forEach var="accesorio" items="${accesorios}">
+											<div class="checkbox">
+				 							    <label><input type="checkbox" value="${accesorio.idAccesorio}" name="accesorios"></input>${accesorio.nombre} ${accesorio.costoDia}</label>
+											</div>
+										</c:forEach>
+										</div>
+									</div>									
+									
 									<div class="form-group">
 										<div class="col-xs-12">
 											<input type="hidden" value="${fkVehiculoR}"
@@ -150,10 +161,12 @@
 										</div>
 									</div>
 
+									
 									<div class="form-group">
 										<div class="col-xs-12 text-center">
 											<br> <a href="vista-reservas" class="btn btn-danger">Volver</a>
-											<button type="submit" class="btn btn-primary">Finalizar</button>
+											<button type="submit" class="btn btn-primary" onclick=this.form.action="iniciar-reserva">Iniciar alquiler</button>
+											<button type="submit" class="btn btn-primary" onclick=this.form.action="actualizar-reserva">Terminar alquiler</button>
 
 										</div>
 									</div>

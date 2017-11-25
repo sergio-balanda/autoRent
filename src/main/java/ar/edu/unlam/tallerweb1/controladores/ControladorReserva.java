@@ -50,6 +50,12 @@ public class ControladorReserva {
 		servicioReserva.guardarReserva(idVehiculo, sucursal, fechaDesde, fechaHasta, fkVehiculo,idUsuario);
 		return new ModelAndView("exito", modelo);
 	}
-	
+
+	@RequestMapping(path = "/iniciar-reserva", method = RequestMethod.POST)
+	public ModelAndView iniciarReserva (){
+		ModelMap modelo = new ModelMap();
+
+		return new ModelAndView("iniciar-reserva", modelo);
+	}
 
 }

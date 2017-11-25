@@ -24,7 +24,7 @@
 						<li style="color: #9d9d9d; padding-top: 1em;">
 								Bienvenido, ${usuario.nombre}.
 						</li>
-						<li><a href='login'><span class='glyphicon glyphicon-log-out'></span>Logout</a></li>
+						<li><a href='logout'><span class='glyphicon glyphicon-log-out'></span>Logout</a></li>
 					</c:if>
 				</ul>
 			</div>
