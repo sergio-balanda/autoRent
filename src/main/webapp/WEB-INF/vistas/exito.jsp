@@ -1,38 +1,43 @@
-<%@include file='../../includes/head.jsp'%>
-<title>Categorias</title>
+<%@include file='../../includes/head.jsp' %>
 </head>
-<body>
-	<c:set var="usuario" value="${usuario}" scope="session" />
-	<c:if test="${not empty usuario}">
-		<p class="text-right text-muted">
-			<b>Usuario:<b> ${usuario.nombre} para salir click <a
-					href="logout">aqu&iacute;.</a>
-		</p>
-	</c:if>
-	<div class="container">
-		<header class='page-header'>
-			<div class="container-fluid bg-1">
-				<img src="img/logo.jpg" class="img-responsive"
-					style="display: inline" alt="" width="100" height="100">
-				<h1 class="margin" style="display: inline; margin-left: 100px">Auto
-					Rent</h1>
-			</div>
-		</header>
-		<div class="panel-group">
-			<div class="panel panel-default">
-				<div class="panel-heading"><h4 class="text-success">Reserva generada con exito</h4></div>
-				<div class="panel-body">
-					<p>Reserva para dia ${fdsd} hasta ${fhst}</p>
-					<p>Retira de Sucursal: ${suc}</p>
-					<p>IdVehiculo Reservado: ${idVehiculo}</p>
-					<a href="index" class="btn-lg btn-danger">Volver</a>
+<body class='bgbars'>
+	<header class='page-header'>
+		<nav class='navbar navbar-inverse navbar-fixed-top'>
+			<div class='container-fluid'>
+				<div class='navbar-header'>
+					<a class='navbar-brand' href='#'>AutoRent</a>
 				</div>
+				<ul class='nav navbar-nav'>
+					<li><a href='index'>Home</a></li>
+					<li class='disabled'><a href='#'>Sucursales</a></li>
+					<li><a href='listado-vehiculos'>Vehiculos</a></li>
+					<li class='disabled'><a href='#'>Accesorios</a></li>
+					<li class='disabled'><a href='#'>Servicios</a></li>
+				</ul>
+				<ul class='nav navbar-nav navbar-right'>
+					<c:set var="usuario" value="${usuario}" scope="session" />
+					<c:if test="${empty usuario.nombre}">
+						<li><a href='registro-usuario'><span class='glyphicon glyphicon-user'></span>Registrarse</a></li>
+						<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>Login</a></li>
+					</c:if>
+					<c:if test="${not empty usuario.nombre}">
+						<li style="color: #9d9d9d; padding-top: 1em;">
+								Bienvenido, ${usuario.nombre}.
+						</li>
+						<li><a href='login'><span class='glyphicon glyphicon-log-out'></span>Logout</a></li>
+					</c:if>
+				</ul>
 			</div>
-		</div>
-		
-		<a href="accesorios" class="btn-lg btn-primary">Continuar con la reserva</a>
-		
-
-	</div>
+		</nav>
+	</header>
+	<main style='margin-top: -20px;'>
+		<div class='container' style='background: white; margin-top: 20px; min-height: 709px;'>
+			<div class="alert alert-warning" style='margin-top: 20px; margin-bottom: 5em;'>
+				<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+				Tu reserva se ha ejecutado con &eacute;xito.
+			</div>
+			<div>
+			</div>
+	</main>
 </body>
 </html>

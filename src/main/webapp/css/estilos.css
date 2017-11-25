@@ -6,12 +6,6 @@
 	margin: 5% auto !important;
 }
 
-h5{
-	margin-top: 20px;
-	margin-right: 5px;
-	color: grey;
-}
-
 .card .page-header h1 a {
 	text-decoration: none !important;
 }
@@ -66,11 +60,11 @@ h5{
     color: #fff;
     background-color:#496ebc 
 }
-.btn-tw{
+.btn-google{
     color: #fff;
-    background-color:#55acee;
+    background-color:#c23321;
 }
-.btn-tw:hover{
+.btn-google:hover{
     color: #fff;
     background-color:#59b5fa;
 }
