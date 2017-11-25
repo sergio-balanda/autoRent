@@ -64,9 +64,6 @@ public class Alquiler {
 		return idAlquiler;
 	}
 
-	public void setIdAlquiler(Integer idAlquiler) {
-		this.idAlquiler = idAlquiler;
-	}
 
 	public Reserva getFkReserva() {
 		return fkReserva;

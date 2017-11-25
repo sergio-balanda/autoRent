@@ -16,7 +16,7 @@
 				<blockquote>
 					<h3>
 					Algo
-					${accesorios}
+					${idReserva}
 					</h3>
 					<footer class="blockquote-footer">
 				Algo
@@ -26,7 +26,7 @@
 	    </div>
 	    <div class="col-sm-12 text-center">
 	    	<br>
-	    	<a href="admin" class="btn btn-primary">Volver al inicio</a>
+	    	<a href="controlReservas" class="btn btn-primary">Volver al inicio</a>
 	    </div>
 	</div>
 	</main>

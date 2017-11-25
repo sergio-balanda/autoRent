@@ -46,5 +46,10 @@
 			</h2>
 		</div>
 	</div>
+	
+	<form:form action="confirmar-alquiler" method="POST">
+		<input type="hidden" value="${reserva.idReserva}" name="idReserva">
+		<button type="submit"> CONFIRMAR</button>
+	</form:form>
 </body>
 </html>

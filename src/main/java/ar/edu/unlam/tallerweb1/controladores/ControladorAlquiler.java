@@ -11,12 +11,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Accesorio;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAccesorio;
+import ar.edu.unlam.tallerweb1.servicios.ServicioAlquiler;
+import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 
 @Controller
 public class ControladorAlquiler {
 
 	@Inject
 	private ServicioAccesorio servicioAccesorio;
+
+	@Inject
+	private ServicioAlquiler servicioAlquiler;
+
+	@Inject
+	private ServicioReserva servicioReserva;
 
 	@RequestMapping("/accesorios")
 	public ModelAndView irAccesorios() {
@@ -31,6 +39,14 @@ public class ControladorAlquiler {
 		ModelMap modelo = new ModelMap();
 		modelo.put("accesorios", accesorios);
 		return new ModelAndView("pruebas", modelo);
+	}
+	@RequestMapping(path = "/confirmar-alquiler", method = RequestMethod.POST)
+	public ModelAndView confirmarAlquiler(@RequestParam("idReserva") Integer idReserva) {
+		ModelMap modelo = new ModelMap();
+		
+		servicioAlquiler.generarAlquiler(servicioReserva.buscarReservas(idReserva));
+		modelo.put("idReserva", idReserva);
+		return new ModelAndView("confirmar-alquiler", modelo);
 	}
 
 	

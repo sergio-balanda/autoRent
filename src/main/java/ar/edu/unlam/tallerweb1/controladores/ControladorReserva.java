@@ -69,7 +69,7 @@ public class ControladorReserva {
 			@RequestParam("fkVehiculoR") Integer idVehiculo, @RequestParam("fkSucursalR") Integer idSucursal,
 			@RequestParam("fechaInicio") String fechaInicio, @RequestParam("fechaFin") String fechaFin) {
 		ModelMap modelo = new ModelMap ();
-
+		
 		modelo.put("accesorios", accesorios);
 		modelo.put("sucursal", servicioSucursal.buscarSucursales(idSucursal));
 		modelo.put("vehiculo", servicioVehiculo.buscarVehiculos(idVehiculo));
