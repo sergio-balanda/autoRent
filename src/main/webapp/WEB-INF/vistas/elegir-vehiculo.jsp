@@ -17,13 +17,6 @@
 				<ul class='nav navbar-nav navbar-right'>
 					<c:set var="usuario" value="${usuario}" scope="session" />
 					<c:if test="${empty usuario.nombre}">
-<<<<<<< HEAD
-							<li><a href='registro-usuario'><span class='glyphicon glyphicon-user'></span>Registrarse</a></li>
-							<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>Login</a></li>
-						</c:if> <c:if test="${not empty usuario.nombre}">
-							<li><h5>Bienvenido, ${usuario.nombre} para salir click <a href="logout">aqu&iacute;.</a></h5></li>
-						</c:if>
-=======
 						<li><a href='registro-usuario'><span class='glyphicon glyphicon-user'></span>&nbsp;Registrarse</a></li>
 						<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>&nbsp;Login</a></li>
 					</c:if>
@@ -33,13 +26,12 @@
 						</li>
 						<li><a href='logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>
 					</c:if>
->>>>>>> vistas
 				</ul>
 			</div>
 		</nav>
 	</header>
 	<main style='margin-top: -20px;'>
-		<div class='container' style='background: white; min-height: 709px; margin-top: 20px;'>
+		<div class="container style="background=white; min-height:709px margin-top:20px">"
 			<div class="alert alert-warning" style='margin-top: 20px;'>
 				<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 				Se muestran los veh&iacute;culos disponibles entre el ${fechaDesde} y el ${fechaHasta} en la sucursal de ${sucursal}

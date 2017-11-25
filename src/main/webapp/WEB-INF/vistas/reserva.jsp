@@ -17,13 +17,7 @@
 				<ul class='nav navbar-nav navbar-right'>
 					<c:set var="usuario" value="${usuario}" scope="session" />
 					<c:if test="${empty usuario.nombre}">
-<<<<<<< HEAD
-							<li><a href='registro-usuario'><span class='glyphicon glyphicon-user'></span>Registrarse</a></li>
-							<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>Login</a></li>
-						</c:if> <c:if test="${not empty usuario.nombre}">
-							<li><h5>Bienvenido, ${usuario.nombre} para salir click <a href="logout">aqu&iacute;.</a></h5></li>
-						</c:if>
-=======
+
 						<li><a href='registro-usuario'><span class='glyphicon glyphicon-user'></span>&nbsp;Registrarse</a></li>
 						<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>&nbsp;Login</a></li>
 					</c:if>
@@ -33,7 +27,6 @@
 						</li>
 						<li><a href='logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>
 					</c:if>
->>>>>>> vistas
 				</ul>
 			</div>
 		</nav>
@@ -85,13 +78,9 @@
 								<input type="hidden" name="fechaDesde" id="fechaDesde" value="${fechaDesde}" />
 								<input type="hidden" name="fechaHasta" id="fechaHasta" value="${fechaHasta}" "/>
 								<input type="hidden" value="${sucursal}" name="sucursal" id="sucursal" />
-<<<<<<< HEAD
-								<a href="index" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</a>
-=======
 								<a href="index" class="btn btn-danger">
 									<span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar
 								</a>
->>>>>>> vistas
 								<button type="submit" class="btn btn-primary">
 									<span class="glyphicon glyphicon-ok"></span>&nbsp;Confirmar
 								</button>
