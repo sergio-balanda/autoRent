@@ -10,10 +10,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!-- Bootstrap core CSS -->
+<!-- Bootstrap JavaScript -->
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- Bootstrap CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- Bootstrap theme -->
 <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+<!-- Font Awesome CSS -->
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
 <!-- Estilo -->
 <link href="css/estilos.css" rel="stylesheet">
 <!-- Titulo -->

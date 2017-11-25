@@ -28,7 +28,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Devolucion de vehiculos</div>
 					<div class="panel-body text-center">
-						<a href="vista-reservas" class="btn btn-info">Ver todas las
+						<a href="listado-reservas" class="btn btn-info">Ver todas las
 							reservas</a>
 					</div>
 				</div>

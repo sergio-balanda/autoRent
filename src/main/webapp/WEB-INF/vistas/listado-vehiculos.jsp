@@ -5,20 +5,27 @@
 		<nav class='navbar navbar-inverse navbar-fixed-top'>
 			<div class='container-fluid'>
 				<div class='navbar-header'>
-					<a class='navbar-brand' href='index'>AutoRent</a>
+					<a class='navbar-brand' href='#'>AutoRent</a>
 				</div>
 				<ul class='nav navbar-nav'>
 					<li><a href='index'>Home</a></li>
 					<li class='disabled'><a href='#'>Sucursales</a></li>
-					<li class='active'><a href=#>Vehiculos</a></li>
+					<li class='active'><a href='#'>Vehiculos</a></li>
 					<li class='disabled'><a href='#'>Accesorios</a></li>
 					<li class='disabled'><a href='#'>Servicios</a></li>
 				</ul>
 				<ul class='nav navbar-nav navbar-right'>
-					<li><a href='#'><span class='glyphicon glyphicon-user'></span>
-							Registrarse</a></li>
-					<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>
-							Login</a></li>
+					<c:set var="usuario" value="${usuario}" scope="session" />
+					<c:if test="${empty usuario.nombre}">
+						<li><a href='registro-usuario'><span class='glyphicon glyphicon-user'></span>&nbsp;Registrarse</a></li>
+						<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>&nbsp;Login</a></li>
+					</c:if>
+					<c:if test="${not empty usuario.nombre}">
+						<li style="color: #9d9d9d; padding-top: 1em;">
+								Bienvenido, ${usuario.nombre}.
+						</li>
+						<li><a href='logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>
+					</c:if>
 				</ul>
 			</div>
 		</nav>

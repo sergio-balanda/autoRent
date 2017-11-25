@@ -10,4 +10,6 @@ public interface ServicioSucursal {
 	/* public Integer buscarSucXCiudad(String sucursal); */
 	Sucursal buscarSucursales(Integer idSucursal);
 
+	Sucursal buscarSucXCiudad(String sucursalCiudad);
+
 }

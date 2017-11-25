@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Sucursal;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioAccesorio;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioSucursal;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
@@ -24,12 +25,14 @@ public class ControladorAdmin {
 	private ServicioVehiculo servicioVehiculo;
 	@Inject
 	private ServicioSucursal servicioSucursal;
+	@Inject
+	private ServicioAccesorio servicioAccesorio;
 
-	@RequestMapping("/vista-reservas")
+	@RequestMapping("/listado-reservas")
 	public ModelAndView verVistaReservas() {
 		ModelMap modelo = new ModelMap();
 		modelo.put("reservas", servicioReserva.listarReservas());
-		return new ModelAndView("vista-reservas", modelo);
+		return new ModelAndView("listado-reservas", modelo);
 	}
 
 	@RequestMapping(value = "/detalle-reserva", method = RequestMethod.GET)
@@ -50,6 +53,10 @@ public class ControladorAdmin {
 		Integer idSucursal = servicioReserva.buscarReservas(reserva).getFkSucursalR().getIdSucursal();
 		Sucursal sucursalDeLaReserva = servicioSucursal.buscarSucursales(idSucursal);
 		modelo.put("sucursalDeLaReserva", sucursalDeLaReserva);
+		
+
+		// lista de accesorios
+		modelo.put("accesorios", servicioAccesorio.listarAccesorios());
 
 		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(UsuarioDeLaReserva.getId()));
 		return new ModelAndView("detalle-reserva", modelo);

@@ -21,7 +21,9 @@ public class Alquiler {
 	@JoinColumn(name="fkReserva")
 	private Reserva fkReserva;
 	@OneToMany(mappedBy="fkAlquiler")
-	private List<AlquilerAccesorio> alquiler = new ArrayList<>();
+	private List<AlquilerAccesorio> alquilerAccesorio = new ArrayList<>();
+	private String estado;
+	private Double precioFinal;
 	
 	public Alquiler(){
 		super();
@@ -31,7 +33,31 @@ public class Alquiler {
 		super();
 		this.idAlquiler = idAlquiler;
 		this.fkReserva = fkReserva;
-		this.alquiler = alquiler;
+		this.alquilerAccesorio = alquilerAccesorio;
+	}
+
+	public List<AlquilerAccesorio> getAlquilerAccesorio() {
+		return alquilerAccesorio;
+	}
+
+	public void setAlquilerAccesorio(List<AlquilerAccesorio> alquilerAccesorio) {
+		this.alquilerAccesorio = alquilerAccesorio;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public Double getPrecioFinal() {
+		return precioFinal;
+	}
+
+	public void setPrecioFinal(Double precioFinal) {
+		this.precioFinal = precioFinal;
 	}
 
 	public Integer getIdAlquiler() {
@@ -50,12 +76,6 @@ public class Alquiler {
 		this.fkReserva = fkReserva;
 	}
 
-	public List<AlquilerAccesorio> getAlquiler() {
-		return alquiler;
-	}
 
-	public void setAlquiler(List<AlquilerAccesorio> alquiler) {
-		this.alquiler = alquiler;
-	}
 
 }

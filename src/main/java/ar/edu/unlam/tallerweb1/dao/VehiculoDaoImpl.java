@@ -10,9 +10,12 @@ import javax.inject.Inject;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Subqueries;
+import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
@@ -29,12 +32,16 @@ public class VehiculoDaoImpl implements VehiculoDao {
 	public List<Vehiculo> listarVehiculos() {
 		final Session session = sessionFactory.getCurrentSession();
 		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class, "v")
-			//	.setProjection(Projections.distinct(Projections.property("v.nombre")))
+				.setProjection(Projections.projectionList().add(Projections.property("v.marca").as("marca"))
+						.add(Projections.property("v.imagen").as("imagen"))
+						.add(Projections.property("v.capacidadPasajeros").as("capacidadPasajeros"))
+						.add(Projections.property("v.capacidadValijas").as("capacidadValijas"))
+						.add(Projections.groupProperty("v.nombre").as("nombre")))
 				.addOrder(Order.asc("v.capacidadPasajeros"))
-				.list();
+				.setResultTransformer(Transformers.aliasToBean(Vehiculo.class)).list();
 		return vehiculos;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Vehiculo> listarVehiculosXPasajeros(Integer cantidadPasajeros, String sucursal, String fechaDesde,
@@ -63,7 +70,33 @@ public class VehiculoDaoImpl implements VehiculoDao {
 		}
 
 		final Session session = sessionFactory.getCurrentSession();
-
+		
+		//Version 1
+		//Subquery id vehiculos que estan reservados
+		DetachedCriteria subConsultaVehiculosNoReservados = 
+				DetachedCriteria.forClass(Reserva.class,"r")
+				.createAlias("fkVehiculoR","v")
+					.setProjection(Projections.property("v.idVehiculo").as("idVehiculo") ) 
+					.add((Restrictions.and(Restrictions.le("fechaInicio", dateHasta),
+										   Restrictions.ge("fechaFin", dateDesde) ) 
+						 ) );
+		//query con seleccion de vehiculos por cantidadPasajeros y sucursal y not in subquery.
+		//agrupados por nombre 
+		List<Vehiculo> vehiculos = session.createCriteria(Vehiculo.class, "v").createAlias("fkSucursalV", "s")
+				.setProjection(Projections.projectionList()
+						.add(Projections.property("v.idVehiculo").as("idVehiculo"))
+						.add(Projections.property("v.marca").as("marca"))
+						.add(Projections.property("v.imagen").as("imagen"))
+						.add(Projections.property("v.capacidadPasajeros").as("capacidadPasajeros"))
+						.add(Projections.property("v.capacidadValijas").as("capacidadValijas"))
+						.add(Projections.groupProperty("v.nombre").as("nombre")))
+				.add(Restrictions.ge("v.capacidadPasajeros", cantidadPasajeros))
+				.add(Restrictions.eq("s.ciudad", sucursal))
+				.add(Subqueries.propertyNotIn("v.idVehiculo", subConsultaVehiculosNoReservados))
+				.setResultTransformer(Transformers.aliasToBean(Vehiculo.class))
+				.addOrder(Order.asc("v.capacidadPasajeros")).list();
+		
+		/* Version 0
 		// Genero una subquery que me trae una List de enteros con los
 		// idVehiculos que no se pueden reservar en esa fecha
 		List<Integer> fkVehiculoNoReserva = (List<Integer>) session.createCriteria(Reserva.class)
@@ -85,7 +118,7 @@ public class VehiculoDaoImpl implements VehiculoDao {
 				.add(Restrictions.eq("s.ciudad", sucursal))
 				.add(Restrictions.not(Restrictions.in("v.idVehiculo", fkVehiculoNoReserva)))
 				.addOrder(Order.asc("v.capacidadPasajeros")).list();
-
+	    */
 		return vehiculos;
 	}
 
