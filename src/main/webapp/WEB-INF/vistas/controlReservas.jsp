@@ -27,37 +27,37 @@
 	</header>
 	<main style='margin-top: -20px;'>
 		<div class='container' style='background: white; margin-top: 20px; min-height: 709px;'>
-			<div class="panel panel-warning" style='margin-top: 20px;'>
-				<div class="panel-heading">
-					<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>Lista de reservas
-				</div>
-				<div class="panel-body">
-					<table class="table table-hover table-striped">
-						<thead>
-							<tr>
-								<th>Reserva</th>
-								<th>Costo</th>
-								<th>Fecha inicio</th>
-								<th>Fecha fin</th>
-								<th>Ver Reserva</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${reservas}" var="reserva">
-								<tr>
-									<td><c:out value="${reserva.idReserva}" /></td>
-									<td><c:out value="${reserva.costoOrigen}" /></td>
-									<td><c:out value="${reserva.fechaInicio}" /></td>
-									<td><c:out value="${reserva.fechaFin}" /></td>
-									<td><a
-										href='detalle-reserva?reserva=<c:out value="${reserva.idReserva}" />'
-										class="btn btn-primary" role="button">Seleccionar</a></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
+			<div class="alert alert-warning" style='margin-top: 20px; margin-bottom: 5em;'>
+				<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+				Listado de reservas.
 			</div>
+			<table class="table table-hover text-center">
+				<thead>
+					<tr>
+						<th class="text-center">C&oacute;digo</th>
+						<th class="text-center">Costo</th>
+						<th class="text-center">Fecha de inicio</th>
+						<th class="text-center">Fecha de fin</th>
+						<th class="text-center">Acci&oacute;n</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${reservas}" var="reserva">
+						<tr>
+							<td><c:out value="${reserva.idReserva}" /></td>
+							<td><c:out value="$ ${reserva.costoOrigen}" /></td>
+							<td><c:out value="${reserva.fechaInicio}" /></td>
+							<td><c:out value="${reserva.fechaFin}" /></td>
+							<td>
+								<a href='detalle-reserva?reserva=<c:out value="${reserva.idReserva}" />' class="btn btn-primary" role="button">
+									Ver Detalle&nbsp;&nbsp;
+									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+								</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 	</main>
 </body>
