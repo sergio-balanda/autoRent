@@ -72,7 +72,7 @@
 								</div>
 								<form:form action="" method="POST">
 									<div class="form-group">
-										<label for="nombre" class="col-xs-12 control-label">Numero de reserva</label>
+										<label for="nombre" class="col-xs-12 control-label">Código de la reserva</label>
 										<div class="col-xs-12">
 											<input type="number" value="${reserva.idReserva}"
 												name="idReserva" readonly class="form-control">
@@ -80,7 +80,7 @@
 									</div>
 									<div class="form-group">
 										<label for="nombre" class="col-xs-12 control-label">Fehca
-											de inicio de Reserva</label>
+											de inicio de la Reserva</label>
 										<div class="col-xs-12">
 											<input type="text" value="${reserva.fechaInicio}"
 												name="fechaInicio" readonly class="form-control">
@@ -92,17 +92,24 @@
 											de entrega acordada</label>
 										<div class="col-xs-12">
 											<input type="text" value="${reserva.fechaFin}"
-												 class="form-control" readonly="readonly">
+												 class="form-control" readonly="readonly" name="fechaFin">
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="nombre" class="col-xs-12 control-label">Sucursal de la reserva</label>
 										<div class="col-xs-12">
-											<input type="text" value="${sucursalDeLaReserva.domicilio} ${sucursalDeLaReserva.ciudad} "
+											<input type="text" value="${sucursalDeLaReserva.domicilio}, ${sucursalDeLaReserva.ciudad} "
 												 readonly class="form-control">
 										</div>
 									</div>
 									<div class="form-group">
+										<label for="nombre" class="col-xs-12 control-label">Costo</label>
+										<div class="col-xs-12">
+											<input type="number" value="${reserva.costoOrigen}"
+												name="costoOrigen" class="form-control" readonly>
+										</div>
+									</div>
+									<!-- <div class="form-group">
 										<div class="col-xs-12">
 											<h4 class="text-danger">En caso de no coicidir la fecha de entrega acordada, 
 											cambiar fecha de entrega y costo </h4>
@@ -112,18 +119,12 @@
 									<div class="form-group">
 										<label for="nombre" class="col-xs-12 control-label">Fecha
 											de entrega</label>
-										<div class="col-xs-12">
-											<input type="text" value="${reserva.fechaFin}"
+										<div class="col-xs-12"> -->
+											<input type="hidden" value="${reserva.fechaFin}"
 												name="fechaFin" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="nombre" class="col-xs-12 control-label">Costo</label>
-										<div class="col-xs-12">
-											<input type="number" value="${reserva.costoOrigen}"
-												name="costoOrigen" class="form-control">
-										</div>
-									</div>
+										<!-- /div>
+									</div> -->
+
 
 									<div class="form-group">
 										<div class="col-xs-12 text-center">
@@ -164,7 +165,6 @@
 									
 									<div class="form-group">
 										<div class="col-xs-12 text-center">
-											<br> <a href="vista-reservas" class="btn btn-danger">Volver</a>
 											<button type="submit" class="btn btn-primary" onclick=this.form.action="preparar-alquiler">Iniciar alquiler</button>
 											<button type="submit" class="btn btn-primary" onclick=this.form.action="actualizar-reserva">Terminar alquiler</button>
 

@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -46,23 +48,32 @@ public class ControladorReserva {
 	@RequestMapping(path = "/guardar-reserva", method = RequestMethod.POST)
 	public ModelAndView guardaReserva(@RequestParam("idVehiculo") Integer idVehiculo,
 			@RequestParam("idVehiculo") Integer fkVehiculo, @RequestParam("fechaDesde") String fechaDesde,
-			@RequestParam("fechaHasta") String fechaHasta, @RequestParam("sucursal") String ciudadSucursal,@RequestParam (value="usuario") Integer idUsuario) {
+			@RequestParam("fechaHasta") String fechaHasta, @RequestParam("sucursal") String ciudadSucursal,
+			@RequestParam(value = "usuario") Integer idUsuario) {
 		ModelMap modelo = new ModelMap();
 		modelo.put("fechaDesde", fechaDesde);
 		modelo.put("fechaHasta", fechaHasta);
 		Sucursal sucursal = servicioSucursal.buscarSucXCiudad(ciudadSucursal);
 		modelo.put("domicilioSucursal", sucursal.getDomicilio());
 		modelo.put("ciudadSucursal", ciudadSucursal);
-		Reserva reserva = servicioReserva.guardarReserva(idVehiculo, ciudadSucursal, fechaDesde, fechaHasta, fkVehiculo, idUsuario);
+		Reserva reserva = servicioReserva.guardarReserva(idVehiculo, ciudadSucursal, fechaDesde, fechaHasta, fkVehiculo,
+				idUsuario);
 		modelo.put("idReserva", reserva.getIdReserva());
 		return new ModelAndView("guardar-reserva", modelo);
 	}
 
 	@RequestMapping(path = "/preparar-alquiler", method = RequestMethod.POST)
-	public ModelAndView iniciarAlquiler (@RequestParam("accesorios") String accesorios, @RequestParam("idReserva") Integer idReserva){
+	public ModelAndView iniciarAlquiler(@RequestParam("accesorios") String accesorios,
+			@RequestParam("idReserva") Integer idReserva, @RequestParam("costoOrigen") Double costoOrigen,
+			@RequestParam("fkVehiculoR") Integer idVehiculo, @RequestParam("fkSucursalR") Integer idSucursal,
+			@RequestParam("fechaInicio") String fechaInicio, @RequestParam("fechaFin") String fechaFin) {
 		ModelMap modelo = new ModelMap();
+		modelo.put("sucursal", servicioSucursal.buscarSucursales(idSucursal));
+		modelo.put("vehiculo", servicioVehiculo.buscarVehiculos(idVehiculo));
+		modelo.put("reserva", servicioReserva.buscarReservas(idReserva));
 		modelo.put("accesorios", accesorios);
-		modelo.put("idReserva", idReserva);
+		modelo.put("cantidadDias", servicioReserva.calcularCantidadDeDias(fechaInicio, fechaFin));
+		modelo.put("costoOrigen", costoOrigen);
 
 		return new ModelAndView("preparar-alquiler", modelo);
 	}
