@@ -1,0 +1,11 @@
+language: java
+jdk:
+  - oraclejdk8
+
+
+notifications:
+  email:
+    - sergio.f.balanda@gmail.com
+    - nicofsierra@gmail.com 
+    - brian.burgos@hotmail.com  
+    - rodrigoandreoli09@gmail.com  

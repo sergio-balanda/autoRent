@@ -1,13 +1,14 @@
 <%@include file='../../includes/head.jsp'%>
 <script type='text/javascript'>
 	function validar() {
+		var hoy = new Date();
 		var desde = document.getElementById('fechaDesde').value;
 		var hasta = document.getElementById('fechaHasta').value;
 		var error = document.getElementById('error');
 		var submit = document.getElementById('submit');
 		desde = new Date(desde);
 		hasta = new Date(hasta);
-		if (desde > hasta) {
+		if (desde > hasta || desde < hoy) {
 			submit.disabled = true;
 			error.style.display = 'block';
 		} else {
@@ -34,6 +35,7 @@
 				<ul class='nav navbar-nav navbar-right'>
 					<c:set var="usuario" value="${usuario}" scope="session" />
 					<c:if test="${empty usuario.nombre}">
+<<<<<<< HEAD
 						<!--
 						<li><a href='registro-usuario'><span class='glyphicon glyphicon-user'></span>Registrarse</a></li>
 						<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>Login</a></li>
@@ -82,6 +84,13 @@
 							<h5>Bienvenido, ${usuario.nombre} para salir click <a href="logout">aqu&iacute;.</a></h5>
 						</li>
 					</c:if>
+=======
+							<li><a href='registro-usuario'><span class='glyphicon glyphicon-user'></span>Registrarse</a></li>
+							<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>Login</a></li>
+						</c:if> <c:if test="${not empty usuario.nombre}">
+							<li><h5>Bienvenido, ${usuario.nombre} para salir click  <a href="logout">aqu&iacute;.</a></h5></li>
+						</c:if>
+>>>>>>> fd35ccdd807ff18089fea5853a67f6d8917a1071
 				</ul>
 			</div>
 		</nav>
@@ -115,20 +124,20 @@
 					</div>
 					<br>
 					<div class='col-sm-6 text-left'>
-						<label for='fechaDesde'>Reservar desde:</label> <input type='date'
-							onChange='validar()' name='fechaDesde' id='fechaDesde'
+						<label for='fechaDesde'>Reservar desde:</label> <input type='date' 
+							onChange='validar();' name='fechaDesde' id='fechaDesde'
 							class='form-control' required />
 					</div>
 					<div class='col-sm-6 text-left'>
-						<label for='fechaHasta'>Reservar hasta:</label> <input type='date'
-							onChange='validar()' name='fechaHasta' id='fechaHasta'
+						<label for='fechaHasta'>Reservar hasta:</label> <input type='date' 
+						onChange='validar();' name='fechaHasta' id='fechaHasta'
 							class='form-control' required />
 					</div>
 					<div class='clear'></div>
 					<div class='alert alert-danger'
 						style='display: none; margin: 20px 0px;' id='error'>
 						<strong>Error!</strong><br> La fecha del campo 'Reservar
-						desde' no puede ser mayor que la del campo 'Reservar hasta'.
+						desde' no puede ser mayor que la del campo 'Reservar hasta' o la fecha desde es menor a la actual
 					</div>
 					<div class='col-lg-12 text-right' style='margin: 20px 0px;'>
 						<button type='submit' class='btn btn-success btn-lg' id='submit'>Enviar</button>

@@ -29,6 +29,13 @@
 				<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 				Se muestran los veh&iacute;culos disponibles entre el ${fechaDesde} y el ${fechaHasta} en la sucursal de ${sucursal}
 			</div>
+			<c:if test="${empty vehiculos}">
+			<div class="col-md-12">
+				<div class="alert alert-info">
+					<strong>¡Aviso!</strong> No Hay Vehiculos Disponibles Con Esa Descripcion<a href='index' class='alert alert-link'>Volver</a>
+				</div>
+			</div>
+			</c:if>
 			<form action="generar-reserva" method="GET">
 				<c:forEach items="${vehiculos}" var="vehiculo" >
 						<div class='col-sm-4 well' style="text-align: center; background: rgba(255, 255, 255, 0.8) !important;">

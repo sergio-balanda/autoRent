@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1;
+/*package ar.edu.unlam.tallerweb1;
 
 import static org.junit.Assert.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -74,4 +74,4 @@ public class TestCriterias extends SpringTest {
 		assertThat(listaDeReserva).hasSize(1);
 	}
 
-}
+}*/
