@@ -1,10 +1,12 @@
 <%@include file='../../includes/head.jsp'%>
 </head>
 <body>
-	<!-- ${accesorios}
+
+	<c:forEach items="${accesorios}" var="accesorio">
+	${accesorio}
+	</c:forEach>
 	
-	<br> <br>
-	
+	<!-- 	
 	El código de la reserva es: ${idReserva} <br>
 	El costo de la reserva es : ${costoOrigen}-->
 	<div class='container'
