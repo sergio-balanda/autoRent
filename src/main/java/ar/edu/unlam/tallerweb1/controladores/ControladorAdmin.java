@@ -70,7 +70,6 @@ public class ControladorAdmin {
 		servicioReserva.guardarActualizarReserva(idReserva, fechaInicio, fechaFin, costoOrigen, fkVehiculoR, finalizada,
 				idUsuario);
 		return new ModelAndView("redirect:/vista-reservas");
-
 	}
 
 	public void setServicioReserva(ServicioReserva servicioReserva) {
