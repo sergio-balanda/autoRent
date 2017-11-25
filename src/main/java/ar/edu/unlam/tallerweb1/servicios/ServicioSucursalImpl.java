@@ -23,6 +23,11 @@ public class ServicioSucursalImpl implements ServicioSucursal {
 	public Sucursal buscarSucursales(Integer idSucursal) {
 		return sucursalDao.buscarSucursales(idSucursal);
 	}
+	
+	@Override
+	public Sucursal buscarSucXCiudad(String sucursalCiudad){
+		return sucursalDao.buscarSucXCiudad(sucursalCiudad);
+	}
 
 	/*
 	 * public Integer buscarSucXCiudad(String sucursal){ return
