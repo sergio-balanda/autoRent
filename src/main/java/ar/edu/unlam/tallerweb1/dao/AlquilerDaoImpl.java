@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.hibernate.Session;
@@ -39,6 +41,14 @@ public class AlquilerDaoImpl implements AlquilerDao {
 		Alquiler alquiler = (Alquiler) session.createCriteria(Alquiler.class)
 				.add(Restrictions.eq("idAlquiler", idAlquiler)).uniqueResult();
 		return alquiler;
+	}
+
+	@Override
+	public List<Alquiler> listarAlquileres() {
+		final Session session = sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Alquiler> alquileres = session.createCriteria(Alquiler.class).list();
+		return alquileres;
 	}
 
 }
