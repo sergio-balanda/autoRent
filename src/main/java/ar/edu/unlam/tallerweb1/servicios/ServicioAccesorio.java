@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.Accesorio;
@@ -9,4 +10,6 @@ public interface ServicioAccesorio {
 	public Accesorio buscarAccesorios(Integer idAccesorio);
 
 	public List<Accesorio> listarAccesorios();
+	
+	public Double calcularPrecioPorAccesorios (ArrayList<Integer> accesorios, Long cantidadDeDias);
 }

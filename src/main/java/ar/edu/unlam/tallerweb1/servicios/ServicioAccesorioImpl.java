@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,6 +26,11 @@ public class ServicioAccesorioImpl implements ServicioAccesorio {
 	@Override
 	public List<Accesorio> listarAccesorios() {
 		return accesorioDao.listarAccesorios();
+	}
+	
+	@Override
+	public Double calcularPrecioPorAccesorios (ArrayList<Integer> accesorios, Long cantidadDeDias){
+		return accesorioDao.calcularPrecioPorAccesorios(accesorios, cantidadDeDias);
 	}
 
 }// fin

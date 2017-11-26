@@ -2,13 +2,7 @@
 </head>
 <body>
 
-	<!--<c:forEach items="${accesorios}" var="accesorio">
-	${accesorio}
-	</c:forEach>-->
-	
-	<!-- 	
-	El código de la reserva es: ${idReserva} <br>
-	El costo de la reserva es : ${costoOrigen}-->
+
 	<div class='container'
 		style='background: white; margin-top: 20px; min-height: 709px;'>
 		<div class="alert alert-warning"
@@ -42,7 +36,7 @@
 				${cantidadDias}.</h5>
 			<h5 class='text-muted text-center'>Costo por d&iacute;a: $
 				${costoPorDia}</h5>
-			<h2 class='text-success text-center'>Total: $ ${precioVehiculo}
+			<h2 class='text-success text-center'>Total: ${costoTotalDeAccesorios}
 			</h2>
 			
 			<form:form action="confirmar-alquiler" method="POST">

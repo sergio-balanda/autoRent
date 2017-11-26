@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -31,5 +33,23 @@ public class AccesorioDaoImpl implements AccesorioDao {
 		final Session session = sessionFactory.getCurrentSession();
 		return session.createCriteria(Accesorio.class).list();
 	}
+	
+/*	@Override
+	public Double precioDelAccesorio (Integer idAccesorio) {
+		final Session session = sessionFactory.getCurrentSession();
+		Double valor = (Double) session.createCriteria(Accesorio.class)
+				.add(Restrictions.eq("idAccesorio", idAccesorio)).uniqueResult();
+	}*/
 
-}// fin
+	@Override
+	public Double calcularPrecioPorAccesorios (ArrayList<Integer> accesorios, Long cantidadDeDias) {
+		Double sumaDePrecios = 0.0;
+		for (Integer accesorio : accesorios) {
+			Double costoDia = buscarAccesorios(accesorio).getCostoDia();
+			sumaDePrecios += costoDia;
+		}
+
+		Double costoTotalDeAccesorios = sumaDePrecios * cantidadDeDias;
+		return costoTotalDeAccesorios;
+	}
+}
