@@ -18,6 +18,9 @@
 </script>
 </head>
 <body class='bkgd'>
+	<c:if test="${usuario.administrador==true}">
+		<c:redirect url="controlReservas" />
+	</c:if>
 	<header class='page-header'>
 		<nav class='navbar navbar-inverse navbar-fixed-top'>
 			<div class='container-fluid'>

@@ -2,9 +2,9 @@
 </head>
 <body>
 
-	<c:forEach items="${accesorios}" var="accesorio">
+	<!--<c:forEach items="${accesorios}" var="accesorio">
 	${accesorio}
-	</c:forEach>
+	</c:forEach>-->
 	
 	<!-- 	
 	El código de la reserva es: ${idReserva} <br>
@@ -44,12 +44,16 @@
 				${costoPorDia}</h5>
 			<h2 class='text-success text-center'>Total: $ ${precioVehiculo}
 			</h2>
+			
+			<form:form action="confirmar-alquiler" method="POST">
+				<input type="hidden" value="${reserva.idReserva}" name="idReserva">
+				<button class="btn btn-success" type="submit" style="margin-left:125px;"> 
+				<span class="glyphicon glyphicon-ok"></span>&nbsp;Confirmar</button>
+			</form:form>
+			
 		</div>
 	</div>
 	
-	<form:form action="confirmar-alquiler" method="POST">
-		<input type="hidden" value="${reserva.idReserva}" name="idReserva">
-		<button type="submit"> CONFIRMAR</button>
-	</form:form>
+	
 </body>
 </html>
