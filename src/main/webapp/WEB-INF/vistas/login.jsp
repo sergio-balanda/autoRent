@@ -17,14 +17,16 @@
 				<ul class='nav navbar-nav navbar-right'>
 					<c:set var="usuario" value="${usuario}" scope="session" />
 					<c:if test="${empty usuario.nombre}">
-						<li><a href='registro-usuario'><span class='glyphicon glyphicon-user'></span>&nbsp;Registrarse</a></li>
-						<li class='active'><a href='#'><span class='glyphicon glyphicon-log-in'></span>&nbsp;Login</a></li>
+						<li><a href='registro-usuario'><span
+								class='glyphicon glyphicon-user'></span>&nbsp;Registrarse</a></li>
+						<li class='active'><a href='#'><span
+								class='glyphicon glyphicon-log-in'></span>&nbsp;Login</a></li>
 					</c:if>
 					<c:if test="${not empty usuario.nombre}">
-						<li style="color: #9d9d9d; padding-top: 1em;">
-								Bienvenido, ${usuario.nombre}.
-						</li>
-						<li><a href='logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>
+						<li style="color: #9d9d9d; padding-top: 1em;">Bienvenido,
+							${usuario.nombre}.</li>
+						<li><a href='logout'><span
+								class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -36,7 +38,9 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="page-header text-center">
-						<h1><strong>Login</strong></h1>
+						<h1>
+							<strong>Login</strong>
+						</h1>
 					</div>
 				</div>
 			</div>
@@ -55,14 +59,19 @@
 							<form:input path="password" type="password" id="password"
 								class="form-control" placeholder="********" />
 						</div>
+						<c:if test="${not empty error}">
+							<div class="alert alert-danger alert-dismissable">
+								<a href="#" class="close" data-dismiss="alert"
+									aria-label="close">&times;</a> <strong>${error}!</strong>
+							</div>
+						</c:if>
 						<br>
 						<div class="form-group text-center">
 							<button class="btn btn-block btn-success" name="submit"
 								type="submit" value="login">Ingresar</button>
 						</div>
 					</form:form>
-					<br>
-					<br>
+					<br> <br>
 					<p class="text-center">
 						<a href="registro-usuario">¿No tienes una cuenta?</a>
 					</p>
