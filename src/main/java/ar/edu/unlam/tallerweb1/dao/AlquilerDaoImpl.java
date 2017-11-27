@@ -19,10 +19,11 @@ public class AlquilerDaoImpl implements AlquilerDao {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void generarAlquiler(Reserva reserva) {
+	public void generarAlquiler(Reserva reserva, Double costoFinal) {
 		final Session session = sessionFactory.getCurrentSession();
 		Alquiler alquiler = new Alquiler();
 		alquiler.setFkReserva(reserva);
+		alquiler.setPrecioFinal(costoFinal);
 		alquiler.setEstado("iniciado");
 		session.save(alquiler);
 

@@ -51,10 +51,11 @@ public class ControladorAlquiler {
 		return new ModelAndView("pruebas", modelo);
 	}
 	@RequestMapping(path = "/confirmar-alquiler", method = RequestMethod.POST)
-	public ModelAndView confirmarAlquiler(@RequestParam("idReserva") Integer idReserva) {
+	public ModelAndView confirmarAlquiler(@RequestParam("idReserva") Integer idReserva, @RequestParam("costoFinal") Double costoFinal) {
 		ModelMap modelo = new ModelMap();
 		
-		servicioAlquiler.generarAlquiler(servicioReserva.buscarReservas(idReserva));
+		servicioAlquiler.generarAlquiler(servicioReserva.buscarReservas(idReserva), costoFinal);
+		modelo.put("costoFinal", costoFinal);
 		modelo.put("idReserva", idReserva);
 		return new ModelAndView("confirmar-alquiler", modelo);
 	}
@@ -81,4 +82,4 @@ public class ControladorAlquiler {
 		return new ModelAndView("prepararAlquiler", modelo);
 	}
 
-}// fin
+}

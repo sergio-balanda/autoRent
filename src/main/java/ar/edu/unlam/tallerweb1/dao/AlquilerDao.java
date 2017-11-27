@@ -7,7 +7,7 @@ import ar.edu.unlam.tallerweb1.modelo.Reserva;
 
 public interface AlquilerDao {
 
-	void generarAlquiler(Reserva reserva);
+	void generarAlquiler(Reserva reserva, Double costoFinal);
 
 	// mio, no querias hacer alquiler, buen yo lo dejo con alquiler
 	void guardarAlquiler(Alquiler alquiler);

@@ -6,7 +6,7 @@ import ar.edu.unlam.tallerweb1.modelo.Alquiler;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
 
 public interface ServicioAlquiler {
-	void generarAlquiler(Reserva reserva);
+	void generarAlquiler(Reserva reserva, Double costoFinal);
 
 	public Alquiler buscarAlquiler(Integer idAlquiler);
 

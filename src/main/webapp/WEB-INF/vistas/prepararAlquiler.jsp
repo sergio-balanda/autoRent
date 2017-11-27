@@ -43,6 +43,7 @@
 			
 			<form:form action="confirmar-alquiler" method="POST">
 				<input type="hidden" value="${reserva.idReserva}" name="idReserva">
+				<input type="hidden" value="${costoFinal}" name="costoFinal">
 				<button class="btn btn-success" type="submit" style="margin-left:125px;"> 
 				<span class="glyphicon glyphicon-ok"></span>&nbsp;Confirmar</button>
 			</form:form>

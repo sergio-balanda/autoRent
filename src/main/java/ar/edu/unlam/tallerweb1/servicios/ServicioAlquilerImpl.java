@@ -22,8 +22,8 @@ public class ServicioAlquilerImpl implements ServicioAlquiler {
 	private ReservaDao reservaDao;
 
 	@Override
-	public void generarAlquiler(Reserva reserva) {
-		alquilerDao.generarAlquiler(reserva);
+	public void generarAlquiler(Reserva reserva, Double costoFinal) {
+		alquilerDao.generarAlquiler(reserva, costoFinal);
 	}
 
 	@Override

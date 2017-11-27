@@ -16,7 +16,9 @@
 				<blockquote>
 					<h3>
 					Algo
-					${idReserva}
+					id Reserva${idReserva}
+					<br>
+					costo Final ${costoFinal}
 					</h3>
 					<footer class="blockquote-footer">
 				Algo
