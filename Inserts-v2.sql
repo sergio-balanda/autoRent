@@ -8,8 +8,9 @@ SELECT * FROM sucursal;
 SELECT * FROM accesorio;
 */
 
-INSERT INTO Usuario(administrador, nombre, email, password, cuit, puntos) VALUES 
-(TRUE, 'Fabian Solis', 'a@mail.com', 1, '46237709', 100),
+INSERT INTO Usuario(administrador, nombre, email, password, cuit, puntos) VALUES
+(TRUE, 'Pepe Duarte', 'admin@mail.com', 'admin', '433221100', 0),
+(TRUE, 'Fabian Solis', 'a@mail.com', 1, '46237709', 0),
 (FALSE, 'Esteban Silva', 'b@mail.com', 1, '46235700', 1000),
 (FALSE, 'Krause Sebastian', 'sebakrause@gmail.com', '1234', '123456789', 0),
 (FALSE, 'Sarkozy Samantha', 'ssarkozy@gmail.com', '1234', '987654321', 0),

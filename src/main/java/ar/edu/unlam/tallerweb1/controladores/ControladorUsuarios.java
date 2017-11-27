@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
@@ -18,6 +19,8 @@ public class ControladorUsuarios {
 
 	@Inject
 	private ServicioUsuario servicioUsuario;
+	@Inject
+	private ServicioLogin servicioLogin;
 
 	@RequestMapping(path = "/registro-usuario", method = RequestMethod.GET)
 	public ModelAndView registroCliente() {
@@ -30,7 +33,9 @@ public class ControladorUsuarios {
 	@RequestMapping(path = "/registrar-usuario", method = RequestMethod.POST)
 	public ModelAndView registroClienteExitoso(@RequestParam String nombre, @RequestParam String email,
 			@RequestParam String cuit, @RequestParam String password, HttpServletRequest request) {
-		servicioUsuario.guardarUsuario(null, email, password, null, cuit, null, nombre);
+		Usuario userLogin = servicioUsuario.guardarUsuario(null, email, password, null, cuit, null, nombre);
+		Usuario usuarioBuscar = servicioLogin.consultarUsuario(userLogin);
+		request.getSession().setAttribute("usuario", usuarioBuscar);
 		return new ModelAndView("redirect:/index");
 	}
 
