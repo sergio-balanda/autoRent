@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioAccesorio;
 import ar.edu.unlam.tallerweb1.servicios.ServicioSucursal;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
 
@@ -22,6 +23,8 @@ public class ControladorFront {
 	private ServicioVehiculo servicioVehiculo;
 	@Inject
 	private ServicioSucursal servicioSucursal;
+	@Inject
+	private ServicioAccesorio servicioAccesorio;
 
 	@RequestMapping("/index")
 	public ModelAndView index() {
@@ -58,6 +61,13 @@ public class ControladorFront {
 	// test mockito
 	public void setServicioVehiculo(ServicioVehiculo servicioVehiculo) {
 		this.servicioVehiculo = servicioVehiculo;
+	}
+	
+	@RequestMapping("/listado-accesorios")
+	public ModelAndView irAccesorios() {
+		ModelMap modelo = new ModelMap();
+		modelo.put("accesorios", servicioAccesorio.listarAccesorios());
+		return new ModelAndView("listado-accesorios", modelo);
 	}
 
 }

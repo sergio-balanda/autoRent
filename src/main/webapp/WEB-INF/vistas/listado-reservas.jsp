@@ -10,7 +10,7 @@
 				<ul class='nav navbar-nav'>
 					<li class='active'><a href='#'>Reservas</a></li>
 					<li><a href='#'>Alquileres</a></li>
-					<li><a href='#'>Usuarios</a></li>
+					<li class='disabled'><a href='#'>Usuarios</a></li>
 				</ul>
 				<ul class='nav navbar-nav navbar-right'>
 					<c:set var="usuario" value="${usuario}" scope="session" />

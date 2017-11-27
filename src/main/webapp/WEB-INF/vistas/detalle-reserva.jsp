@@ -13,12 +13,12 @@ $(function() {
 		<nav class='navbar navbar-inverse navbar-fixed-top'>
 			<div class='container-fluid'>
 				<div class='navbar-header'>
-					<a class='navbar-brand' href='#'>AutoRent</a>
+					<a class='navbar-brand' href='listado-reservas'>AutoRent</a>
 				</div>
 				<ul class='nav navbar-nav'>
 					<li class='active'><a href='#'>Reservas</a></li>
 					<li><a href='#'>Alquileres</a></li>
-					<li><a href='#'>Usuarios</a></li>
+					<li class='disabled'><a href='#'>Usuarios</a></li>
 				</ul>
 				<ul class='nav navbar-nav navbar-right'>
 					<c:set var="usuario" value="${usuario}" scope="session" />

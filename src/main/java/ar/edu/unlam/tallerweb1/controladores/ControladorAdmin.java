@@ -35,7 +35,7 @@ public class ControladorAdmin {
 	public ModelAndView verVistaReservas() {
 		ModelMap modelo = new ModelMap();
 		modelo.put("reservas", servicioReserva.listarReservas());
-		return new ModelAndView("control-reservas", modelo);
+		return new ModelAndView("listado-reservas", modelo);
 	}
 
 	@RequestMapping(value = "/detalle-reserva", method = RequestMethod.GET)

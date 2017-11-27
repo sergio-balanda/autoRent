@@ -50,7 +50,7 @@ public class ControladorLogin {
 
 			if (usuarioBuscar.getAdministrador()) {
 				// modelo.put("usuario", usuario);
-				return new ModelAndView("redirect:/control-reservas");
+				return new ModelAndView("redirect:/listado-reservas");
 			} else {
 				// Redirije a index con el usuario logueado.
 				return new ModelAndView("redirect:/index");

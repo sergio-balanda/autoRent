@@ -39,13 +39,7 @@ public class ControladorAlquiler {
 	@Inject
 	private ServicioAlquiler servicioAlquiler;
 
-	@RequestMapping("/listado-accesorios")
-	public ModelAndView irAccesorios() {
-		ModelMap modelo = new ModelMap();
-		modelo.put("accesorios", servicioAccesorio.listarAccesorios());
-		return new ModelAndView("listado-accesorios", modelo);
-	}
-
+	
 	@RequestMapping(path = "/guardar-accesorios", method = RequestMethod.POST)
 	public ModelAndView guardarAccesorios(@RequestParam("accesorios") String accesorios) {
 		ModelMap modelo = new ModelMap();
@@ -94,8 +88,7 @@ public class ControladorAlquiler {
 		ModelMap modelo = new ModelMap();
 		modelo.put("idAlquiler", idAlquiler);
 		servicioAlquiler.finalizarViaje(idAlquiler);
-
-		return new ModelAndView("redirect:/controlReservas", modelo);
+		return new ModelAndView("redirect:/control-reservas", modelo);
 	}
 
 }
