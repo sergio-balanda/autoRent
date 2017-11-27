@@ -48,7 +48,10 @@ public class AccesorioDaoImpl implements AccesorioDao {
 			Double costoDia = buscarAccesorios(accesorio).getCostoDia();
 			sumaDePrecios += costoDia;
 		}
-
+		if (cantidadDeDias == 0) {
+			Double costoTotalDeAccesorios = sumaDePrecios * 1;
+			return costoTotalDeAccesorios;
+		}
 		Double costoTotalDeAccesorios = sumaDePrecios * cantidadDeDias;
 		return costoTotalDeAccesorios;
 	}

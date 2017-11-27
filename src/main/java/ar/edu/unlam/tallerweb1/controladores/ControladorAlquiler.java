@@ -67,7 +67,9 @@ public class ControladorAlquiler {
 			@RequestParam("accesorios") ArrayList<Integer> accesorios) {
 		ModelMap modelo = new ModelMap();
 		Long cantidadDias = servicioReserva.calcularCantidadDeDias(fechaInicio, fechaFin);
-		modelo.put("costoTotalDeAccesorios", servicioAccesorio.calcularPrecioPorAccesorios(accesorios, cantidadDias));
+		Double costoTotalDeAccesorios = servicioAccesorio.calcularPrecioPorAccesorios(accesorios, cantidadDias);
+		Double costoFinal = costoOrigen + costoTotalDeAccesorios;
+		modelo.put("costoTotalDeAccesorios", costoTotalDeAccesorios);
 		modelo.put("accesorios", accesorios);
 		modelo.put("sucursal", servicioSucursal.buscarSucursales(idSucursal));
 		modelo.put("vehiculo", servicioVehiculo.buscarVehiculos(idVehiculo));
@@ -75,6 +77,7 @@ public class ControladorAlquiler {
 		modelo.put("cantidadDias", cantidadDias);
 		modelo.put("costoOrigen", costoOrigen);
 		modelo.put("costoPorDia", servicioCategoria.verCostoDiario(idVehiculo));
+		modelo.put("costoFinal", costoFinal);
 		return new ModelAndView("prepararAlquiler", modelo);
 	}
 

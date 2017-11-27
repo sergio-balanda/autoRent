@@ -36,8 +36,10 @@
 				${cantidadDias}.</h5>
 			<h5 class='text-muted text-center'>Costo por d&iacute;a: $
 				${costoPorDia}</h5>
-			<h2 class='text-success text-center'>Total: ${costoTotalDeAccesorios}
-			</h2>
+			<h5 class='text-muted text-center'>Costo por accesorios $
+				${costoTotalDeAccesorios}</h5>
+			<h2 class='text-success text-center'>Total: $ 
+				${costoFinal}</h2>
 			
 			<form:form action="confirmar-alquiler" method="POST">
 				<input type="hidden" value="${reserva.idReserva}" name="idReserva">
