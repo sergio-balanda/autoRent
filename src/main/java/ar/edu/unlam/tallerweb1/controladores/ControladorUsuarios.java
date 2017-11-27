@@ -20,7 +20,7 @@ public class ControladorUsuarios {
 	private ServicioUsuario servicioUsuario;
 
 	@RequestMapping(path = "/registro-usuario", method = RequestMethod.GET)
-	public ModelAndView irARegistroUsuario() {
+	public ModelAndView registroCliente() {
 		ModelMap modelo = new ModelMap();
 		Usuario usuario = new Usuario();
 		modelo.put("usuario", usuario);
@@ -28,21 +28,10 @@ public class ControladorUsuarios {
 	}
 
 	@RequestMapping(path = "/registrar-usuario", method = RequestMethod.POST)
-	public ModelAndView registrarUsuario(@RequestParam String nombre, @RequestParam String email,
+	public ModelAndView registroClienteExitoso(@RequestParam String nombre, @RequestParam String email,
 			@RequestParam String cuit, @RequestParam String password, HttpServletRequest request) {
-
 		servicioUsuario.guardarUsuario(null, email, password, null, cuit, null, nombre);
-
-		return new ModelAndView("redirect:/registro-exitoso?username=" + nombre + "&usermail=" + email);
-	}
-
-	@RequestMapping(path = "/registro-exitoso", method = RequestMethod.GET)
-	public ModelAndView registroExitoso(@RequestParam(value = "username") String nombre,
-			@RequestParam(value = "usermail") String email) {
-		ModelMap modelo = new ModelMap();
-		modelo.put("username", nombre);
-		modelo.put("usermail", email);
-		return new ModelAndView("registro-usuario-exitoso", modelo);
+		return new ModelAndView("redirect:/index");
 	}
 
 	@RequestMapping("/detalle-usuario")

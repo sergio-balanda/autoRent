@@ -31,10 +31,10 @@
 		</nav>
 	</header>
 	<main style='margin-top: -20px;'>
-		<div class='container' style='background: white; margin-top: 20px;'>
+		<div class='container' style='background: white; margin-top: 20px; min-height: 709px;'>
 			<div class="alert alert-warning" style='margin-top: 20px;'>
 				<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-				Se muestran los Accesorios disponibles para su reserva.
+				Estos son los Accesorios adicionales que usted puede agregar a su reserva.
 			</div>
 			<c:forEach items="${accesorios}" var="accesorio" >
 				<c:if test="${accesorio.nombre != 'Ninguno'}">
@@ -43,10 +43,14 @@
 					<br>
 					<img src="${accesorio.imagen}" class="img" style="display: inline" width="220" height="150"/>
 					<br>
+					<!--
 					<h5>
-						<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-usd" aria-hidden="true"></span>
-						<c:out value="${accesorio.costoDia}" /> por d&iacutea.
+						<strong>
+							<c:out value="$ ${accesorio.costoDia}" />
+							<sub>&nbsp;/d&iacutea.</sub>
+						</strong>
 					</h5>
+					-->
 				</div>
 				</c:if>
 			</c:forEach>

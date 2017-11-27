@@ -31,14 +31,14 @@ public class ControladorAdmin {
 	@Inject
 	private ServicioAlquiler servicioAlquiler;
 
-	@RequestMapping("/controlReservas")
+	@RequestMapping("/control-reservas")
 	public ModelAndView verVistaReservas() {
 		ModelMap modelo = new ModelMap();
 		modelo.put("reservas", servicioReserva.listarReservas());
-		return new ModelAndView("controlReservas", modelo);
+		return new ModelAndView("control-reservas", modelo);
 	}
 
-	@RequestMapping(value = "/detalleReserva", method = RequestMethod.GET)
+	@RequestMapping(value = "/detalle-reserva", method = RequestMethod.GET)
 	public ModelAndView helloWorld(@RequestParam("reserva") Integer reserva) {
 		ModelMap modelo = new ModelMap();
 		modelo.put("idReserva", reserva);
@@ -62,7 +62,7 @@ public class ControladorAdmin {
 		modelo.put("alquiler", servicioAlquiler.obtenerAlquilerConElIdReserva(reserva));
 		// Sistema de puntos
 		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(UsuarioDeLaReserva.getId()));
-		return new ModelAndView("detalleReserva", modelo);
+		return new ModelAndView("detalle-reserva", modelo);
 	}
 
 	@RequestMapping(path = "/actualizar-reserva", method = RequestMethod.POST)

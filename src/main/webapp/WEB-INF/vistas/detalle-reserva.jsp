@@ -112,7 +112,7 @@ $(function() {
 								</button>
 								</c:if>
 								<c:if test="${alquiler.estado != 'iniciado' and alquiler.estado != 'finalizado' }">
-								<button type="submit" class="btn btn-block btn-success" onclick=this.form.action="prepararAlquiler">
+								<button type="submit" class="btn btn-block btn-success" onclick=this.form.action="preparar-alquiler">
 									Continuar&nbsp;
 									<span class="glyphicon glyphicon-arrow-right"></span>
 								</button>

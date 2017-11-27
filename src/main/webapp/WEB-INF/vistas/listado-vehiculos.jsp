@@ -31,7 +31,7 @@
 		</nav>
 	</header>
 	<main style='margin-top: -20px;'>
-		<div class='container' style='background: white; margin-top: 20px;'>
+		<div class='container' style='background: white; margin-top: 20px; min-height: 709px;'>
 			<div class="alert alert-warning" style='margin-top: 20px;'>
 				<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-road" aria-hidden="true"></span>
 				Se muestran los veh&iacute;culos que integran nuestra flota.
