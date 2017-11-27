@@ -57,7 +57,7 @@
 							</div>
 						</div>
 						<div class="panel-footer text-center">
-							<a href="pasajeros" class="btn btn-danger">Volver</a>
+							<a href="index" class="btn btn-danger">Volver</a>
 						</div>
 
 					</div>

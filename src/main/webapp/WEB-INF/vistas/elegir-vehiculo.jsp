@@ -11,7 +11,7 @@
 					<li><a href='index'>Home</a></li>
 					<li class='disabled'><a href='#'>Sucursales</a></li>
 					<li class='active'><a href='#'>Vehiculos</a></li>
-					<li class='disabled'><a href='#'>Accesorios</a></li>
+					<li><a href='listado-accesorios'>Accesorios</a></li>
 					<li class='disabled'><a href='#'>Servicios</a></li>
 				</ul>
 				<ul class='nav navbar-nav navbar-right'>

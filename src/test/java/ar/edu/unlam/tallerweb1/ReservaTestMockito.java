@@ -50,6 +50,22 @@ public class ReservaTestMockito {
 		when(service.buscarReservas(1)).thenReturn(reservaBuscar);
 		assertThat(reservaGuardar.getFkVehiculoR()).isEqualTo(reservaBuscar.getFkVehiculoR());
 	}
+	
+	/*@Test
+	public void testLoguinConAdministradorExitoso(){
+		Usuario usuarioAdmin = mock(Usuario.class);
+		HttpServletRequest request = mock(HttpServletRequest.class);
+		HttpServletResponse response = mock(HttpServletResponse.class);
+		ServicioLogin service = mock(ServicioLogin.class);
+		HttpSession sesion = mock(HttpSession.class);
+		ControladorLogin control = new ControladorLogin();
+		when(service.consultarUsuario(usuarioAdmin)).thenReturn(new Usuario());
+		control.setServicioLogin(service);
+		when(request.getSession()).thenReturn(sesion);
+		when(usuarioAdmin.getAdministrador()).thenReturn(true);
+		ModelAndView model = control.validarLogin(usuarioAdmin, request, response);
+		assertThat(model.getViewName()).isEqualTo("redirect:/controlReservas");
+	}*/
 
 	@Test
 	public void queSelistenLasReservasEnAdmin() {
@@ -77,7 +93,7 @@ public class ReservaTestMockito {
 		// verVistaReservas
 		ModelAndView miVista = controladorFake.verVistaReservas();
 		// vista-reservas es el return del controlador
-		assertThat(miVista.getViewName()).isEqualTo("vista-reservas");
+		assertThat(miVista.getViewName()).isEqualTo("controlReservas");
 		// System.out.println(servicioFake.listarReservas().size());
 		Assert.assertEquals(servicioFake.listarReservas().size(), 3);
 	}
@@ -147,9 +163,9 @@ public class ReservaTestMockito {
 		//me devulve siempre vacio algo me falta pero no lo veo.
 	}
 	
-	@Test
+	/*@Test
 	public void sePruebaQueSeNoSePuedaReservarUnVehiculoYaReservado() {
 		
-	}
+	}*/
 
 }
