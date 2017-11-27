@@ -91,7 +91,6 @@ public class ServicioReservaImpl implements ServicioReserva {
 		reserva.setFkSucursalR(sucursalDao.buscarSucXCiudad(sucursal));
 		reserva.setFechaInicio(dateDesde);
 		reserva.setFechaFin(dateHasta);
-		reserva.setFinalizada(false);
 		reserva.setCostoOrigen(categoriaDao.calcularCostoOrigen(fechaDesde, fechaHasta, idVehiculo));
 		reservaDao.guardarReserva(reserva);
 		return reserva;
@@ -137,7 +136,7 @@ public class ServicioReservaImpl implements ServicioReserva {
 
 		reserva.setCostoOrigen(costoOrigen);
 		reserva.setFechaFin(datehst);
-		reserva.setFinalizada(true);
+
 
 		reservaDao.guardarActualizarReserva(reserva);
 

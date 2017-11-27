@@ -57,10 +57,9 @@ public class ControladorAlquiler {
 	public ModelAndView confirmarAlquiler(@RequestParam("idReserva") Integer idReserva,
 			@RequestParam("costoFinal") Double costoFinal) {
 		ModelMap modelo = new ModelMap();
-
 		servicioAlquiler.generarAlquiler(servicioReserva.buscarReservas(idReserva), costoFinal);
 		modelo.put("costoFinal", costoFinal);
-		modelo.put("idReserva", idReserva);
+		modelo.put("idAlquiler", servicioAlquiler.obtenerAlquilerConElIdReserva(idReserva).getIdAlquiler());
 		return new ModelAndView("confirmar-alquiler", modelo);
 	}
 

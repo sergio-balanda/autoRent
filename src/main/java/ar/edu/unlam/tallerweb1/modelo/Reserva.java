@@ -19,7 +19,6 @@ public class Reserva {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private float costoOrigen;
-	private Boolean finalizada;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "fkVehiculoR")
 	private Vehiculo fkVehiculoR;
@@ -98,14 +97,6 @@ public class Reserva {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-
-	public Boolean getFinalizada() {
-		return finalizada;
-	}
-
-	public void setFinalizada(Boolean finalizada) {
-		this.finalizada = finalizada;
 	}
 
 }

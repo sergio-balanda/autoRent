@@ -22,7 +22,7 @@ public class Alquiler {
 	private Reserva fkReserva;
 	@OneToMany(mappedBy="fkAlquiler")
 	private List<AlquilerAccesorio> alquilerAccesorio = new ArrayList<>();
-	private String estado;
+	private Boolean finalizada;
 	private Double precioFinal;
 	
 	public Alquiler(){
@@ -44,12 +44,13 @@ public class Alquiler {
 		this.alquilerAccesorio = alquilerAccesorio;
 	}
 
-	public String getEstado() {
-		return estado;
+
+	public Boolean getFinalizada() {
+		return finalizada;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setFinalizada(Boolean finalizada) {
+		this.finalizada = finalizada;
 	}
 
 	public Double getPrecioFinal() {

@@ -24,7 +24,7 @@ public class AlquilerDaoImpl implements AlquilerDao {
 		Alquiler alquiler = new Alquiler();
 		alquiler.setFkReserva(reserva);
 		alquiler.setPrecioFinal(costoFinal);
-		alquiler.setEstado("iniciado");
+		alquiler.setFinalizada(false);
 		session.save(alquiler);
 
 	}

@@ -37,7 +37,6 @@ public class ServicioAlquilerImpl implements ServicioAlquiler {
 
 		alquiler = new Alquiler();
 
-		alquiler.setEstado(estado);
 		alquiler.setPrecioFinal(precioFinal);
 
 		alquiler.setFkReserva(reservaDao.buscarReservas(fkReserva));
@@ -59,6 +58,5 @@ public class ServicioAlquilerImpl implements ServicioAlquiler {
 	//en el controlador te  falto llamar al metodo
 	public void finalizarViaje (Integer idAlquiler) {
 		Alquiler alquiler = alquilerDao.buscarAlquiler(idAlquiler); 
-		alquiler.setEstado("finalizado");
 	}
 }

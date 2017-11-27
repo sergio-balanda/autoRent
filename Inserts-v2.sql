@@ -47,17 +47,31 @@ INSERT INTO Vehiculo (patente, marca, nombre ,imagen, capacidadPasajeros, capaci
 ('MN345OP', 'Peugeot', '206 SW', 'img/206SW.jpg', 5, 2, 0, 2, 4),
 ('NO456PQ', 'Peugeot', '206 SW', 'img/206SW.jpg', 5, 2, 0, 2, 4);
 
-INSERT INTO Reserva (fkVehiculoR, fkSucursalR, fechaInicio, fechaFin, costoOrigen,finalizada,id_usuario) VALUES
-(9, 1, '2018-01-01 09:00:00', '2018-01-01 19:00:00', 85.00,false,3), 
-(5, 1, '2018-02-01 09:00:00', '2018-02-06 09:00:00', 10399.20,false,2),
-(6, 3, '2018-03-01 09:00:00', '2018-03-02 09:00:00', 2079.84,false,1),
-(1, 4, '2018-04-01 09:00:00', '2018-04-01 10:00:00', 125.42,false,2),
-(3, 3, '2018-05-01 09:00:00', '2018-05-11 09:00:00', 23496.00,false,2);
+INSERT INTO Reserva (fkVehiculoR, fkSucursalR, fechaInicio, fechaFin, costoOrigen, id_usuario) VALUES
+(8, 2, '2017-11-01 10:00:00', '2017-11-15 10:00:00', 1166.25, 3),
+(3, 2, '2017-11-20 07:00:00', '2017-12-20 07:00:00', 2937.00, 4),
+(4, 2, '2017-11-01 13:00:00', '2017-12-15 13:00:00', 4405.50, 6),
+(9, 1, '2018-01-01 09:00:00', '2018-01-01 19:00:00', 85.00, 3), 
+(5, 1, '2018-02-01 09:00:00', '2018-02-06 09:00:00', 10399.20, 4),
+(6, 3, '2018-03-01 09:00:00', '2018-03-02 09:00:00', 2079.84, 5),
+(1, 4, '2018-04-01 09:00:00', '2018-04-01 10:00:00', 125.42, 6),
+(3, 3, '2018-05-01 09:00:00', '2018-05-11 09:00:00', 23496.00, 7);
+
+INSERT INTO Alquiler (fkReserva, finalizada, precioFinal) VALUES
+(1, TRUE, 3791.25),
+(2, TRUE, 2937.00),
+(3, FALSE, 6655.50);
+
+INSERT INTO AlquilerAccesorio (fkAlquiler, fkAccesorio) VALUES
+(1, 2),
+(1, 3),
+(2, 1),
+(3, 5);
 
 INSERT INTO Accesorio (nombre, costoDia , imagen) VALUES
 ('Ninguno', 00.00, ' '),
-('GPS', 75.00,'img/gps.jpg'),
-('Telepeaje', 100.00,'img/telepeaje.jpg'),
-('Porta equipaje', 50.00,'img/portaeq.jpg'),
-('Asientos para bebes', 50.00,'img/asientos-bebe.jpg'),
-('Radio Satelital', 100.00,'img/radio-satelital.jpg');
+('GPS', 75.00, 'img/gps.jpg'),
+('Telepeaje', 100.00, 'img/telepeaje.jpg'),
+('Porta equipaje', 50.00, 'img/portaeq.jpg'),
+('Asientos para bebes', 50.00, 'img/asientos-bebe.jpg'),
+('Radio Satelital', 100.00, 'img/radio-satelital.jpg');
