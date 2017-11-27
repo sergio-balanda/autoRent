@@ -52,4 +52,11 @@ public class ServicioAlquilerImpl implements ServicioAlquiler {
 
 	}
 
+	public Alquiler obtenerAlquilerConElIdReserva (Integer idReserva) {
+		return alquilerDao.obtenerAlquilerConElIdReserva(idReserva);
+	}
+	
+	public void finalizarViaje (Integer idAlquiler) {
+		 alquilerDao.finalizarViaje (idAlquiler);
+	}
 }

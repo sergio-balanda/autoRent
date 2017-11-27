@@ -6,12 +6,14 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Accesorio;
+import ar.edu.unlam.tallerweb1.modelo.Alquiler;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAccesorio;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAlquiler;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
@@ -81,5 +83,15 @@ public class ControladorAlquiler {
 		modelo.put("costoFinal", costoFinal);
 		return new ModelAndView("prepararAlquiler", modelo);
 	}
+	
+	@RequestMapping(path="finalizar-alquiler", method = RequestMethod.POST)
+	public ModelAndView finalizarAlquiler (@RequestParam ("idAlquiler") Integer idAlquiler) {
+		ModelMap modelo = new ModelMap ();
+		modelo.put("idAlquiler", idAlquiler);
+		
+		
+		return new ModelAndView ("finalizar-viaje", modelo);
+	}
+
 
 }

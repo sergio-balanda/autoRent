@@ -13,6 +13,7 @@ import ar.edu.unlam.tallerweb1.modelo.Sucursal;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAccesorio;
+import ar.edu.unlam.tallerweb1.servicios.ServicioAlquiler;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioSucursal;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
@@ -27,6 +28,8 @@ public class ControladorAdmin {
 	private ServicioSucursal servicioSucursal;
 	@Inject
 	private ServicioAccesorio servicioAccesorio;
+	@Inject
+	private ServicioAlquiler servicioAlquiler;
 
 	@RequestMapping("/controlReservas")
 	public ModelAndView verVistaReservas() {
@@ -53,11 +56,11 @@ public class ControladorAdmin {
 		Integer idSucursal = servicioReserva.buscarReservas(reserva).getFkSucursalR().getIdSucursal();
 		Sucursal sucursalDeLaReserva = servicioSucursal.buscarSucursales(idSucursal);
 		modelo.put("sucursalDeLaReserva", sucursalDeLaReserva);
-		
-
 		// lista de accesorios
 		modelo.put("accesorios", servicioAccesorio.listarAccesorios());
-
+		// Obtener el alquiler de la reserva
+		modelo.put("alquiler", servicioAlquiler.obtenerAlquilerConElIdReserva(reserva));
+		// Sistema de puntos
 		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(UsuarioDeLaReserva.getId()));
 		return new ModelAndView("detalleReserva", modelo);
 	}

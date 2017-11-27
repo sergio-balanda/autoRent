@@ -48,9 +48,9 @@ public class ReservaDaoImpl implements ReservaDao {
 	@Override
 	public void guardarActualizarReserva(Reserva reserva) {
 		final Session session = sessionFactory.getCurrentSession();
-		Alquiler alquiler = new Alquiler();
+	/*	Alquiler alquiler = new Alquiler();
 		alquiler.setFkReserva(reserva);
-		session.save(alquiler);
+		session.save(alquiler);*/
 		session.saveOrUpdate(reserva);
 
 	}

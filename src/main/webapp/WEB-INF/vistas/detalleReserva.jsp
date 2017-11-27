@@ -77,7 +77,7 @@ $(function() {
 							<p><b>Fecha de fin :</b> ${reserva.fechaFin}<p>
 							<p><b>Costo :</b> $ ${reserva.costoOrigen}<p>
 							<hr>
-							<form:form action="prepararAlquiler" method="POST">
+							<form:form action="" method="POST">
 								<input type="hidden" name="idReserva" id="idReserva" value="${reserva.idReserva}" />
 								<input type="hidden" name="idSucursal" id="idSucursal" value="${sucursalDeLaReserva.idSucursal}" />
 								<input type="hidden" name="idVehiculo" id="idVehiculo" value="${vehiculoDeLaReserva.idVehiculo}" />
@@ -103,10 +103,20 @@ $(function() {
 									</tbody>
 							    </table>
 								<br>
-								<button type="submit" class="btn btn-block btn-success">
+								<input type="hidden" value="${alquiler}" name="alquiler">
+								<c:if test="${alquiler.estado == 'iniciado' }">
+								<button type="submit" class="btn btn-block btn-danger" onclick=this.form.action='finalizar-alquiler'>
+									<input type="hidden" value=${alquiler.idAlquiler} name="idAlquiler">
+									Finalizar alquiler&nbsp;
+									<span class="glyphicon glyphicon-arrow-right"></span>
+								</button>
+								</c:if>
+								<c:if test="${alquiler.estado != 'iniciado' and alquiler.estado != 'finalizado' }">
+								<button type="submit" class="btn btn-block btn-success" onclick=this.form.action="prepararAlquiler">
 									Continuar&nbsp;
 									<span class="glyphicon glyphicon-arrow-right"></span>
 								</button>
+								</c:if>
 							</form:form>
 						</div>
 					</div>

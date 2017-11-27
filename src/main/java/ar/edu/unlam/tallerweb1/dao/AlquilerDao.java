@@ -15,5 +15,8 @@ public interface AlquilerDao {
 	Alquiler buscarAlquiler(Integer idAlquiler);
 
 	List<Alquiler> listarAlquileres();
+	
+	public Alquiler obtenerAlquilerConElIdReserva (Integer idReserva);
 
+	public void finalizarViaje (Integer idAlquiler);
 }

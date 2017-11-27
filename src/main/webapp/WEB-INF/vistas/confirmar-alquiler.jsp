@@ -15,13 +15,13 @@
 				</h1>
 				<blockquote>
 					<h3>
-					Algo
+					
 					id Reserva${idReserva}
 					<br>
 					costo Final ${costoFinal}
 					</h3>
 					<footer class="blockquote-footer">
-				Algo
+				
 					</footer>
 				</blockquote>
 			</div>

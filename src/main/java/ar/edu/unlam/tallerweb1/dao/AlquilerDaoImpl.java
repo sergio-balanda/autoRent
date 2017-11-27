@@ -51,5 +51,25 @@ public class AlquilerDaoImpl implements AlquilerDao {
 		List<Alquiler> alquileres = session.createCriteria(Alquiler.class).list();
 		return alquileres;
 	}
+	
+	@Override
+	public Alquiler obtenerAlquilerConElIdReserva (Integer idReserva) {
+		final Session session = sessionFactory.getCurrentSession();
+		Alquiler alquiler = (Alquiler) session.createCriteria(Alquiler.class)
+				.createAlias("fkReserva", "reserva")
+				.add(Restrictions.eq("reserva.idReserva", idReserva))
+				.uniqueResult();
+		return alquiler;
+	}
+	
+	@Override
+	public void finalizarViaje (Integer idAlquiler) {
+		final Session session = sessionFactory.getCurrentSession();
+		Alquiler alquiler = (Alquiler) session.createCriteria(Alquiler.class)
+				.add(Restrictions.eq("idAlquiler", idAlquiler))
+				.uniqueResult();
+		alquiler.setEstado("finalizado");
+		session.update(alquiler);
+	}
 
 }

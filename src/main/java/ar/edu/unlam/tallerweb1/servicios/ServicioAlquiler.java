@@ -13,5 +13,9 @@ public interface ServicioAlquiler {
 	public Alquiler guardarAlquiler(Integer fkReserva, String estado, Double precioFinal);
 
 	public List<Alquiler> listarAlquileres();
+	
+	public Alquiler obtenerAlquilerConElIdReserva (Integer idReserva);
+	
+	public void finalizarViaje (Integer idAlquiler);
 
 }
