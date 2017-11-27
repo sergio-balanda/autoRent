@@ -46,6 +46,9 @@ public class ServicioReservaImpl implements ServicioReserva {
 			e.printStackTrace();
 		}
 		long cantidadDias = (dateHasta.getTime()-dateDesde.getTime())/(1000*60*60*24);
+		if (cantidadDias == 0) {
+			cantidadDias = 1;
+		}
 		return cantidadDias;
 	}
 	

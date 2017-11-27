@@ -27,65 +27,65 @@
 	<main style='margin-top: -20px;'>
 		<div class='container'
 		style='background: white; margin-top: 20px; min-height: 709px;'>
-		<div class="alert alert-warning"
-			style='margin-top: 20px; margin-bottom: 5em;'>
-			<span style="margin-left: 1em; margin-right: 0.5em;"
-				class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-			Reserva con código: ${reserva.idReserva}
-		</div>
-		<div class="col-md-4">
-			<img src="${vehiculo.imagen}" alt="imagen" class="img-responsive" />
-		</div>
-		<div class="col-md-4">
-			<div class="page-header">
-				<h2>${vehiculo.marca}&nbsp;${vehiculo.nombre}</h2>
+			<div class="alert alert-warning"
+				style='margin-top: 20px; margin-bottom: 5em;'>
+				<span style="margin-left: 1em; margin-right: 0.5em;"
+					class="glyphicon glyphicon-time" aria-hidden="true"></span>
+				Esperando confirmaci&oacute;n de la reserva "${reserva.idReserva}"...
 			</div>
-			<p>
-				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-				${vehiculo.capacidadPasajeros} Personas
-			</p>
-			<p>
-				<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
-				${vehiculo.capacidadValijas} Valijas
-			</p>
-		</div>
-		<div class="col-md-4">
-			<h5 class='text-muted text-center'>
-				Retirado de la sucursal:&nbsp;${sucursal.ciudad}.
-			</h5>
-			<h5 class='text-muted text-center'>
-				Plazo entre:&nbsp;${reserva.fechaInicio}<br>~ ${reserva.fechaFin}.
-			</h5>
-			<h5 class='text-muted text-center'>
-				Cantidad de d&iacute;as:&nbsp;${cantidadDias}.
-			</h5>
-			<h5 class='text-muted text-center'>
-				Costo por d&iacute;a:&nbsp;$&nbsp;${costoPorDia}
-			</h5>
-			<h5>
-				Accesorios:<br>
-				<c:forEach items="${listAccesorios}" var="accesorios">
-				<p><c:out value="${accesorios.nombre}" /></p>
-				</c:forEach>
-				${accesorio1.nombre}
-			<h5 class='text-muted text-center'>
-				Costo por accesorios:&nbsp;$&nbsp;${costoTotalDeAccesorios}
-			</h5>
-			<h2 class='text-success text-center'>
-				Total:&nbsp;$&nbsp;${costoFinal}
-			</h2>
-			<form:form action="confirmar-alquiler" method="POST">
+			<div class="col-md-4">
+				<img src="${vehiculo.imagen}" alt="imagen" class="img-responsive" />
+			</div>
+			<div class="col-md-4">
+				<div class="page-header">
+					<h2>${vehiculo.marca}&nbsp;${vehiculo.nombre}</h2>
+				</div>
+				<p>
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					${vehiculo.capacidadPasajeros} Personas
+				</p>
+				<p>
+					<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+					${vehiculo.capacidadValijas} Valijas
+				</p>
+			</div>
+			<div class="col-md-4">
+				<h5 class='text-muted text-center'>
+					Retirado de la sucursal:&nbsp;${sucursal.ciudad}.
+				</h5>
+				<h5 class='text-muted text-center'>
+					Plazo entre:&nbsp;${reserva.fechaInicio}<br>~ ${reserva.fechaFin}.
+				</h5>
+				<h5 class='text-muted text-center'>
+					Cantidad de d&iacute;as:&nbsp;${cantidadDias}.
+				</h5>
+				<h5 class='text-muted text-center'>
+					Costo por d&iacute;a:&nbsp;$&nbsp;${costoPorDia}
+				</h5>
+				<h5 class='text-muted text-center'>
+					Accesorios:<br>
+					<c:forEach items="${listAccesorios}" var="accesorios">
+						<c:out value="${accesorios.nombre} ~ $ ${accesorios.costoDia}/d ~ $ ${accesorios.costoDia*cantidadDias}" /><br>
+					</c:forEach>
+				</h5>
+				<h5 class='text-muted text-center'>
+					Costo por accesorios:&nbsp;$&nbsp;${costoTotalDeAccesorios}
+				</h5>
+			</div>
+			<div class="col-sm-12 text-center" style="margin-top: 2em;">
+				<h2 class='text-success'>
+					Total:&nbsp;$&nbsp;${costoFinal}
+				</h2>
+				<form:form action="confirmar-alquiler" method="POST">
 				<input type="hidden" value="${reserva.idReserva}" name="idReserva">
 				<input type="hidden" value="${costoFinal}" name="costoFinal">
-				<button class="btn btn-success" type="submit"
-					style="margin-left: 125px;">
-					<span class="glyphicon glyphicon-ok"></span>&nbsp;Confirmar
-					Alquiler
+				<button class="btn btn-block btn-success" type="submit">
+					<span class="glyphicon glyphicon-ok"></span>
+					&nbsp;Confirmar Alquiler
 				</button>
 			</form:form>
-
+			</div>
 		</div>
-	</div>
 	</main>
 </body>
 </html>
