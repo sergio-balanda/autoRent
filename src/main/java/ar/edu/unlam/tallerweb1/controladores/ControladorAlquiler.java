@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -63,26 +64,30 @@ public class ControladorAlquiler {
 		return new ModelAndView("confirmar-alquiler", modelo);
 	}
 
-	@RequestMapping(path = "/prepararAlquiler", method = RequestMethod.POST)
+	@RequestMapping(path = "/preparar-alquiler", method = RequestMethod.POST)
 	public ModelAndView preparar(@RequestParam("idReserva") Integer idReserva,
 			@RequestParam("idSucursal") Integer idSucursal, @RequestParam("idVehiculo") Integer idVehiculo,
 			@RequestParam("fechaInicio") String fechaInicio, @RequestParam("fechaFin") String fechaFin,
 			@RequestParam("costoOrigen") Double costoOrigen,
 			@RequestParam("accesorios") ArrayList<Integer> accesorios) {
 		ModelMap modelo = new ModelMap();
+		List<Accesorio> listAccesorios = new ArrayList<Accesorio>();
 		Long cantidadDias = servicioReserva.calcularCantidadDeDias(fechaInicio, fechaFin);
 		Double costoTotalDeAccesorios = servicioAccesorio.calcularPrecioPorAccesorios(accesorios, cantidadDias);
 		Double costoFinal = costoOrigen + costoTotalDeAccesorios;
-		modelo.put("costoTotalDeAccesorios", costoTotalDeAccesorios);
-		modelo.put("accesorios", accesorios);
+		for(Integer accesorio: accesorios) {
+			listAccesorios.add(servicioAccesorio.buscarAccesorios(accesorio));	
+		}
+		modelo.put("listAccesorios", listAccesorios);
 		modelo.put("sucursal", servicioSucursal.buscarSucursales(idSucursal));
 		modelo.put("vehiculo", servicioVehiculo.buscarVehiculos(idVehiculo));
 		modelo.put("reserva", servicioReserva.buscarReservas(idReserva));
 		modelo.put("cantidadDias", cantidadDias);
-		modelo.put("costoOrigen", costoOrigen);
 		modelo.put("costoPorDia", servicioCategoria.verCostoDiario(idVehiculo));
+		modelo.put("costoOrigen", costoOrigen);
+		modelo.put("costoTotalDeAccesorios", costoTotalDeAccesorios);
 		modelo.put("costoFinal", costoFinal);
-		return new ModelAndView("prepararAlquiler", modelo);
+		return new ModelAndView("preparar-alquiler", modelo);
 	}
 
 	@RequestMapping(path = "finalizar-alquiler", method = RequestMethod.POST)

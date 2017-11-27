@@ -60,7 +60,7 @@
 							Retirado de la sucursal: ${sucursal}.
 						</h5>
 						<h5 class='text-muted text-center'>
-							Plazo entre: ${fechaDesde} ~ ${fechaHasta}.
+							Plazo entre: ${fechaDesde} <br>~ ${fechaHasta}.
 						</h5>
 						<h5 class='text-muted text-center'>
 							Cantidad de d&iacute;as: ${cantidadDias}.

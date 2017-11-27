@@ -59,5 +59,5 @@ INSERT INTO Accesorio (nombre, costoDia , imagen) VALUES
 ('GPS', 75.00,'img/gps.jpg'),
 ('Telepeaje', 100.00,'img/telepeaje.jpg'),
 ('Porta equipaje', 50.00,'img/portaeq.jpg'),
-('Carro para valijas', 50.00,'img/carro.jpg'),
-('Transporte al aeropuerto', 100.00,'img/taxi.jpg');
+('Asientos para bebes', 50.00,'img/asientos-bebe.jpg'),
+('Radio Satelital', 100.00,'img/radio-satelital.jpg');
