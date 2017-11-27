@@ -17,6 +17,6 @@ public interface AlquilerDao {
 	List<Alquiler> listarAlquileres();
 	
 	public Alquiler obtenerAlquilerConElIdReserva (Integer idReserva);
-
-	public void finalizarViaje (Integer idAlquiler);
+	//este metodo no es necesario
+//	public void finalizarViaje (Integer idAlquiler);
 }

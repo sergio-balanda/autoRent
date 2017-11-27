@@ -55,8 +55,10 @@ public class ServicioAlquilerImpl implements ServicioAlquiler {
 	public Alquiler obtenerAlquilerConElIdReserva (Integer idReserva) {
 		return alquilerDao.obtenerAlquilerConElIdReserva(idReserva);
 	}
-	
+	//en dao finalizar no es necesario, despues borralo esta comentado
+	//en el controlador te  falto llamar al metodo
 	public void finalizarViaje (Integer idAlquiler) {
-		 alquilerDao.finalizarViaje (idAlquiler);
+		Alquiler alquiler = alquilerDao.buscarAlquiler(idAlquiler); 
+		alquiler.setEstado("finalizado");
 	}
 }

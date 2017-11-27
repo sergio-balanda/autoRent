@@ -38,7 +38,6 @@ public class ControladorAlquiler {
 	@Inject
 	private ServicioAlquiler servicioAlquiler;
 
-
 	@RequestMapping("/listado-accesorios")
 	public ModelAndView irAccesorios() {
 		ModelMap modelo = new ModelMap();
@@ -52,10 +51,12 @@ public class ControladorAlquiler {
 		modelo.put("accesorios", accesorios);
 		return new ModelAndView("pruebas", modelo);
 	}
+
 	@RequestMapping(path = "/confirmar-alquiler", method = RequestMethod.POST)
-	public ModelAndView confirmarAlquiler(@RequestParam("idReserva") Integer idReserva, @RequestParam("costoFinal") Double costoFinal) {
+	public ModelAndView confirmarAlquiler(@RequestParam("idReserva") Integer idReserva,
+			@RequestParam("costoFinal") Double costoFinal) {
 		ModelMap modelo = new ModelMap();
-		
+
 		servicioAlquiler.generarAlquiler(servicioReserva.buscarReservas(idReserva), costoFinal);
 		modelo.put("costoFinal", costoFinal);
 		modelo.put("idReserva", idReserva);
@@ -83,15 +84,14 @@ public class ControladorAlquiler {
 		modelo.put("costoFinal", costoFinal);
 		return new ModelAndView("prepararAlquiler", modelo);
 	}
-	
-	@RequestMapping(path="finalizar-alquiler", method = RequestMethod.POST)
-	public ModelAndView finalizarAlquiler (@RequestParam ("idAlquiler") Integer idAlquiler) {
-		ModelMap modelo = new ModelMap ();
-		modelo.put("idAlquiler", idAlquiler);
-		
-		
-		return new ModelAndView ("finalizar-viaje", modelo);
-	}
 
+	@RequestMapping(path = "finalizar-alquiler", method = RequestMethod.POST)
+	public ModelAndView finalizarAlquiler(@RequestParam("idAlquiler") Integer idAlquiler) {
+		ModelMap modelo = new ModelMap();
+		modelo.put("idAlquiler", idAlquiler);
+		servicioAlquiler.finalizarViaje(idAlquiler);
+
+		return new ModelAndView("redirect:/controlReservas", modelo);
+	}
 
 }
