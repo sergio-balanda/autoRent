@@ -108,7 +108,7 @@ public class ServicioReservaImpl implements ServicioReserva {
 
 	@Override
 	public Reserva guardarActualizarReserva(Integer idReserva, String fechaInicio, String fechaFin, float costoOrigen,
-			Integer fkVehiculoR, Boolean finalizada, Integer id_usuario) {
+			Integer fkVehiculoR, Integer id_usuario) {
 		Reserva reserva = null;
 		// CAST de String To Date
 		SimpleDateFormat formatodsd = new SimpleDateFormat("yyyy-MM-dd");
@@ -133,13 +133,9 @@ public class ServicioReservaImpl implements ServicioReserva {
 		} else {
 			reserva = new Reserva();
 		}
-
 		reserva.setCostoOrigen(costoOrigen);
 		reserva.setFechaFin(datehst);
-
-
 		reservaDao.guardarActualizarReserva(reserva);
-
 		return reserva;
 	}
 

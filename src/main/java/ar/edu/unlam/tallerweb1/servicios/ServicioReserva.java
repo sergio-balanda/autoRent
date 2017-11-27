@@ -14,7 +14,7 @@ public interface ServicioReserva {
 	public List<Reserva> listarReservas();
 
 	Reserva guardarActualizarReserva(Integer idReserva, String fechaInicio, String fechaFin, float costoOrigen,
-			Integer fkVehiculoR, Boolean finalizada, Integer id_usuario);
+			Integer fkVehiculoR, Integer id_usuario);
 
 	Reserva UltimaReservaDeUnUsuario(Integer id);
 

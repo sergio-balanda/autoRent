@@ -62,12 +62,6 @@ INSERT INTO Alquiler (fkReserva, finalizada, precioFinal) VALUES
 (2, TRUE, 2937.00),
 (3, FALSE, 6655.50);
 
-INSERT INTO AlquilerAccesorio (fkAlquiler, fkAccesorio) VALUES
-(1, 2),
-(1, 3),
-(2, 1),
-(3, 5);
-
 INSERT INTO Accesorio (nombre, costoDia , imagen) VALUES
 ('Ninguno', 00.00, ' '),
 ('GPS', 75.00, 'img/gps.jpg'),
@@ -75,3 +69,9 @@ INSERT INTO Accesorio (nombre, costoDia , imagen) VALUES
 ('Porta equipaje', 50.00, 'img/portaeq.jpg'),
 ('Asientos para bebes', 50.00, 'img/asientos-bebe.jpg'),
 ('Radio Satelital', 100.00, 'img/radio-satelital.jpg');
+
+INSERT INTO AlquilerAccesorio (fkAlquiler, fkAccesorio) VALUES
+(1, 2),
+(1, 3),
+(2, 1),
+(3, 5);
