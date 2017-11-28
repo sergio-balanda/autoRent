@@ -19,7 +19,7 @@
 </head>
 <body class='bkgd'>
 	<c:if test="${usuario.administrador==true}">
-		<c:redirect url="controlReservas" />
+		<c:redirect url="listado-reservas" />
 	</c:if>
 	<header class='page-header'>
 		<nav class='navbar navbar-inverse navbar-fixed-top'>
@@ -29,7 +29,7 @@
 				</div>
 				<ul class='nav navbar-nav'>
 					<li class='active'><a href='#'>Home</a></li>
-					<li class='disabled'><a href='#'>Sucursales</a></li>
+					<li><a href='sucursales'>Sucursales</a></li>
 					<li><a href='listado-vehiculos'>Vehiculos</a></li>
 					<li><a href='listado-accesorios'>Accesorios</a></li>
 					<li class='disabled'><a href='#'>Servicios</a></li>

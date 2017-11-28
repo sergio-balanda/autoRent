@@ -16,11 +16,13 @@ public class SucursalDaoImpl implements SucursalDao {
 	@Inject
 	private SessionFactory sessionFactory;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Sucursal> obtenerSucursales() {
 		final Session session = sessionFactory.getCurrentSession();
-		@SuppressWarnings("unchecked")
-		List<Sucursal> sucursales = session.createCriteria(Sucursal.class).addOrder(Order.asc("idSucursal")).list();
+		List<Sucursal> sucursales = session.createCriteria(Sucursal.class)
+				.addOrder(Order.asc("idSucursal"))
+				.list();
 		return sucursales;
 	}
 

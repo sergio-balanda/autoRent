@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Sucursal;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAccesorio;
@@ -64,10 +65,17 @@ public class ControladorFront {
 	}
 	
 	@RequestMapping("/listado-accesorios")
-	public ModelAndView irAccesorios() {
+	public ModelAndView listadoAccesorios() {
 		ModelMap modelo = new ModelMap();
 		modelo.put("accesorios", servicioAccesorio.listarAccesorios());
 		return new ModelAndView("listado-accesorios", modelo);
 	}
 
+	@RequestMapping("/sucursales")
+	public ModelAndView verSucursales() {
+		ModelMap modelo = new ModelMap();
+		List<Sucursal> sucursales = servicioSucursal.obtenerSucursales();
+		modelo.put("sucursales", sucursales);
+		return new ModelAndView("sucursales", modelo);
+	}
 }
