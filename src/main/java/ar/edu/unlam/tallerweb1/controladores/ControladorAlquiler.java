@@ -49,12 +49,15 @@ public class ControladorAlquiler {
 
 	@RequestMapping(path = "/iniciar-alquiler", method = RequestMethod.POST)
 	public ModelAndView iniciarAlquiler(@RequestParam("idReserva") Integer idReserva,
-			@RequestParam("costoFinal") Double costoFinal, @ModelAttribute("accesorios") ArrayList<Accesorio> listAccesorios) {
+			@RequestParam("costoFinal") Double costoFinal, @RequestParam("accesorios") ArrayList<Integer> idAccesorios) {
 		ModelMap modelo = new ModelMap();
 		//servicioAlquilerAccesorio.generarAlquilerAccesorio(listAccesorios, idReserva);
 		servicioAlquiler.generarAlquiler(servicioReserva.buscarReservas(idReserva), costoFinal);
 		Alquiler alquiler = servicioAlquiler.obtenerAlquilerConElIdReserva(idReserva);
-		modelo.put("listAccesorios", listAccesorios);
+		for(Integer idAccesorio: idAccesorios) {
+			Accesorio accesorio = servicioAccesorio.buscarAccesorios(idAccesorio);	
+			servicioAlquilerAccesorio.generarAlquilerAccesorio(accesorio, alquiler);
+		}
 		modelo.put("alquiler", alquiler);
 		return new ModelAndView("iniciar-alquiler", modelo);
 	}

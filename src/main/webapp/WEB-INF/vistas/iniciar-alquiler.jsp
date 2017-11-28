@@ -25,33 +25,31 @@
 		</nav>
 	</header>
 	<main style='margin-top: -20px;'>
-	<div class='container'
-		style='background: white; margin-top: 20px; min-height: 709px;'>
-		<div class="panel panel-warning" style='margin-top: 200px; margin-bottom: 5em;'>
-			<div class="panel-heading">
-				<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-				¡Felicidades!
-			</div>
-			<div class="panel-body">
-				<h1 class="text-uppercase text-warning text-center">
-				¡El alquiler se ha generado con &eacute;xito!
-				</h1>
-				<blockquote>
-					<h3>
-					<br>
-					El costo a abonar por el cliente es:&nbsp;$&nbsp;${alquiler.precioFinal}
-					</h3>
-					<footer class="blockquote-footer">
-					El código del alquiler es:&nbsp;&nbsp;${alquiler.idAlquiler}
-					</footer>
-				</blockquote>
-			</div>
-	    </div>
-	    <div class="col-sm-12 text-center">
-	    	<br>
-	    	<a href="listado-alquileres" class="btn btn-primary">Volver al inicio</a>
-	    </div>
-	</div>
+		<div class='container' style='background: white; margin-top: 20px; min-height: 709px;'>
+			<div class="panel panel-warning" style='margin-top: 200px; margin-bottom: 5em;'>
+				<div class="panel-heading">
+					<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+					¡Felicidades!
+				</div>
+				<div class="panel-body">
+					<h1 class="text-uppercase text-warning text-center">
+						¡El alquiler se ha generado con &eacute;xito!
+					</h1>
+					<blockquote>
+						<h3>
+							El costo a abonar por el cliente es:&nbsp;$&nbsp;${alquiler.precioFinal}
+						</h3>
+						<footer class="blockquote-footer">
+							El código del alquiler es:&nbsp;&nbsp;${alquiler.idAlquiler}
+						</footer>
+					</blockquote>
+				</div>
+		    </div>
+		    <div class="col-sm-12 text-center">
+		    	<br>
+		    	<a href="listado-alquileres" class="btn btn-primary">Volver al inicio</a>
+		    </div>
+		</div>
 	</main>
 </body>
 </html>
