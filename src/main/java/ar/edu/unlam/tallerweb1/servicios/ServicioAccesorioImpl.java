@@ -33,4 +33,9 @@ public class ServicioAccesorioImpl implements ServicioAccesorio {
 		return accesorioDao.calcularPrecioPorAccesorios(accesorios, cantidadDeDias);
 	}
 
+	@Override
+	public List<Accesorio> buscarAccesoriosPorAlquiler(Integer idAlquiler) {
+		return accesorioDao.buscarAccesoriosPorAlquiler(idAlquiler);
+	}
+
 }// fin

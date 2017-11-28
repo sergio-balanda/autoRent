@@ -8,10 +8,12 @@ import javax.inject.Inject;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Accesorio;
+import ar.edu.unlam.tallerweb1.modelo.AlquilerAccesorio;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
 
 @Service("accesorioDao")
@@ -42,7 +44,7 @@ public class AccesorioDaoImpl implements AccesorioDao {
 	}*/
 
 	@Override
-	public Double calcularPrecioPorAccesorios (ArrayList<Integer> accesorios, Long cantidadDeDias) {
+	public Double calcularPrecioPorAccesorios(ArrayList<Integer> accesorios, Long cantidadDeDias) {
 		Double sumaDePrecios = 0.0;
 		for (Integer accesorio : accesorios) {
 			Double costoDia = buscarAccesorios(accesorio).getCostoDia();
@@ -51,4 +53,16 @@ public class AccesorioDaoImpl implements AccesorioDao {
 		Double costoTotalDeAccesorios = sumaDePrecios * cantidadDeDias;
 		return costoTotalDeAccesorios;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Accesorio> buscarAccesoriosPorAlquiler(Integer idAlquiler) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Accesorio.class, "Accesorio")
+				.createAlias("Accesorio.accesorio", "AA")
+				.createAlias("AA.fkAlquiler", "Alquiler")
+				.add(Restrictions.eq("Alquiler.idAlquiler", idAlquiler))
+				.list();
+	}
+	
 }

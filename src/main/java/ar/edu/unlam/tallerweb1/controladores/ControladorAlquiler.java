@@ -15,6 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Accesorio;
 import ar.edu.unlam.tallerweb1.modelo.Alquiler;
+import ar.edu.unlam.tallerweb1.modelo.Reserva;
+import ar.edu.unlam.tallerweb1.modelo.Sucursal;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAccesorio;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAlquiler;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
@@ -97,4 +101,24 @@ public class ControladorAlquiler {
 		modelo.put("alquileres", servicioAlquiler.listarAlquileres());
 		return new ModelAndView("listado-alquileres", modelo);
 	}
+	
+	@RequestMapping(value = "/detalle-alquiler", method = RequestMethod.GET)
+	public ModelAndView verAlquiler(@RequestParam("alquiler") Integer idAlquiler) {
+		ModelMap modelo = new ModelMap();
+		Alquiler alquiler = servicioAlquiler.buscarAlquiler(idAlquiler);
+		Reserva reserva = alquiler.getFkReserva();
+		Vehiculo vehiculo = reserva.getFkVehiculoR();
+		Usuario usuario = reserva.getUsuario();
+		Sucursal sucursal = reserva.getFkSucursalR();
+		List<Accesorio> accesorios = servicioAccesorio.buscarAccesoriosPorAlquiler(idAlquiler);
+		modelo.put("alquiler", alquiler);
+		modelo.put("reserva", reserva);
+		modelo.put("vehiculo", vehiculo);
+		modelo.put("usuario", usuario);
+		modelo.put("sucursal", sucursal);
+		modelo.put("accesorios", accesorios);
+		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(usuario.getId()));
+		return new ModelAndView("detalle-alquiler", modelo);
+	}
+	
 }
