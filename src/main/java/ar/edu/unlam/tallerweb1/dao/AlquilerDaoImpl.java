@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +41,8 @@ public class AlquilerDaoImpl implements AlquilerDao {
 	public Alquiler buscarAlquiler(Integer idAlquiler) {
 		final Session session = sessionFactory.getCurrentSession();
 		Alquiler alquiler = (Alquiler) session.createCriteria(Alquiler.class)
-				.add(Restrictions.eq("idAlquiler", idAlquiler)).uniqueResult();
+				.add(Restrictions.eq("idAlquiler", idAlquiler))
+				.uniqueResult();
 		return alquiler;
 	}
 
@@ -48,7 +50,8 @@ public class AlquilerDaoImpl implements AlquilerDao {
 	@Override
 	public List<Alquiler> listarAlquileres() {
 		final Session session = sessionFactory.getCurrentSession();
-		List<Alquiler> alquileres = session.createCriteria(Alquiler.class)
+		List<Alquiler> alquileres = session.createCriteria(Alquiler.class, "A")
+				.addOrder(Order.asc("A.finalizada"))
 				.list();
 		return alquileres;
 	}
