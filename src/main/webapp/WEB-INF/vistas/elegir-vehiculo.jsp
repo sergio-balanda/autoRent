@@ -43,7 +43,7 @@
 				</div>
 			</div>
 			</c:if>
-			<form action="generar-reserva" method="GET">
+			<form action="confirmar-reserva" method="GET">
 				<c:forEach items="${vehiculos}" var="vehiculo" >
 						<div class='col-sm-4 well' style="text-align: center; background: rgba(255, 255, 255, 0.8) !important;">
 							<h3><c:out value="${vehiculo.marca}" /></h3>
@@ -57,7 +57,7 @@
 								<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
 								<c:out value="${vehiculo.capacidadValijas}" />
 							</h5>
-							<c:url value="/generar-reserva" var="displayURL">
+							<c:url value="/confirmar-reserva" var="displayURL">
 								<c:param name="idVehiculo" value="${vehiculo.idVehiculo}" />
 								<c:param name="fechaDesde" value="${fechaDesde}" />
 								<c:param name="fechaHasta" value="${fechaHasta}" />

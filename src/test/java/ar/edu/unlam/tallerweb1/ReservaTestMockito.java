@@ -3,20 +3,16 @@ package ar.edu.unlam.tallerweb1;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
-
-import ar.edu.unlam.tallerweb1.controladores.ControladorAdmin;
 import ar.edu.unlam.tallerweb1.controladores.ControladorFront;
 import ar.edu.unlam.tallerweb1.controladores.ControladorLogin;
+import ar.edu.unlam.tallerweb1.controladores.ControladorReserva;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.Sucursal;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -78,7 +74,7 @@ public class ReservaTestMockito {
 		listaReservas.add(reservaDos);
 		listaReservas.add(reservaTres);
 
-		ControladorAdmin controladorFake = new ControladorAdmin();
+		ControladorReserva controladorFake = new ControladorReserva();
 		ServicioReserva servicioFake = mock(ServicioReserva.class);
 
 		when(servicioFake.listarReservas()).thenReturn(listaReservas);
@@ -91,7 +87,7 @@ public class ReservaTestMockito {
 		controladorFake.setServicioReserva(servicioFake);
 		// se hace referencia al controlador el metodo del modelandview se llama
 		// verVistaReservas
-		ModelAndView miVista = controladorFake.verVistaReservas();
+		ModelAndView miVista = controladorFake.listadoReservas();
 		// vista-reservas es el return del controlador
 		assertThat(miVista.getViewName()).isEqualTo("controlReservas");
 		// System.out.println(servicioFake.listarReservas().size());

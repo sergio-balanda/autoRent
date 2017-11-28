@@ -13,6 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.Sucursal;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioAccesorio;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioSucursal;
@@ -29,8 +32,10 @@ public class ControladorReserva {
 	private ServicioCategoria servicioCategoria;
 	@Inject
 	private ServicioSucursal servicioSucursal;
+	@Inject
+	private ServicioAccesorio servicioAccesorio;
 
-	@RequestMapping("/generar-reserva")
+	@RequestMapping("/confirmar-reserva")
 	public ModelAndView generaReserva(@RequestParam("idVehiculo") Integer idVehiculo,
 			@RequestParam("fechaDesde") String fechaDesde, @RequestParam("fechaHasta") String fechaHasta,
 			@RequestParam("sucursal") String sucursal) {
@@ -43,7 +48,7 @@ public class ControladorReserva {
 		modelo.put("cantidadDias", servicioReserva.calcularCantidadDeDias(fechaDesde, fechaHasta));
 		modelo.put("costoPorDia", servicioCategoria.verCostoDiario(idVehiculo));
 		modelo.put("precioVehiculo", servicioCategoria.calcularCostoOrigen(fechaDesde, fechaHasta, idVehiculo));
-		return new ModelAndView("reserva", modelo);
+		return new ModelAndView("confirmar-reserva", modelo);
 	}
 
 	@RequestMapping(path = "/guardar-reserva", method = RequestMethod.POST)
@@ -61,6 +66,42 @@ public class ControladorReserva {
 				idUsuario);
 		modelo.put("idReserva", reserva.getIdReserva());
 		return new ModelAndView("guardar-reserva", modelo);
+	}
+	
+	@RequestMapping("/listado-reservas")
+	public ModelAndView listadoReservas() {
+		ModelMap modelo = new ModelMap();
+		modelo.put("reservas", servicioReserva.listarReservas());
+		return new ModelAndView("listado-reservas", modelo);
+	}
+
+	@RequestMapping(value = "/detalle-reserva", method = RequestMethod.GET)
+	public ModelAndView verReserva(@RequestParam("reserva") Integer reserva) {
+		ModelMap modelo = new ModelMap();
+		modelo.put("idReserva", reserva);
+		modelo.put("reserva", servicioReserva.buscarReservas(reserva));
+		modelo.put("FkSucursalR", servicioReserva.buscarReservas(reserva).getFkSucursalR().getIdSucursal());
+		modelo.put("fkVehiculoR", servicioReserva.buscarReservas(reserva).getFkVehiculoR().getIdVehiculo());
+		// busco usuario de la reserva para mostrar
+		Usuario UsuarioDeLaReserva = servicioReserva.buscarReservas(reserva).getUsuario();
+		modelo.put("UsuarioDeLaReserva", UsuarioDeLaReserva);
+		// busco vehiculo de la reserva para mostrar
+		Integer idVehiculo = servicioReserva.buscarReservas(reserva).getFkVehiculoR().getIdVehiculo();
+		Vehiculo vehiculoDeLaReserva = servicioVehiculo.buscarVehiculos(idVehiculo);
+		modelo.put("vehiculoDeLaReserva", vehiculoDeLaReserva);
+		// busco sucursal de la reserva para mostrar
+		Integer idSucursal = servicioReserva.buscarReservas(reserva).getFkSucursalR().getIdSucursal();
+		Sucursal sucursalDeLaReserva = servicioSucursal.buscarSucursales(idSucursal);
+		modelo.put("sucursalDeLaReserva", sucursalDeLaReserva);
+		// lista de accesorios
+		modelo.put("accesorios", servicioAccesorio.listarAccesorios());
+		// Sistema de puntos
+		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(UsuarioDeLaReserva.getId()));
+		return new ModelAndView("detalle-reserva", modelo);
+	}
+
+	public void setServicioReserva(ServicioReserva servicioReserva) {
+		this.servicioReserva = servicioReserva;
 	}
 
 }
