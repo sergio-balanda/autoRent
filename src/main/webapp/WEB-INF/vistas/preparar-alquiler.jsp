@@ -30,7 +30,7 @@
 			<div class="alert alert-warning"
 				style='margin-top: 20px; margin-bottom: 5em;'>
 				<span style="margin-left: 1em; margin-right: 0.5em;"
-					class="glyphicon glyphicon-time" aria-hidden="true"></span>
+					class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>
 				Esperando confirmaci&oacute;n de la reserva "${reserva.idReserva}"...
 			</div>
 			<div class="col-md-4">
@@ -60,19 +60,27 @@
 					Cantidad de d&iacute;as:&nbsp;${cantidadDias}.
 				</h5>
 				<h5 class='text-muted text-center'>
-					Costo por d&iacute;a:&nbsp;$&nbsp;${costoPorDia}
+					Costo del veh&iacute;culo:&nbsp;$&nbsp;${costoPorDia}<sub>/d&iacute;a</sub>
 				</h5>
-				<h5 class='text-muted text-center'>
-					Accesorios:<br>
-					<c:forEach items="${listAccesorios}" var="accesorios">
-						<c:out value="${accesorios.nombre} ~ $ ${accesorios.costoDia}/d ~ $ ${accesorios.costoDia*cantidadDias}" /><br>
-					</c:forEach>
-				</h5>
-				<h5 class='text-muted text-center'>
-					Costo por accesorios:&nbsp;$&nbsp;${costoTotalDeAccesorios}
-				</h5>
+				<c:forEach items="${listAccesorios}" var="accesorios">
+					<h5 class='text-muted text-center'>
+						${accesorios.nombre}:
+						&emsp;$&nbsp;${accesorios.costoDia}<sub>/d&iacute;a</sub>
+						&emsp;<small><span class="glyphicon glyphicon-arrow-right"></span></small>
+						&emsp;$&nbsp;${accesorios.costoDia*cantidadDias}<sub>/total</sub>
+					</h5>
+				</c:forEach>
 			</div>
 			<div class="col-sm-12 text-center" style="margin-top: 2em;">
+				<hr>
+				<br>
+				<h5 class='text-muted text-center'>
+					Costo original de la reserva:&nbsp;$&nbsp;${reserva.costoOrigen}
+				</h5>
+				<h5 class='text-muted text-center'>
+					<small><span class="glyphicon glyphicon-plus"></span></small>
+					&nbsp;Costo adicional por accesorios:&nbsp;$&nbsp;${costoTotalDeAccesorios}
+				</h5>
 				<h2 class='text-success'>
 					Total:&nbsp;$&nbsp;${costoFinal}
 				</h2>

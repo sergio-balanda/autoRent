@@ -72,7 +72,7 @@
 							Total: $ ${precioVehiculo}
 						</h2>
 						<div class='text-center'>
-							<form:form action="guardar-reserva" method="POST">
+							<form:form action="iniciar-reserva" method="POST">
 								<input type="hidden" name="idVehiculo" id="idVehiculo" value="${idVehiculo}" />
 								<input type="hidden" name="usuario" id="usuario" value="${usuario.id}" />
 								<input type="hidden" name="fechaDesde" id="fechaDesde" value="${fechaDesde}" />

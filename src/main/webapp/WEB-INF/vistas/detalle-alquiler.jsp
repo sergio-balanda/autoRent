@@ -87,8 +87,9 @@
 							</c:choose>
 							<p><b>Accesorios Contratados :</b></p>
 							<c:forEach items="${accesorios}" var="accesorio">
-								<p>&emsp;<small><span class="glyphicon glyphicon-plus"></span></small>&emsp;
-								<c:out value="${accesorio.nombre}" /><br>
+								<p>&emsp;&emsp;&emsp;&emsp;<small><span class="glyphicon glyphicon-plus"></span></small>
+								&emsp;${accesorio.nombre}
+								<br>
 							</c:forEach>
 							</p>
 							<p><b>Costo total :</b> $ ${alquiler.precioFinal}<p>

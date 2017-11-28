@@ -1,8 +1,5 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.Sucursal;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -35,8 +31,8 @@ public class ControladorReserva {
 	@Inject
 	private ServicioAccesorio servicioAccesorio;
 
-	@RequestMapping("/confirmar-reserva")
-	public ModelAndView generaReserva(@RequestParam("idVehiculo") Integer idVehiculo,
+	@RequestMapping("/preparar-reserva")
+	public ModelAndView prepararReserva(@RequestParam("idVehiculo") Integer idVehiculo,
 			@RequestParam("fechaDesde") String fechaDesde, @RequestParam("fechaHasta") String fechaHasta,
 			@RequestParam("sucursal") String sucursal) {
 		ModelMap modelo = new ModelMap();
@@ -48,11 +44,11 @@ public class ControladorReserva {
 		modelo.put("cantidadDias", servicioReserva.calcularCantidadDeDias(fechaDesde, fechaHasta));
 		modelo.put("costoPorDia", servicioCategoria.verCostoDiario(idVehiculo));
 		modelo.put("precioVehiculo", servicioCategoria.calcularCostoOrigen(fechaDesde, fechaHasta, idVehiculo));
-		return new ModelAndView("confirmar-reserva", modelo);
+		return new ModelAndView("preparar-reserva", modelo);
 	}
 
-	@RequestMapping(path = "/guardar-reserva", method = RequestMethod.POST)
-	public ModelAndView guardaReserva(@RequestParam("idVehiculo") Integer idVehiculo,
+	@RequestMapping(path = "/iniciar-reserva", method = RequestMethod.POST)
+	public ModelAndView iniciarReserva(@RequestParam("idVehiculo") Integer idVehiculo,
 			@RequestParam("idVehiculo") Integer fkVehiculo, @RequestParam("fechaDesde") String fechaDesde,
 			@RequestParam("fechaHasta") String fechaHasta, @RequestParam("sucursal") String ciudadSucursal,
 			@RequestParam(value = "usuario") Integer idUsuario) {
@@ -65,7 +61,7 @@ public class ControladorReserva {
 		Reserva reserva = servicioReserva.guardarReserva(idVehiculo, ciudadSucursal, fechaDesde, fechaHasta, fkVehiculo,
 				idUsuario);
 		modelo.put("idReserva", reserva.getIdReserva());
-		return new ModelAndView("guardar-reserva", modelo);
+		return new ModelAndView("iniciar-reserva", modelo);
 	}
 	
 	@RequestMapping("/listado-reservas")

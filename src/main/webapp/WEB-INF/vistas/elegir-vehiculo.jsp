@@ -30,9 +30,9 @@
 			</div>
 		</nav>
 	</header>
-	<main style='margin-top: -20px;'>
-		<div class="container style="background=white; min-height:709px margin-top:20px">"
-			<div class="alert alert-warning" style='margin-top: 20px;'>
+	<main style="margin-top: -20px;">
+		<div class="container" style="background:white; min-height:709px; margin-top:20px;">
+			<div class="alert alert-warning" style="margin-top: 20px;">
 				<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 				Se muestran los veh&iacute;culos disponibles entre el ${fechaDesde} y el ${fechaHasta} en la sucursal de ${sucursal}
 			</div>
@@ -43,7 +43,7 @@
 				</div>
 			</div>
 			</c:if>
-			<form action="confirmar-reserva" method="GET">
+			<form action="preparar-reserva" method="GET">
 				<c:forEach items="${vehiculos}" var="vehiculo" >
 						<div class='col-sm-4 well' style="text-align: center; background: rgba(255, 255, 255, 0.8) !important;">
 							<h3><c:out value="${vehiculo.marca}" /></h3>
@@ -57,7 +57,7 @@
 								<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
 								<c:out value="${vehiculo.capacidadValijas}" />
 							</h5>
-							<c:url value="/confirmar-reserva" var="displayURL">
+							<c:url value="/preparar-reserva" var="displayURL">
 								<c:param name="idVehiculo" value="${vehiculo.idVehiculo}" />
 								<c:param name="fechaDesde" value="${fechaDesde}" />
 								<c:param name="fechaHasta" value="${fechaHasta}" />
