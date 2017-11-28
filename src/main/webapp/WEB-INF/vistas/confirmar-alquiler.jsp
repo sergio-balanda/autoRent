@@ -5,7 +5,7 @@
 		<nav class='navbar navbar-inverse navbar-fixed-top'>
 			<div class='container-fluid'>
 				<div class='navbar-header'>
-					<a class='navbar-brand' href='#'>AutoRent</a>
+					<a class='navbar-brand' href='listado-reservas'>AutoRent</a>
 				</div>
 				<ul class='nav navbar-nav'>
 					<li><a href='listado-reservas'>Reservas</a></li>
@@ -49,7 +49,7 @@
 	    </div>
 	    <div class="col-sm-12 text-center">
 	    	<br>
-	    	<a href="control-reservas" class="btn btn-primary">Volver al inicio</a>
+	    	<a href="listado-reservas" class="btn btn-primary">Volver al inicio</a>
 	    </div>
 	</div>
 	</main>

@@ -31,7 +31,7 @@ public class ControladorAdmin {
 	@Inject
 	private ServicioAlquiler servicioAlquiler;
 
-	@RequestMapping("/control-reservas")
+	@RequestMapping("/listado-reservas")
 	public ModelAndView verVistaReservas() {
 		ModelMap modelo = new ModelMap();
 		modelo.put("reservas", servicioReserva.listarReservas());
