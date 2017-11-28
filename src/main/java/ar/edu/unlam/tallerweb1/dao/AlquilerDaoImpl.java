@@ -44,11 +44,12 @@ public class AlquilerDaoImpl implements AlquilerDao {
 		return alquiler;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Alquiler> listarAlquileres() {
 		final Session session = sessionFactory.getCurrentSession();
-		@SuppressWarnings("unchecked")
-		List<Alquiler> alquileres = session.createCriteria(Alquiler.class).list();
+		List<Alquiler> alquileres = session.createCriteria(Alquiler.class)
+				.list();
 		return alquileres;
 	}
 	

@@ -17,7 +17,7 @@ $(function() {
 				</div>
 				<ul class='nav navbar-nav'>
 					<li class='active'><a href='#'>Reservas</a></li>
-					<li><a href='#'>Alquileres</a></li>
+					<li><a href='listado-alquileres'>Alquileres</a></li>
 					<li class='disabled'><a href='#'>Usuarios</a></li>
 				</ul>
 				<ul class='nav navbar-nav navbar-right'>

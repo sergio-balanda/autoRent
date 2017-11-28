@@ -91,4 +91,10 @@ public class ControladorAlquiler {
 		return new ModelAndView("redirect:/control-reservas", modelo);
 	}
 
+	@RequestMapping("/listado-alquileres")
+	public ModelAndView listadoAlquileres() {
+		ModelMap modelo = new ModelMap();
+		modelo.put("alquileres", servicioAlquiler.listarAlquileres());
+		return new ModelAndView("listado-alquileres", modelo);
+	}
 }

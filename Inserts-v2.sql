@@ -1,3 +1,5 @@
+-- DROP DATABASE IF EXISTS autorent;
+-- CREATE DATABASE IF NOT EXISTS autorent;
 USE autorent;
 
 /*
