@@ -76,7 +76,8 @@
 				<h2 class='text-success'>
 					Total:&nbsp;$&nbsp;${costoFinal}
 				</h2>
-				<form:form action="confirmar-alquiler" method="POST">
+				<form:form action="iniciar-alquiler" method="POST" modelAttribute="listAccesorios">
+				<inut type="hidden" value="${listAccesorios}" name="listAccesorios" path="listAccesorios">
 				<input type="hidden" value="${reserva.idReserva}" name="idReserva">
 				<input type="hidden" value="${costoFinal}" name="costoFinal">
 				<button class="btn btn-block btn-success" type="submit">

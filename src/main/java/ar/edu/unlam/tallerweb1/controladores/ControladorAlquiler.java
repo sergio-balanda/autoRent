@@ -21,6 +21,7 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAccesorio;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAlquiler;
+import ar.edu.unlam.tallerweb1.servicios.ServicioAlquilerAccesorio;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
@@ -42,21 +43,18 @@ public class ControladorAlquiler {
 	private ServicioCategoria servicioCategoria;
 	@Inject
 	private ServicioAlquiler servicioAlquiler;
-
+	@Inject
+	private ServicioAlquilerAccesorio servicioAlquilerAccesorio;
 	
-	@RequestMapping(path = "/guardar-accesorios", method = RequestMethod.POST)
-	public ModelAndView guardarAccesorios(@RequestParam("accesorios") String accesorios) {
-		ModelMap modelo = new ModelMap();
-		modelo.put("accesorios", accesorios);
-		return new ModelAndView("pruebas", modelo);
-	}
 
 	@RequestMapping(path = "/iniciar-alquiler", method = RequestMethod.POST)
 	public ModelAndView iniciarAlquiler(@RequestParam("idReserva") Integer idReserva,
-			@RequestParam("costoFinal") Double costoFinal) {
+			@RequestParam("costoFinal") Double costoFinal, @ModelAttribute("accesorios") ArrayList<Accesorio> listAccesorios) {
 		ModelMap modelo = new ModelMap();
+		//servicioAlquilerAccesorio.generarAlquilerAccesorio(listAccesorios, idReserva);
 		servicioAlquiler.generarAlquiler(servicioReserva.buscarReservas(idReserva), costoFinal);
 		Alquiler alquiler = servicioAlquiler.obtenerAlquilerConElIdReserva(idReserva);
+		modelo.put("listAccesorios", listAccesorios);
 		modelo.put("alquiler", alquiler);
 		return new ModelAndView("iniciar-alquiler", modelo);
 	}
@@ -75,6 +73,7 @@ public class ControladorAlquiler {
 		for(Integer accesorio: accesorios) {
 			listAccesorios.add(servicioAccesorio.buscarAccesorios(accesorio));	
 		}
+		modelo.put("accesorios", accesorios);	
 		modelo.put("listAccesorios", listAccesorios);
 		modelo.put("sucursal", servicioSucursal.buscarSucursales(idSucursal));
 		modelo.put("vehiculo", servicioVehiculo.buscarVehiculos(idVehiculo));

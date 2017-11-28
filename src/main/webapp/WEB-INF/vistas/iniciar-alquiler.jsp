@@ -42,7 +42,7 @@
 					El costo a abonar por el cliente es:&nbsp;$&nbsp;${alquiler.precioFinal}
 					</h3>
 					<footer class="blockquote-footer">
-					El código del alquiler es:&nbsp;$&nbsp;{alquiler.idAlquiler}
+					El código del alquiler es:&nbsp;&nbsp;${alquiler.idAlquiler}
 					</footer>
 				</blockquote>
 			</div>
