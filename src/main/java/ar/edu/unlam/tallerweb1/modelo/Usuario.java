@@ -18,7 +18,6 @@ public class Usuario {
 	private String cuit;
 	private Integer puntos;
 	private String nombre;
-
 	private Boolean administrador;
 
 	public Usuario() {

@@ -9,8 +9,8 @@
 				</div>
 				<ul class='nav navbar-nav'>
 					<li><a href='listado-reservas'>Reservas</a></li>
-					<li class='active'><a href='#'>Alquileres</a></li>
-					<li><a href='listado-usuarios'>Usuarios</a></li>
+					<li><a href='listado-alquileres'>Alquileres</a></li>
+					<li class='active'><a href='#'>Usuarios</a></li>
 				</ul>
 				<ul class='nav navbar-nav navbar-right'>
 					<c:set var="usuario" value="${usuario}" scope="session" />
@@ -26,38 +26,36 @@
 	</header>
 	<main style='margin-top: -20px;'>
 		<div class='container' style='background: white; margin-top: 20px; min-height: 709px;'>
-			<div class="alert alert-warning" style='margin-top: 20px; margin-bottom: 5em;'>
+			<div class="alert alert-warning" style='margin-top: 20px; margin-bottom: 3em;'>
 				<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-				Listado de alquileres.
+				Listado de usuarios.
 			</div>
+			<a class="btn btn-block btn-primary" href="registro-administrador" style='margin-bottom: 2em;'>
+				<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-user" aria-hidden="true"></span>
+				&nbsp;Registrar Administrador
+			</a>
 			<table class="table table-hover text-center">
 				<thead>
 					<tr>
-						<th class="text-center">C&oacute;digo</th>
-						<th class="text-center">Estado</th>
-						<th class="text-center">Costo</th>
-						<th class="text-center">Acci&oacute;n</th>
+						<th class="text-center">E-Mail</th>
+						<th class="text-center">Nombre</th>
+						<th class="text-center">Cuit</th>
+						<th class="text-center">Rol</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${alquileres}" var="alquiler">
+					<c:forEach items="${usuarios}" var="usuario">
 						<tr>
-							<td><c:out value="${alquiler.idAlquiler}" /></td>
-							<c:choose>
-								<c:when test="${alquiler.finalizada eq true}">
-									<td>Finalizado</td>
+							<td><c:out value="${usuario.email}" /></td>
+							<td><c:out value="${usuario.nombre}" /></td>
+							<td><c:out value="${usuario.cuit}" /></td><c:choose>
+								<c:when test="${usuario.administrador eq true}">
+									<td>Administrador</td>
 								</c:when>
-								<c:when test="${alquiler.finalizada eq false}">
-									<td>Vigente</td>
+								<c:when test="${usuario.administrador eq false}">
+									<td>Cliente</td>
 								</c:when>
 							</c:choose>
-							<td><c:out value="$ ${alquiler.precioFinal}" /></td>
-							<td>
-								<a href='detalle-alquiler?alquiler=<c:out value="${alquiler.idAlquiler}" />' class="btn btn-primary" role="button">
-									Ver Detalle&nbsp;&nbsp;
-									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-								</a>
-							</td>
 						</tr>
 					</c:forEach>
 				</tbody>

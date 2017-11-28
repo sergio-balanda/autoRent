@@ -16,9 +16,9 @@ $(function() {
 					<a class='navbar-brand' href='listado-reservas'>AutoRent</a>
 				</div>
 				<ul class='nav navbar-nav'>
-					<li class='active'><a href='#'>Reservas</a></li>
+					<li class='active'><a href='listado-reservas'>Reservas</a></li>
 					<li><a href='listado-alquileres'>Alquileres</a></li>
-					<li class='disabled'><a href='#'>Usuarios</a></li>
+					<li><a href='listado-usuarios'>Usuarios</a></li>
 				</ul>
 				<ul class='nav navbar-nav navbar-right'>
 					<c:set var="usuario" value="${usuario}" scope="session" />

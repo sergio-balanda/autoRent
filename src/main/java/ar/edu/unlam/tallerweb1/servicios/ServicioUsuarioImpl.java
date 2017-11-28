@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -29,18 +31,21 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		usuario.setEmail(email.toLowerCase());
 		usuario.setPassword(password);
 		usuario.setCuit(cuit);
-		usuario.setAdministrador(false);
+		usuario.setAdministrador(administrador);
 		usuario.setPuntos(0);
 		usuario.setNombre(nombre);
-
 		usuarioDao.guardarUsuario(usuario);
-
 		return usuario;
 	}
 
 	@Override
 	public Usuario obtenerUsuarioPorId(Integer id) {
 		return usuarioDao.obtenerUsuarioPorId(id);
+	}
+
+	@Override
+	public List<Usuario> listarUsuarios() {
+		return usuarioDao.listarUsuarios();
 	}
 
 }// FIN

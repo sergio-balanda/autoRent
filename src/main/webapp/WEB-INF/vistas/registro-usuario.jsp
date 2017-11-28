@@ -9,7 +9,7 @@
 				</div>
 				<ul class='nav navbar-nav'>
 					<li><a href='index'>Home</a></li>
-					<li class='disabled'><a href='#'>Sucursales</a></li>
+					<li><a href='sucursales'>Sucursales</a></li>
 					<li><a href='listado-vehiculos'>Vehiculos</a></li>
 					<li><a href='listado-accesorios'>Accesorios</a></li>
 					<li class='disabled'><a href='#'>Servicios</a></li>
@@ -48,22 +48,22 @@
 						<div class="form-group">
 							<label for="nombre">Nombre y Apellido</label>
 							<form:input path="nombre" id="nombre" type="text"
-								class="form-control" placeholder="Nombre y Apellido" required="REQUIRED"/>
+								class="form-control" placeholder="Nombre y Apellido" required="REQUIRED" autofocus="AUTOFOCUS" />
 						</div>
 						<div class="form-group">
 							<label for="email">E-Mail</label>
 							<form:input path="email" id="email" type="email"
-								class="form-control" placeholder="ejemplo@ejemplo.com" required="REQUIRED"/>
+								class="form-control" placeholder="ejemplo@ejemplo.com" required="REQUIRED" />
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
 							<form:input path="password" type="password" id="password"
-								class="form-control" placeholder="********" required="REQUIRED"/>
+								class="form-control" placeholder="********" required="REQUIRED" />
 						</div>
 						<div class="form-group">
 							<label for="cuit">Cuit</label>
 							<form:input path="cuit" type="text" id="cuit"
-								class="form-control" placeholder="Cuit" required="REQUIRED"/>
+								class="form-control" placeholder="Cuit" required="REQUIRED" />
 						</div>
 						<br>
 						<div class="form-group">

@@ -1,9 +1,10 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.List;
 import javax.inject.Inject;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -40,6 +41,16 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	public void guardarUsuario(Usuario usuario) {
 		final Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(usuario);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Usuario> listarUsuarios() {
+		final Session session = sessionFactory.getCurrentSession();
+		List<Usuario> usuarios = session.createCriteria(Usuario.class, "U")
+				.addOrder(Order.desc("U.administrador"))
+				.list();
+		return usuarios;
 	}
 
 }// fin
