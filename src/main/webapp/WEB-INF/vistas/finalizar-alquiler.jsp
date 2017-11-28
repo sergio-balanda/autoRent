@@ -34,7 +34,7 @@
 			</div>
 			<div class="panel-body">
 				<h1 class="text-uppercase text-warning text-center">
-				¡El alquiler se ha generado con &eacute;xito!
+				¡El alquiler se ha finalizado con &eacute;xito!
 				</h1>
 				<blockquote>
 					<h3>
@@ -42,7 +42,7 @@
 					El costo a abonar por el cliente es:&nbsp;$&nbsp;${alquiler.precioFinal}
 					</h3>
 					<footer class="blockquote-footer">
-					El código del alquiler es:&nbsp;$&nbsp;{alquiler.idAlquiler}
+					El código del alquiler es:&nbsp;${alquiler.idAlquiler}
 					</footer>
 				</blockquote>
 			</div>

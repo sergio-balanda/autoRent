@@ -95,7 +95,7 @@
 							<c:choose>
 								<c:when test="${alquiler.finalizada eq false}">
 									<hr>
-									<form:form action="terminar-alquiler" method="POST">
+									<form:form action="finalizar-alquiler" method="POST">
 										<input type="hidden" name="idAlquiler" id="idAlquiler" value="${alquiler.idAlquiler}" />
 										<br>
 										<button type="submit" class="btn btn-block btn-danger">

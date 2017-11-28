@@ -51,18 +51,18 @@ public class ControladorAlquiler {
 		return new ModelAndView("pruebas", modelo);
 	}
 
-	@RequestMapping(path = "/confirmar-alquiler", method = RequestMethod.POST)
-	public ModelAndView confirmarAlquiler(@RequestParam("idReserva") Integer idReserva,
+	@RequestMapping(path = "/iniciar-alquiler", method = RequestMethod.POST)
+	public ModelAndView iniciarAlquiler(@RequestParam("idReserva") Integer idReserva,
 			@RequestParam("costoFinal") Double costoFinal) {
 		ModelMap modelo = new ModelMap();
 		servicioAlquiler.generarAlquiler(servicioReserva.buscarReservas(idReserva), costoFinal);
-		modelo.put("costoFinal", costoFinal);
-		modelo.put("idAlquiler", servicioAlquiler.obtenerAlquilerConElIdReserva(idReserva).getIdAlquiler());
-		return new ModelAndView("confirmar-alquiler", modelo);
+		Alquiler alquiler = servicioAlquiler.obtenerAlquilerConElIdReserva(idReserva);
+		modelo.put("alquiler", alquiler);
+		return new ModelAndView("iniciar-alquiler", modelo);
 	}
 
 	@RequestMapping(path = "/preparar-alquiler", method = RequestMethod.POST)
-	public ModelAndView preparar(@RequestParam("idReserva") Integer idReserva,
+	public ModelAndView prepararAlquiler(@RequestParam("idReserva") Integer idReserva,
 			@RequestParam("idSucursal") Integer idSucursal, @RequestParam("idVehiculo") Integer idVehiculo,
 			@RequestParam("fechaInicio") String fechaInicio, @RequestParam("fechaFin") String fechaFin,
 			@RequestParam("costoOrigen") Double costoOrigen,
@@ -90,9 +90,10 @@ public class ControladorAlquiler {
 	@RequestMapping(path = "finalizar-alquiler", method = RequestMethod.POST)
 	public ModelAndView finalizarAlquiler(@RequestParam("idAlquiler") Integer idAlquiler) {
 		ModelMap modelo = new ModelMap();
-		modelo.put("idAlquiler", idAlquiler);
-		servicioAlquiler.finalizarViaje(idAlquiler);
-		return new ModelAndView("redirect:/control-reservas", modelo);
+		servicioAlquiler.finalizarAlquiler(idAlquiler);
+		Alquiler alquiler = servicioAlquiler.buscarAlquiler(idAlquiler);
+		modelo.put("alquiler", alquiler);
+		return new ModelAndView("finalizar-alquiler", modelo);
 	}
 
 	@RequestMapping("/listado-alquileres")

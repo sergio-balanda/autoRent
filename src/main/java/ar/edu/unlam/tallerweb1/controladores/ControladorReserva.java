@@ -76,27 +76,20 @@ public class ControladorReserva {
 	}
 
 	@RequestMapping(value = "/detalle-reserva", method = RequestMethod.GET)
-	public ModelAndView verReserva(@RequestParam("reserva") Integer reserva) {
+	public ModelAndView verReserva(@RequestParam("reserva") Integer idReserva) {
 		ModelMap modelo = new ModelMap();
-		modelo.put("idReserva", reserva);
-		modelo.put("reserva", servicioReserva.buscarReservas(reserva));
-		modelo.put("FkSucursalR", servicioReserva.buscarReservas(reserva).getFkSucursalR().getIdSucursal());
-		modelo.put("fkVehiculoR", servicioReserva.buscarReservas(reserva).getFkVehiculoR().getIdVehiculo());
-		// busco usuario de la reserva para mostrar
-		Usuario UsuarioDeLaReserva = servicioReserva.buscarReservas(reserva).getUsuario();
-		modelo.put("UsuarioDeLaReserva", UsuarioDeLaReserva);
-		// busco vehiculo de la reserva para mostrar
-		Integer idVehiculo = servicioReserva.buscarReservas(reserva).getFkVehiculoR().getIdVehiculo();
-		Vehiculo vehiculoDeLaReserva = servicioVehiculo.buscarVehiculos(idVehiculo);
-		modelo.put("vehiculoDeLaReserva", vehiculoDeLaReserva);
-		// busco sucursal de la reserva para mostrar
-		Integer idSucursal = servicioReserva.buscarReservas(reserva).getFkSucursalR().getIdSucursal();
-		Sucursal sucursalDeLaReserva = servicioSucursal.buscarSucursales(idSucursal);
-		modelo.put("sucursalDeLaReserva", sucursalDeLaReserva);
+		Reserva reserva = servicioReserva.buscarReservas(idReserva);
+		Sucursal sucursal = reserva.getFkSucursalR();
+		Vehiculo vehiculo = reserva.getFkVehiculoR();
+		Usuario usuario = reserva.getUsuario();
+		modelo.put("reserva", reserva);
+		modelo.put("sucursal", sucursal);
+		modelo.put("vehiculo", vehiculo);
+		modelo.put("usuario", usuario);
 		// lista de accesorios
 		modelo.put("accesorios", servicioAccesorio.listarAccesorios());
 		// Sistema de puntos
-		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(UsuarioDeLaReserva.getId()));
+		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(usuario.getId()));
 		return new ModelAndView("detalle-reserva", modelo);
 	}
 

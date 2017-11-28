@@ -46,10 +46,10 @@ $(function() {
 							<h3><strong>Datos del cliente</strong></h3>
 						</div>
 						<div class="panel-body">
-							<p><b>Nombre :</b> ${UsuarioDeLaReserva.nombre}<p>
-							<p><b>Cuit :</b> ${UsuarioDeLaReserva.cuit}<p>
-							<p><b>Email :</b> ${UsuarioDeLaReserva.email}<p>
-							<p><b>Puntos :</b> ${UsuarioDeLaReserva.puntos}<p>
+							<p><b>Nombre :</b> ${usuario.nombre}<p>
+							<p><b>Cuit :</b> ${usuario.cuit}<p>
+							<p><b>Email :</b> ${usuario.email}<p>
+							<p><b>Puntos :</b> ${usuario.puntos}<p>
 							<p><b>Equivalencia de puntos a dinero:</b> $ ${convertir}<p>
 						</div>
 					</div>
@@ -58,10 +58,10 @@ $(function() {
 							<h3><strong>Datos del veh&iacute;culo</strong></h3>
 						</div>
 						<div class="panel-body">
-							<p><b>Patente :</b> ${vehiculoDeLaReserva.patente}<p>
-							<p><b>Nombre :</b> ${vehiculoDeLaReserva.marca} ${vehiculoDeLaReserva.nombre}<p>
-							<p><b>Capacidad de pasajeros :</b> ${vehiculoDeLaReserva.capacidadPasajeros}<p>
-							<p><b>Capacidad de valijas :</b> ${vehiculoDeLaReserva.capacidadValijas}<p>
+							<p><b>Patente :</b> ${vehiculo.patente}<p>
+							<p><b>Nombre :</b> ${vehiculo.marca} ${vehiculo.nombre}<p>
+							<p><b>Capacidad de pasajeros :</b> ${vehiculo.capacidadPasajeros}<p>
+							<p><b>Capacidad de valijas :</b> ${vehiculo.capacidadValijas}<p>
 						</div>
 					</div>
 				</div>
@@ -72,15 +72,15 @@ $(function() {
 						</div>
 						<div class="panel-body">
 							<p><b>C&oacute;digo :</b> ${reserva.idReserva}<p>
-							<p><b>Sucursal :</b> ${sucursalDeLaReserva.domicilio}, ${sucursalDeLaReserva.ciudad}<p>
+							<p><b>Sucursal :</b> ${sucursal.domicilio}, ${sucursal.ciudad}<p>
 							<p><b>Fecha de inicio :</b> ${reserva.fechaInicio}<p>
 							<p><b>Fecha de fin :</b> ${reserva.fechaFin}<p>
 							<p><b>Costo :</b> $ ${reserva.costoOrigen}<p>
 							<hr>
 							<form:form action="preparar-alquiler" method="POST">
 								<input type="hidden" name="idReserva" id="idReserva" value="${reserva.idReserva}" />
-								<input type="hidden" name="idSucursal" id="idSucursal" value="${sucursalDeLaReserva.idSucursal}" />
-								<input type="hidden" name="idVehiculo" id="idVehiculo" value="${vehiculoDeLaReserva.idVehiculo}" />
+								<input type="hidden" name="idSucursal" id="idSucursal" value="${sucursal.idSucursal}" />
+								<input type="hidden" name="idVehiculo" id="idVehiculo" value="${vehiculo.idVehiculo}" />
 								<input type="hidden" name="fechaInicio" id="fechaInicio" value="${reserva.fechaInicio}" />
 								<input type="hidden" name="fechaFin" id="fechaFin" value="${reserva.fechaFin}" />
 								<input type="hidden" name="costoOrigen" id="costoOrigen" value="${reserva.costoOrigen}" />

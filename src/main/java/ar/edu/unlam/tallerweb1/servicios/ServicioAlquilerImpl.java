@@ -34,29 +34,23 @@ public class ServicioAlquilerImpl implements ServicioAlquiler {
 	@Override
 	public Alquiler guardarAlquiler(Integer fkReserva, String estado, Double precioFinal) {
 		Alquiler alquiler = null;
-
 		alquiler = new Alquiler();
-
 		alquiler.setPrecioFinal(precioFinal);
-
 		alquiler.setFkReserva(reservaDao.buscarReservas(fkReserva));
 		alquilerDao.guardarAlquiler(alquiler);
-
 		return alquiler;
 	}
 
 	@Override
 	public List<Alquiler> listarAlquileres() {
 		return alquilerDao.listarAlquileres();
-
 	}
 
 	public Alquiler obtenerAlquilerConElIdReserva (Integer idReserva) {
 		return alquilerDao.obtenerAlquilerConElIdReserva(idReserva);
 	}
-	//en dao finalizar no es necesario, despues borralo esta comentado
-	//en el controlador te  falto llamar al metodo
-	public void finalizarViaje (Integer idAlquiler) {
-		Alquiler alquiler = alquilerDao.buscarAlquiler(idAlquiler); 
+	
+	public void finalizarAlquiler (Integer idAlquiler) {
+		alquilerDao.finalizarAlquiler(idAlquiler); 
 	}
 }
