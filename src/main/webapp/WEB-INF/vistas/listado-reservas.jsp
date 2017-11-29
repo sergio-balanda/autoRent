@@ -24,40 +24,48 @@
 			</div>
 		</nav>
 	</header>
-	<main style='margin-top: -20px;'>
-		<div class='container' style='background: white; margin-top: 20px; min-height: 709px;'>
-			<div class="alert alert-warning" style='margin-top: 20px; margin-bottom: 5em;'>
-				<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-				Listado de reservas.
-			</div>
-			<table class="table table-hover text-center">
-				<thead>
-					<tr>
-						<th class="text-center">C&oacute;digo</th>
-						<th class="text-center">Costo</th>
-						<th class="text-center">Fecha de inicio</th>
-						<th class="text-center">Fecha de fin</th>
-						<th class="text-center">Acci&oacute;n</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${reservas}" var="reserva">
+	<main style='margin-top: -20px;'> <c:choose>
+		<c:when test="${usuario.administrador}">
+			<div class='container'
+				style='background: white; margin-top: 20px; min-height: 709px;'>
+				<div class="alert alert-warning"
+					style='margin-top: 20px; margin-bottom: 5em;'>
+					<span style="margin-left: 1em; margin-right: 0.5em;"
+						class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+					Listado de reservas.
+				</div>
+				<table class="table table-hover text-center">
+					<thead>
 						<tr>
-							<td><c:out value="${reserva.idReserva}" /></td>
-							<td><c:out value="$ ${reserva.costoOrigen}" /></td>
-							<td><c:out value="${reserva.fechaInicio}" /></td>
-							<td><c:out value="${reserva.fechaFin}" /></td>
-							<td>
-								<a href='detalle-reserva?reserva=<c:out value="${reserva.idReserva}" />' class="btn btn-primary" role="button">
-									Ver Detalle&nbsp;&nbsp;
-									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-								</a>
-							</td>
+							<th class="text-center">C&oacute;digo</th>
+							<th class="text-center">Costo</th>
+							<th class="text-center">Fecha de inicio</th>
+							<th class="text-center">Fecha de fin</th>
+							<th class="text-center">Acci&oacute;n</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</main>
+					</thead>
+					<tbody>
+						<c:forEach items="${reservas}" var="reserva">
+							<tr>
+								<td><c:out value="${reserva.idReserva}" /></td>
+								<td><c:out value="$ ${reserva.costoOrigen}" /></td>
+								<td><c:out value="${reserva.fechaInicio}" /></td>
+								<td><c:out value="${reserva.fechaFin}" /></td>
+								<td><a
+									href='detalle-reserva?reserva=<c:out value="${reserva.idReserva}" />'
+									class="btn btn-primary" role="button"> Ver
+										Detalle&nbsp;&nbsp; <span class="glyphicon glyphicon-edit"
+										aria-hidden="true"></span>
+								</a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<c:redirect url="index" />
+		</c:otherwise>
+	</c:choose> </main>
 </body>
 </html>

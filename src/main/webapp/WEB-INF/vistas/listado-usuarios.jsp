@@ -24,43 +24,54 @@
 			</div>
 		</nav>
 	</header>
-	<main style='margin-top: -20px;'>
-		<div class='container' style='background: white; margin-top: 20px; min-height: 709px;'>
-			<div class="alert alert-warning" style='margin-top: 20px; margin-bottom: 3em;'>
-				<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-				Listado de usuarios.
-			</div>
-			<a class="btn btn-block btn-primary" href="registro-administrador" style='margin-bottom: 2em;'>
-				<span style="margin-left: 1em; margin-right: 0.5em;" class="glyphicon glyphicon-user" aria-hidden="true"></span>
-				&nbsp;Registrar Administrador
-			</a>
-			<table class="table table-hover text-center">
-				<thead>
-					<tr>
-						<th class="text-center">E-Mail</th>
-						<th class="text-center">Nombre</th>
-						<th class="text-center">Cuit</th>
-						<th class="text-center">Rol</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${usuariosList}" var="usuarioList">
+	<main style='margin-top: -20px;'> <c:choose>
+		<c:when test="${usuario.administrador}">
+			<div class='container'
+				style='background: white; margin-top: 20px; min-height: 709px;'>
+				<div class="alert alert-warning"
+					style='margin-top: 20px; margin-bottom: 3em;'>
+					<span style="margin-left: 1em; margin-right: 0.5em;"
+						class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+					Listado de usuarios.
+				</div>
+				<a class="btn btn-block btn-primary" href="registro-administrador"
+					style='margin-bottom: 2em;'> <span
+					style="margin-left: 1em; margin-right: 0.5em;"
+					class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					&nbsp;Registrar Administrador
+				</a>
+				<table class="table table-hover text-center">
+					<thead>
 						<tr>
-							<td><c:out value="${usuarioList.email}" /></td>
-							<td><c:out value="${usuarioList.nombre}" /></td>
-							<td><c:out value="${usuarioList.cuit}" /></td><c:choose>
-								<c:when test="${usuarioList.administrador eq true}">
-									<td>Administrador</td>
-								</c:when>
-								<c:when test="${usuarioList.administrador eq false}">
-									<td>Cliente</td>
-								</c:when>
-							</c:choose>
+							<th class="text-center">E-Mail</th>
+							<th class="text-center">Nombre</th>
+							<th class="text-center">Cuit</th>
+							<th class="text-center">Rol</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</main>
+					</thead>
+					<tbody>
+						<c:forEach items="${usuariosList}" var="usuarioList">
+							<tr>
+								<td><c:out value="${usuarioList.email}" /></td>
+								<td><c:out value="${usuarioList.nombre}" /></td>
+								<td><c:out value="${usuarioList.cuit}" /></td>
+								<c:choose>
+									<c:when test="${usuarioList.administrador eq true}">
+										<td>Administrador</td>
+									</c:when>
+									<c:when test="${usuarioList.administrador eq false}">
+										<td>Cliente</td>
+			.					</c:when>
+								</c:choose>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<c:redirect url="index" />
+		</c:otherwise>
+	</c:choose> </main>
 </body>
 </html>
