@@ -38,10 +38,10 @@
 							<h3><strong>Datos del cliente</strong></h3>
 						</div>
 						<div class="panel-body">
-							<p><b>Nombre :</b> ${usuario.nombre}<p>
-							<p><b>Cuit :</b> ${usuario.cuit}<p>
-							<p><b>Email :</b> ${usuario.email}<p>
-							<p><b>Puntos :</b> ${usuario.puntos}<p>
+							<p><b>Nombre :</b> ${usuarioReserva.nombre}<p>
+							<p><b>Cuit :</b> ${usuarioReserva.cuit}<p>
+							<p><b>Email :</b> ${usuarioReserva.email}<p>
+							<p><b>Puntos :</b> ${usuarioReserva.puntos}<p>
 							<p><b>Equivalencia de puntos a dinero:</b> $ ${convertir}<p>
 						</div>
 					</div>

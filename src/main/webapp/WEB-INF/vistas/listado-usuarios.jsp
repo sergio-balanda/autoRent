@@ -44,15 +44,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${usuarios}" var="usuario">
+					<c:forEach items="${usuariosList}" var="usuarioList">
 						<tr>
-							<td><c:out value="${usuario.email}" /></td>
-							<td><c:out value="${usuario.nombre}" /></td>
-							<td><c:out value="${usuario.cuit}" /></td><c:choose>
-								<c:when test="${usuario.administrador eq true}">
+							<td><c:out value="${usuarioList.email}" /></td>
+							<td><c:out value="${usuarioList.nombre}" /></td>
+							<td><c:out value="${usuarioList.cuit}" /></td><c:choose>
+								<c:when test="${usuarioList.administrador eq true}">
 									<td>Administrador</td>
 								</c:when>
-								<c:when test="${usuario.administrador eq false}">
+								<c:when test="${usuarioList.administrador eq false}">
 									<td>Cliente</td>
 								</c:when>
 							</c:choose>

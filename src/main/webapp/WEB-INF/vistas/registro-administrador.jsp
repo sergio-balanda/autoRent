@@ -37,7 +37,7 @@
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
 					<form:form action="registrar-administrador" method="POST"
-						modelAttribute="usuario">
+						modelAttribute="usuarioAdmin">
 						<br>
 						<div class="form-group">
 							<label for="nombre">Nombre y Apellido</label>

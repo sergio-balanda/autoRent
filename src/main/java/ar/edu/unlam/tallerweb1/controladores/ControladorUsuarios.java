@@ -23,8 +23,8 @@ public class ControladorUsuarios {
 	@RequestMapping(path = "/registro-usuario", method = RequestMethod.GET)
 	public ModelAndView registroCliente() {
 		ModelMap modelo = new ModelMap();
-		Usuario usuario = new Usuario();
-		modelo.put("usuario", usuario);
+		Usuario usuarioCliente = new Usuario();
+		modelo.put("usuarioCliente", usuarioCliente);
 		return new ModelAndView("registro-usuario", modelo);
 	}
 
@@ -40,15 +40,15 @@ public class ControladorUsuarios {
 	@RequestMapping("/listado-usuarios")
 	public ModelAndView listadoUsuarios() {
 		ModelMap modelo = new ModelMap();
-		modelo.put("usuarios", servicioUsuario.listarUsuarios());
+		modelo.put("usuariosList", servicioUsuario.listarUsuarios());
 		return new ModelAndView("listado-usuarios", modelo);
 	}
 	
 	@RequestMapping("/registro-administrador")
 	public ModelAndView registroAdministrador() {
 		ModelMap modelo = new ModelMap();
-		Usuario usuario = new Usuario();
-		modelo.put("usuario", usuario);
+		Usuario usuarioAdmin = new Usuario();
+		modelo.put("usuarioAdmin", usuarioAdmin);
 		return new ModelAndView("registro-administrador", modelo);
 	}
 	

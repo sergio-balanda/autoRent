@@ -77,15 +77,15 @@ public class ControladorReserva {
 		Reserva reserva = servicioReserva.buscarReservas(idReserva);
 		Sucursal sucursal = reserva.getFkSucursalR();
 		Vehiculo vehiculo = reserva.getFkVehiculoR();
-		Usuario usuario = reserva.getUsuario();
+		Usuario usuarioReserva = reserva.getUsuario();
 		modelo.put("reserva", reserva);
 		modelo.put("sucursal", sucursal);
 		modelo.put("vehiculo", vehiculo);
-		modelo.put("usuario", usuario);
+		modelo.put("usuarioReserva", usuarioReserva);
 		// lista de accesorios
 		modelo.put("accesorios", servicioAccesorio.listarAccesorios());
 		// Sistema de puntos
-		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(usuario.getId()));
+		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(usuarioReserva.getId()));
 		return new ModelAndView("detalle-reserva", modelo);
 	}
 

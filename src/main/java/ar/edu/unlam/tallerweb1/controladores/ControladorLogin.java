@@ -25,13 +25,13 @@ public class ControladorLogin {
 	public ModelAndView irALogin(@RequestParam(value = "email", required = false) String email) {
 
 		ModelMap modelo = new ModelMap();
-		Usuario usuario = new Usuario();
+		Usuario usuarioLogin = new Usuario();
 
 		if (email != null && email != "") {
-			usuario.setEmail(email);
+			usuarioLogin.setEmail(email);
 		}
 
-		modelo.put("usuario", usuario);
+		modelo.put("usuarioLogin", usuarioLogin);
 		return new ModelAndView("login", modelo);
 	}
 
@@ -40,7 +40,7 @@ public class ControladorLogin {
 	// se corresponde con el modelAttribute definido en el tag form:form
 	// HttpServletRequest devuelve una sesión de usuario.
 	@RequestMapping(path = "/confirmar-login", method = RequestMethod.POST)
-	public ModelAndView validarLogin(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request,
+	public ModelAndView validarLogin(@ModelAttribute("usuarioLogin") Usuario usuario, HttpServletRequest request,
 			HttpServletResponse response) {
 
 		ModelMap modelo = new ModelMap();

@@ -111,16 +111,16 @@ public class ControladorAlquiler {
 		Alquiler alquiler = servicioAlquiler.buscarAlquiler(idAlquiler);
 		Reserva reserva = alquiler.getFkReserva();
 		Vehiculo vehiculo = reserva.getFkVehiculoR();
-		Usuario usuario = reserva.getUsuario();
+		Usuario usuarioReserva = reserva.getUsuario();
 		Sucursal sucursal = reserva.getFkSucursalR();
 		List<Accesorio> accesorios = servicioAccesorio.buscarAccesoriosPorAlquiler(idAlquiler);
 		modelo.put("alquiler", alquiler);
 		modelo.put("reserva", reserva);
 		modelo.put("vehiculo", vehiculo);
-		modelo.put("usuario", usuario);
+		modelo.put("usuarioReserva", usuarioReserva);
 		modelo.put("sucursal", sucursal);
 		modelo.put("accesorios", accesorios);
-		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(usuario.getId()));
+		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(usuarioReserva.getId()));
 		return new ModelAndView("detalle-alquiler", modelo);
 	}
 	

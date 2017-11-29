@@ -43,7 +43,7 @@
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
 					<form:form action="registrar-usuario" method="POST"
-						modelAttribute="usuario">
+						modelAttribute="usuarioCliente">
 						<br>
 						<div class="form-group">
 							<label for="nombre">Nombre y Apellido</label>

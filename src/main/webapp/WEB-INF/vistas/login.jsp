@@ -47,7 +47,7 @@
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
 					<form:form action="confirmar-login" method="POST"
-						modelAttribute="usuario">
+						modelAttribute="usuarioLogin">
 						<br>
 						<div class="form-group">
 							<label for="email">E-Mail</label>
