@@ -7,7 +7,6 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +21,6 @@ import ar.edu.unlam.tallerweb1.modelo.Vehiculo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAccesorio;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAlquiler;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAlquilerAccesorio;
-import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCategoria;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import ar.edu.unlam.tallerweb1.servicios.ServicioSucursal;
@@ -45,17 +43,16 @@ public class ControladorAlquiler {
 	private ServicioAlquiler servicioAlquiler;
 	@Inject
 	private ServicioAlquilerAccesorio servicioAlquilerAccesorio;
-	
 
 	@RequestMapping(path = "/iniciar-alquiler", method = RequestMethod.POST)
 	public ModelAndView iniciarAlquiler(@RequestParam("idReserva") Integer idReserva,
-			@RequestParam("costoFinal") Double costoFinal, @RequestParam("accesorios") ArrayList<Integer> idAccesorios) {
+			@RequestParam("costoFinal") Double costoFinal,
+			@RequestParam("accesorios") ArrayList<Integer> idAccesorios) {
 		ModelMap modelo = new ModelMap();
-		//servicioAlquilerAccesorio.generarAlquilerAccesorio(listAccesorios, idReserva);
 		servicioAlquiler.generarAlquiler(servicioReserva.buscarReservas(idReserva), costoFinal);
 		Alquiler alquiler = servicioAlquiler.obtenerAlquilerConElIdReserva(idReserva);
-		for(Integer idAccesorio: idAccesorios) {
-			Accesorio accesorio = servicioAccesorio.buscarAccesorios(idAccesorio);	
+		for (Integer idAccesorio : idAccesorios) {
+			Accesorio accesorio = servicioAccesorio.buscarAccesorios(idAccesorio);
 			servicioAlquilerAccesorio.generarAlquilerAccesorio(accesorio, alquiler);
 		}
 		modelo.put("alquiler", alquiler);
@@ -73,10 +70,10 @@ public class ControladorAlquiler {
 		Long cantidadDias = servicioReserva.calcularCantidadDeDias(fechaInicio, fechaFin);
 		Double costoTotalDeAccesorios = servicioAccesorio.calcularPrecioPorAccesorios(accesorios, cantidadDias);
 		Double costoFinal = costoOrigen + costoTotalDeAccesorios;
-		for(Integer accesorio: accesorios) {
-			listAccesorios.add(servicioAccesorio.buscarAccesorios(accesorio));	
+		for (Integer accesorio : accesorios) {
+			listAccesorios.add(servicioAccesorio.buscarAccesorios(accesorio));
 		}
-		modelo.put("accesorios", accesorios);	
+		modelo.put("accesorios", accesorios);
 		modelo.put("listAccesorios", listAccesorios);
 		modelo.put("sucursal", servicioSucursal.buscarSucursales(idSucursal));
 		modelo.put("vehiculo", servicioVehiculo.buscarVehiculos(idVehiculo));
@@ -104,7 +101,7 @@ public class ControladorAlquiler {
 		modelo.put("alquileres", servicioAlquiler.listarAlquileres());
 		return new ModelAndView("listado-alquileres", modelo);
 	}
-	
+
 	@RequestMapping(value = "/detalle-alquiler", method = RequestMethod.GET)
 	public ModelAndView verAlquiler(@RequestParam("alquiler") Integer idAlquiler) {
 		ModelMap modelo = new ModelMap();
@@ -123,5 +120,13 @@ public class ControladorAlquiler {
 		modelo.put("convertir", servicioReserva.convertirCostoDeReservaDeUnUsuarioAPuntos(usuarioReserva.getId()));
 		return new ModelAndView("detalle-alquiler", modelo);
 	}
-	
+
+	public ServicioAlquiler getServicioAlquiler() {
+		return servicioAlquiler;
+	}
+
+	public void setServicioAlquiler(ServicioAlquiler servicioAlquiler) {
+		this.servicioAlquiler = servicioAlquiler;
+	}
+
 }
