@@ -156,8 +156,8 @@ public class ReservaTestMockito {
 	/*
 	 * @Test public void sePruebaQueSeNoSePuedaReservarUnVehiculoYaReservado() {
 	 * 
-	 * }
-	 */
+	 * }*/
+	 
 
 	@Test
 	public void testQueSeIniciaUnAlquiler() {
@@ -185,6 +185,14 @@ public class ReservaTestMockito {
 
 		service.generarAlquiler(reserva, costoFinal);
 		verify(service).generarAlquiler(reserva, costoFinal);
+	}
+	
+	@Test
+	public void testQueUnAlquilerSeFinaliza() {
+		Alquiler alquiler = mock(Alquiler.class);
+		ServicioAlquiler servicioAlquiler = mock(ServicioAlquiler.class);
+		servicioAlquiler.finalizarAlquiler(alquiler.getIdAlquiler());
+		assertThat(alquiler.getFinalizada().equals(true));
 	}
 
 }
