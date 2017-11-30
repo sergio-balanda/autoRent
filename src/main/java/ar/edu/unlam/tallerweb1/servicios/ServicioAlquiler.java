@@ -10,7 +10,6 @@ public interface ServicioAlquiler {
 	
 	void generarAlquiler(Reserva reserva, Double costoFinal);
 	Alquiler buscarAlquiler(Integer idAlquiler);
-	Alquiler guardarAlquiler(Integer fkReserva, String estado, Double precioFinal);
 	List<Alquiler> listarAlquileres();
 	Alquiler obtenerAlquilerConElIdReserva (Integer idReserva);
 	void finalizarAlquiler (Integer idAlquiler);

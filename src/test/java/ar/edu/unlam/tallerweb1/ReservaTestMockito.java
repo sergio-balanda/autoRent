@@ -30,7 +30,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
 public class ReservaTestMockito {
 
 	@Test
-	public void testControllerLoginAdministrador() {
+	public void testControllerLoginAdministradorExitoso() {
 		//Mockeado
 		Usuario user = mock(Usuario.class);
 		ServicioLogin service = mock(ServicioLogin.class);
@@ -51,7 +51,7 @@ public class ReservaTestMockito {
 	}
 	
 	@Test
-	public void testControllerLoginCliente() {
+	public void testControllerLoginClienteExitoso() {
 		//Mockeado
 		Usuario user = mock(Usuario.class);
 		ServicioLogin service = mock(ServicioLogin.class);
@@ -111,7 +111,7 @@ public class ReservaTestMockito {
 */
 	
 	@Test
-	public void testControllerListarUsuarios() {
+	public void testControllerListarUsuariosExitoso() {
 		//Mockeado
 		Usuario cliente = mock(Usuario.class);
 		Usuario administrador = mock(Usuario.class);
@@ -131,7 +131,7 @@ public class ReservaTestMockito {
 	}
 	
 	@Test
-	public void testServiceListarAlquileres() {
+	public void testServiceListarAlquileresExitoso() {
 		//Mockeado
 		AlquilerDao dao = mock(AlquilerDao.class);
 		Alquiler alquiler1 = mock(Alquiler.class);
@@ -148,6 +148,78 @@ public class ReservaTestMockito {
 		//Verificación
 		assertThat(list).isEqualTo(listObtenida);
 	}
+	
+	@Test
+	public void testServiceListarReservasExitoso() {
+		//Mockeado
+		ReservaDao reservaDao = mock(ReservaDao.class);
+		Reserva reserva1 = mock(Reserva.class);
+		Reserva reserva2 = mock(Reserva.class);
+		//Preparación
+		ServicioReservaImpl servicio = new ServicioReservaImpl();
+		List<Reserva> list = new ArrayList<Reserva>();
+		list.add(reserva1);
+		list.add(reserva2);
+		servicio.setReservaDao(reservaDao);
+		when(reservaDao.listarReservas()).thenReturn(list);
+		//Ejecución
+		List<Reserva> listObtenida = reservaDao.listarReservas();
+		//Verificación
+		assertThat(listObtenida).isEqualTo(list);		
+	}
+	
+	@Test
+	public void testServiceIniciarAlquilerExitoso() {
+		//Mockeado
+		Reserva reserva = mock(Reserva.class);
+		AlquilerDao dao = mock(AlquilerDao.class);
+		Alquiler alquiler = mock(Alquiler.class);
+		//Preparación
+		ServicioAlquilerImpl service = new ServicioAlquilerImpl();
+		service.setAlquilerDao(dao);
+		Double costoFinal = 1500.00;
+		Integer idReserva = reserva.getIdReserva();
+		when(dao.obtenerAlquilerConElIdReserva(idReserva)).thenReturn(alquiler);
+		//Ejecución
+		service.generarAlquiler(reserva, costoFinal);
+		Alquiler alquilerObtenido = service.obtenerAlquilerConElIdReserva(idReserva);
+		Boolean finalizada = alquilerObtenido.getFinalizada();
+		//Verificación
+		assertThat(finalizada).isEqualTo(false);
+		/*
+		Reserva reserva = mock(Reserva.class);
+		ServicioAlquiler alquilerService = mock(ServicioAlquiler.class);
+		Alquiler alquiler = mock(Alquiler.class);
+		alquilerService.generarAlquiler(reserva, 1000.00);
+		when(alquilerService.obtenerAlquilerConElIdReserva(reserva.getIdReserva())).thenReturn(alquiler);
+		assertThat(alquiler.getFinalizada().equals(false));
+		*/
+	}
+	
+	@Test
+	public void testServiceFinalizarAlquilerExitoso() {
+		/*
+		//Mockeado
+		Alquiler alquiler = mock(Alquiler.class);
+		AlquilerDao dao = mock(AlquilerDao.class);
+		//Preparación
+		ServicioAlquilerImpl service = new ServicioAlquilerImpl();
+		service.setAlquilerDao(dao);
+		Integer idAlquiler = alquiler.getIdAlquiler();
+		//Ejecución
+		service.finalizarAlquiler(idAlquiler);
+		Boolean finalizada = alquiler.getFinalizada();
+		//Verificación
+		verify(dao.finalizarAlquiler(idAlquiler), times(1));
+		*/
+		Alquiler alquiler = mock(Alquiler.class);
+		ServicioAlquiler servicioAlquiler = mock(ServicioAlquiler.class);
+		servicioAlquiler.finalizarAlquiler(alquiler.getIdAlquiler());
+		assertThat(alquiler.getFinalizada().equals(true));
+		
+	}
+	
+	//Mockitos viejos
 	
 	@Test
 	public void testServiceDePersistirReserva() {
@@ -218,21 +290,15 @@ public class ReservaTestMockito {
 	 * System.out.println(servicioFake.buscarVehiculos(1)); // me devulve
 	 * siempre vacio algo me falta pero no lo veo. }
 	 */
-	/*
-	 * @Test public void sePruebaQueSeNoSePuedaReservarUnVehiculoYaReservado() {
-	 * 
-	 * }*/
-	
-	@Test
-	public void testQueSeIniciaUnAlquiler() {
-		Reserva reserva = mock(Reserva.class);
-		ServicioAlquiler alquilerService = mock(ServicioAlquiler.class);
-		Alquiler alquiler = mock(Alquiler.class);
-		alquilerService.generarAlquiler(reserva, 1000.00);
-		when(alquilerService.obtenerAlquilerConElIdReserva(reserva.getIdReserva())).thenReturn(alquiler);
-		assertThat(alquiler.getFinalizada().equals(false));
-	}
 
+/*	@Test
+	public void testQueSeMuestraLaCantidadMaximaDePasajeros() {
+		ServicioVehiculo servicio = mock(ServicioVehiculo.class);
+		Integer maxPasajeros = 0 ;
+		when(servicio.maxPasajeros()).thenReturn(maxPasajeros);
+		System.out.println(maxPasajeros);
+	}*/
+	
 	@Test
 	public void testQueIniciarAlquilerEnControladorPersisteElAlquiler() {
 		Reserva reserva = mock(Reserva.class);
@@ -245,41 +311,6 @@ public class ReservaTestMockito {
 		control.setServicioAlquiler(service);
 		service.generarAlquiler(reserva, costoFinal);
 		verify(service).generarAlquiler(reserva, costoFinal);
-	}
-	
-	@Test
-	public void testQueUnAlquilerSeFinaliza() {
-		Alquiler alquiler = mock(Alquiler.class);
-		ServicioAlquiler servicioAlquiler = mock(ServicioAlquiler.class);
-		servicioAlquiler.finalizarAlquiler(alquiler.getIdAlquiler());
-		assertThat(alquiler.getFinalizada().equals(true));
-	}
-
-/*	@Test
-	public void testQueSeMuestraLaCantidadMaximaDePasajeros() {
-		ServicioVehiculo servicio = mock(ServicioVehiculo.class);
-		Integer maxPasajeros = 0 ;
-		when(servicio.maxPasajeros()).thenReturn(maxPasajeros);
-		System.out.println(maxPasajeros);
-	}*/
-	
-	@Test
-	public void testQueSeListanLasReservasCorrectamente() {
-		
-		//Preparacion
-		ReservaDao reservaDao = mock(ReservaDao.class);
-		Reserva reserva1 = mock(Reserva.class);
-		Reserva reserva2 = mock(Reserva.class);
-		ServicioReservaImpl servicio = new ServicioReservaImpl();
-		List <Reserva> listReservas = new ArrayList <Reserva>();
-		listReservas.add(reserva1);
-		listReservas.add(reserva2);
-		servicio.setReservaDao(reservaDao);
-		//Ejecución
-		when(reservaDao.listarReservas()).thenReturn(listReservas);	
-		List lista2 = reservaDao.listarReservas();
-		//Verificación
-		assertThat(lista2).isEqualTo(listReservas);		
 	}
 	
 }

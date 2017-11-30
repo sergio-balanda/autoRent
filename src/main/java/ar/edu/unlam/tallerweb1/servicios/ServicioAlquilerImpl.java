@@ -32,16 +32,6 @@ public class ServicioAlquilerImpl implements ServicioAlquiler {
 	}
 
 	@Override
-	public Alquiler guardarAlquiler(Integer fkReserva, String estado, Double precioFinal) {
-		Alquiler alquiler = null;
-		alquiler = new Alquiler();
-		alquiler.setPrecioFinal(precioFinal);
-		alquiler.setFkReserva(reservaDao.buscarReservas(fkReserva));
-		alquilerDao.guardarAlquiler(alquiler);
-		return alquiler;
-	}
-
-	@Override
 	public List<Alquiler> listarAlquileres() {
 		return alquilerDao.listarAlquileres();
 	}
