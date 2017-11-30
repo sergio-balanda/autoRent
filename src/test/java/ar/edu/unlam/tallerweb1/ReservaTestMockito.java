@@ -1,48 +1,153 @@
 package ar.edu.unlam.tallerweb1;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
+import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unlam.tallerweb1.controladores.ControladorAlquiler;
 import ar.edu.unlam.tallerweb1.controladores.ControladorLogin;
 import ar.edu.unlam.tallerweb1.controladores.ControladorReserva;
+import ar.edu.unlam.tallerweb1.controladores.ControladorUsuarios;
+import ar.edu.unlam.tallerweb1.dao.AlquilerDao;
 import ar.edu.unlam.tallerweb1.modelo.Accesorio;
 import ar.edu.unlam.tallerweb1.modelo.Alquiler;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAlquiler;
+import ar.edu.unlam.tallerweb1.servicios.ServicioAlquilerImpl;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 public class ReservaTestMockito {
 
 	@Test
-	public void testListarReservasExitoso() {
-		List<Reserva> reservas = new ArrayList<>();
-		Reserva reserva = mock(Reserva.class);
-		ServicioReserva service = mock(ServicioReserva.class);
-		when(service.listarReservas()).thenReturn(reservas);
-		for (int i = 0; i < 5; i++) {
-			reserva.setIdReserva(i);
-			reservas.add(i, reserva);
-		}
-		assertThat(reservas).hasSize(5);
+	public void testControllerLoginAdministrador() {
+		//Mockeado
+		Usuario user = mock(Usuario.class);
+		ServicioLogin service = mock(ServicioLogin.class);
+		HttpServletRequest request = mock(HttpServletRequest.class);
+		HttpServletResponse response = mock(HttpServletResponse.class);
+		HttpSession session = mock(HttpSession.class);
+		//Preparación
+		ControladorLogin control = new ControladorLogin();
+		control.setServicioLogin(service);
+		when(service.consultarUsuario(user)).thenReturn(user);
+		when(user.getAdministrador()).thenReturn(true);
+		when(request.getSession()).thenReturn(session);
+		//Ejecución
+		ModelAndView model = control.validarLogin(user, request, response);
+		//Verificación
+		String modelName = model.getViewName();
+		assertThat(modelName).isEqualTo("redirect:/listado-reservas");
+	}
+	
+	@Test
+	public void testControllerLoginCliente() {
+		//Mockeado
+		Usuario user = mock(Usuario.class);
+		ServicioLogin service = mock(ServicioLogin.class);
+		HttpServletRequest request = mock(HttpServletRequest.class);
+		HttpServletResponse response = mock(HttpServletResponse.class);
+		HttpSession session = mock(HttpSession.class);
+		//Preparación
+		ControladorLogin control = new ControladorLogin();
+		control.setServicioLogin(service);
+		when(service.consultarUsuario(user)).thenReturn(user);
+		when(user.getAdministrador()).thenReturn(false);
+		when(request.getSession()).thenReturn(session);
+		//Ejecución
+		ModelAndView model = control.validarLogin(user, request, response);
+		//Verificación
+		String modelName = model.getViewName();
+		assertThat(modelName).isEqualTo("redirect:/index");
 	}
 
+/*
 	@Test
-	public void testGuardarReservaExitoso() {
+	public void testControllerRegistrarAdministrador() {
+		//Mockeado
+		Usuario user = mock(Usuario.class);
+		ServicioUsuario service = mock(ServicioUsuario.class);
+		HttpServletRequest request = mock(HttpServletRequest.class);
+		HttpSession session = mock(HttpSession.class);
+		//Preparación
+		ControladorUsuarios control = new ControladorUsuarios();
+		control.setServicioUsuario(service);
+//		user.setId(15);
+//		user.setEmail("email@email.com");
+//		user.setPassword("password");
+//		user.setAdministrador(true);
+//		user.setCuit("123456");
+//		user.setPuntos(0);
+//		user.setNombre("Administrador");
+		user.setEmail("email@email.com");
+		user.setAdministrador(true);
+		Integer id = user.getId();
+		String email = user.getEmail();
+		String password = user.getPassword();
+		Boolean administrador = user.getAdministrador();
+		String cuit = user.getCuit();
+		Integer puntos = user.getPuntos();
+		String nombre = user.getNombre();
+		when(service.guardarUsuario(id, email, password, administrador, cuit, puntos, nombre)).thenReturn(user);
+		when(request.getSession()).thenReturn(session);
+		//Ejecución
+		control.registroAdministradorExitoso(nombre, email, cuit, password, request);
+		//Verificación
+		List<Usuario> list = service.listarUsuarios();
+		System.out.println(list);
+//		Usuario userObtenido = service.obtenerUsuarioPorId(id);
+//		System.out.println(userObtenido);
+	}
+*/
+	
+	@Test
+	public void testControllerListarUsuarios() {
+		//Mockeado
+		Usuario cliente = mock(Usuario.class);
+		Usuario administrador = mock(Usuario.class);
+		ServicioUsuario service = mock(ServicioUsuario.class);
+		//Preparación
+		ControladorUsuarios control = new ControladorUsuarios();
+		control.setServicioUsuario(service);
+		List<Usuario> list = new ArrayList<Usuario>();
+		list.add(cliente);
+		list.add(administrador);
+		when(service.listarUsuarios()).thenReturn(list);
+		//Ejecución
+		ModelAndView model = control.listadoUsuarios();
+		//Verificación
+		Boolean respuesta = model.getModelMap().containsKey("usuariosList");
+		assertThat(respuesta).isTrue();
+	}
+	
+	@Test
+	public void testServiceListarAlquileres() {
+		//Mockeado
+		AlquilerDao dao = mock(AlquilerDao.class);
+		Alquiler alquiler1 = mock(Alquiler.class);
+		Alquiler alquiler2 = mock(Alquiler.class);
+		//Preparación
+		ServicioAlquiler service = new ServicioAlquilerImpl();
+		service.setAlquilerDao(dao);
+		List<Alquiler> list = new ArrayList<Alquiler>();
+		list.add(alquiler1);
+		list.add(alquiler2);
+		when(dao.listarAlquileres()).thenReturn(list);
+		//Ejecución
+		List<Alquiler> listObtenida = service.listarAlquileres();
+		//Verificación
+		assertThat(list).isEqualTo(listObtenida);
+	}
+	
+	@Test
+	public void testServiceDePersistirReserva() {
 		Reserva reservaGuardar = mock(Reserva.class);
 		Reserva reservaBuscar = mock(Reserva.class);
 		ServicioReserva service = mock(ServicioReserva.class);
@@ -54,7 +159,6 @@ public class ReservaTestMockito {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void queEnControladorReservaSeListenLasReservas() {
-
 		Reserva reservaUno = mock(Reserva.class);
 		Reserva reservaDos = mock(Reserva.class);
 		Reserva reservaTres = mock(Reserva.class);
@@ -62,56 +166,14 @@ public class ReservaTestMockito {
 		listaReservas.add(reservaUno);
 		listaReservas.add(reservaDos);
 		listaReservas.add(reservaTres);
-
 		ControladorReserva controladorFake = new ControladorReserva();
 		ServicioReserva servicioFake = mock(ServicioReserva.class);
-
 		when(servicioFake.listarReservas()).thenReturn(listaReservas);
 		controladorFake.setServicioReserva(servicioFake);
-
 		ModelAndView miVista = controladorFake.listadoReservas();
 		assertThat(miVista.getViewName()).isEqualTo("listado-reservas");
 	}
-
-	@Test
-	public void sePruebaControladorLoginConExito() {
-
-		Usuario usuarioFake = mock(Usuario.class);
-		ServicioLogin servicioLoginFake = mock(ServicioLogin.class);
-		HttpServletRequest request = mock(HttpServletRequest.class);
-		HttpSession session = mock(HttpSession.class);
-		HttpServletResponse responseFake = mock(HttpServletResponse.class);
-
-		when(servicioLoginFake.consultarUsuario(usuarioFake)).thenReturn(usuarioFake);
-		when(request.getSession()).thenReturn(session);
-		ControladorLogin controlLogin = new ControladorLogin();
-
-		controlLogin.setServicioLogin(servicioLoginFake);
-
-		ModelAndView modeloVista = controlLogin.validarLogin(usuarioFake, request, responseFake);
-		assertThat(modeloVista.getViewName()).isEqualTo("redirect:/index");
-	}
-
-	@Test
-	public void testLoginComoAdministradorExitoso() {
-
-		Usuario usuarioAdmin = mock(Usuario.class);
-		ServicioLogin servicioLoginFake = mock(ServicioLogin.class);
-		HttpServletRequest request = mock(HttpServletRequest.class);
-		HttpSession sesion = mock(HttpSession.class);
-		HttpServletResponse response = mock(HttpServletResponse.class);
-
-		when(request.getSession()).thenReturn(sesion);
-		when(usuarioAdmin.getAdministrador()).thenReturn(true);
-		when(sesion.getAttribute("usuario")).thenReturn(usuarioAdmin);
-
-		ControladorLogin controlLoginFake = new ControladorLogin();
-		controlLoginFake.setServicioLogin(servicioLoginFake);
-		when(servicioLoginFake.consultarUsuario(usuarioAdmin)).thenReturn(usuarioAdmin);
-
-		ModelAndView model = controlLoginFake.validarLogin(usuarioAdmin, request, response);
-		assertThat(model.getViewName()).isEqualTo("redirect:/listado-reservas");
-	}
+	
 	/*
 	 * @Test public void
 	 * sePruebaQueSePuedanListarVehiculosPorCantidadDePasajeros() { // esta
@@ -157,8 +219,7 @@ public class ReservaTestMockito {
 	 * @Test public void sePruebaQueSeNoSePuedaReservarUnVehiculoYaReservado() {
 	 * 
 	 * }*/
-	 
-
+	
 	@Test
 	public void testQueSeIniciaUnAlquiler() {
 		Reserva reserva = mock(Reserva.class);
@@ -173,16 +234,12 @@ public class ReservaTestMockito {
 	public void testQueIniciarAlquilerEnControladorPersisteElAlquiler() {
 		Reserva reserva = mock(Reserva.class);
 		Accesorio accesorio = mock(Accesorio.class);
-
 		ServicioAlquiler service = mock(ServicioAlquiler.class);
 		Double costoFinal = 1500.00;
-
 		ArrayList<Integer> accesoriosList = new ArrayList<Integer>();
 		accesoriosList.add(accesorio.getIdAccesorio());
-
 		ControladorAlquiler control = new ControladorAlquiler();
 		control.setServicioAlquiler(service);
-
 		service.generarAlquiler(reserva, costoFinal);
 		verify(service).generarAlquiler(reserva, costoFinal);
 	}

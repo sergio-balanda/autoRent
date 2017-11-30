@@ -59,4 +59,8 @@ public class ControladorUsuarios {
 		return new ModelAndView("redirect:/listado-usuarios");
 	}
 
+	public void setServicioUsuario(ServicioUsuario servicioUsuario) {
+		this.servicioUsuario = servicioUsuario;
+	}
+	
 }// fin

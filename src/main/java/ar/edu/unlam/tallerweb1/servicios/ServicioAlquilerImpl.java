@@ -53,4 +53,9 @@ public class ServicioAlquilerImpl implements ServicioAlquiler {
 	public void finalizarAlquiler (Integer idAlquiler) {
 		alquilerDao.finalizarAlquiler(idAlquiler); 
 	}
+	
+	public void setAlquilerDao(AlquilerDao alquilerDao) {
+		this.alquilerDao = alquilerDao;
+	}
+
 }
