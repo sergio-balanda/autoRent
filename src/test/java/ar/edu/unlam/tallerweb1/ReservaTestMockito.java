@@ -146,6 +146,8 @@ public class ReservaTestMockito {
 		assertThat(list).isEqualTo(listObtenida);
 	}
 	
+	//Mocks viejos
+	
 	@Test
 	public void testServiceDePersistirReserva() {
 		Reserva reservaGuardar = mock(Reserva.class);
