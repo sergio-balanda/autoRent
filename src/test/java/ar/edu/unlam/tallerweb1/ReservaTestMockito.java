@@ -14,6 +14,7 @@ import ar.edu.unlam.tallerweb1.controladores.ControladorLogin;
 import ar.edu.unlam.tallerweb1.controladores.ControladorReserva;
 import ar.edu.unlam.tallerweb1.controladores.ControladorUsuarios;
 import ar.edu.unlam.tallerweb1.dao.AlquilerDao;
+import ar.edu.unlam.tallerweb1.dao.ReservaDao;
 import ar.edu.unlam.tallerweb1.modelo.Accesorio;
 import ar.edu.unlam.tallerweb1.modelo.Alquiler;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
@@ -22,7 +23,9 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioAlquiler;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAlquilerImpl;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
+import ar.edu.unlam.tallerweb1.servicios.ServicioReservaImpl;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioVehiculo;
 
 public class ReservaTestMockito {
 
@@ -146,8 +149,6 @@ public class ReservaTestMockito {
 		assertThat(list).isEqualTo(listObtenida);
 	}
 	
-	//Mocks viejos
-	
 	@Test
 	public void testServiceDePersistirReserva() {
 		Reserva reservaGuardar = mock(Reserva.class);
@@ -254,4 +255,31 @@ public class ReservaTestMockito {
 		assertThat(alquiler.getFinalizada().equals(true));
 	}
 
+/*	@Test
+	public void testQueSeMuestraLaCantidadMaximaDePasajeros() {
+		ServicioVehiculo servicio = mock(ServicioVehiculo.class);
+		Integer maxPasajeros = 0 ;
+		when(servicio.maxPasajeros()).thenReturn(maxPasajeros);
+		System.out.println(maxPasajeros);
+	}*/
+	
+	@Test
+	public void testQueSeListanLasReservasCorrectamente() {
+		
+		//Preparacion
+		ReservaDao reservaDao = mock(ReservaDao.class);
+		Reserva reserva1 = mock(Reserva.class);
+		Reserva reserva2 = mock(Reserva.class);
+		ServicioReservaImpl servicio = new ServicioReservaImpl();
+		List <Reserva> listReservas = new ArrayList <Reserva>();
+		listReservas.add(reserva1);
+		listReservas.add(reserva2);
+		servicio.setReservaDao(reservaDao);
+		//Ejecución
+		when(reservaDao.listarReservas()).thenReturn(listReservas);	
+		List lista2 = reservaDao.listarReservas();
+		//Verificación
+		assertThat(lista2).isEqualTo(listReservas);		
+	}
+	
 }

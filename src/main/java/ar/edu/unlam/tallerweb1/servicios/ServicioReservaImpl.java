@@ -32,6 +32,10 @@ public class ServicioReservaImpl implements ServicioReserva {
 	@Inject
 	private UsuarioDao usuarioDao;
 
+	public void setReservaDao(ReservaDao reservaDao) {
+		this.reservaDao = reservaDao;
+	}
+
 	@Override
 	public long calcularCantidadDeDias(String fechaDesde, String fechaHasta) {
 		DateFormat formatoFechaDesde = new SimpleDateFormat("yyyy-MM-dd");

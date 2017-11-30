@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.dao.ReservaDao;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
 
 public interface ServicioReserva {
@@ -13,5 +14,6 @@ public interface ServicioReserva {
 	Reserva UltimaReservaDeUnUsuario(Integer id);
 	Double convertirCostoDeReservaDeUnUsuarioAPuntos(Integer idUsuario);
 	long calcularCantidadDeDias(String fechaDesde, String fechaHasta);
+	public void setReservaDao(ReservaDao reservaDao);
 
 }
