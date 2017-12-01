@@ -47,7 +47,7 @@ public class ReservaTestMockito {
 		ModelAndView model = control.validarLogin(user, request, response);
 		//Verificación
 		String modelName = model.getViewName();
-		assertThat(modelName).isEqualTo("redirect:/listado-reservas");
+		assertThat(modelName).isEqualTo("redirect:/listado-reservasyyy");
 	}
 	
 	@Test
